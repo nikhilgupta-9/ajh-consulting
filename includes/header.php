@@ -45,6 +45,10 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                     </div>
                     <div class="lg:w-1/2 px-[15px] xl:block hidden">
                         <div class="right">
+                            <div class="country-toggle">
+                                <a href="index.php" class="country-toggle-btn<?php echo $currentPage !== 'australia.php' ? ' active' : ''; ?>">New Zealand</a>
+                                <a href="australia.php" class="country-toggle-btn<?php echo $currentPage === 'australia.php' ? ' active' : ''; ?>">Australia</a>
+                            </div>
                             <ul class="top-nav">
                                 <li><a href='about-us.php'>About</a></li>
                                 <li><a href='blog-list.php'>News</a></li>
@@ -160,6 +164,10 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                 </div>
             </div>
             <div class="body-mobile block xl:hidden">
+                <div class="country-toggle" style="border-color:#eee;margin:0 0 20px;max-width:max-content">
+                    <a href="index.php" class="country-toggle-btn<?php echo $currentPage !== 'australia.php' ? ' active' : ''; ?>" style="color:#1c2539">New Zealand</a>
+                    <a href="australia.php" class="country-toggle-btn<?php echo $currentPage === 'australia.php' ? ' active' : ''; ?>" style="color:#1c2539">Australia</a>
+                </div>
                 <nav class="nav-main mainmenu-nav">
                     <ul class="mainmenu">
                         <li class="menu-item"><a class='menu-link' href='index.php'>Home</a></li>
