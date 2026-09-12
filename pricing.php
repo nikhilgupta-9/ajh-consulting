@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/config.php';
 
 $pageTitle       = 'Pricing';
-$metaDescription = 'Simple, transparent pricing plans for AJH Consulting services.';
+$metaDescription = 'Simple, transparent pricing plans for get-accountant services.';
 
 require __DIR__ . '/includes/header.php';
 ?>

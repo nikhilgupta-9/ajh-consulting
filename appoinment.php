@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $pageTitle       = 'Book an Appointment';
-$metaDescription = 'Request a free quote or book an appointment with AJH Consulting.';
+$metaDescription = 'Request a free quote or book an appointment with get-accountant.';
 
 require __DIR__ . '/includes/header.php';
 ?>

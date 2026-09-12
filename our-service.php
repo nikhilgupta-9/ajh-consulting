@@ -11,7 +11,7 @@ if ($pdo = db()) {
 }
 
 $pageTitle       = 'Our Services';
-$metaDescription = 'Explore the business, tax, financial planning and audit services offered by AJH Consulting.';
+$metaDescription = 'Explore the business, tax, financial planning and audit services offered by get-accountant.';
 
 require __DIR__ . '/includes/header.php';
 ?>

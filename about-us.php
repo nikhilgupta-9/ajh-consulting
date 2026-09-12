@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/config.php';
 
 $pageTitle       = 'About Us';
-$metaDescription = 'Learn more about AJH Consulting - our mission, values and expert team.';
+$metaDescription = 'Learn more about get-accountant - our mission, values and expert team.';
 
 require __DIR__ . '/includes/header.php';
 ?>

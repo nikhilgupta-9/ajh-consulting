@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/config.php';
 
 $pageTitle       = 'Portfolio';
-$metaDescription = 'A showcase of projects and client engagements delivered by AJH Consulting.';
+$metaDescription = 'A showcase of projects and client engagements delivered by get-accountant.';
 
 require __DIR__ . '/includes/header.php';
 ?>

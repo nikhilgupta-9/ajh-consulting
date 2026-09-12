@@ -13,7 +13,7 @@ if ($pdo = db()) {
 }
 
 $pageTitle       = 'Blog';
-$metaDescription = 'Business, tax and financial insights from the AJH Consulting team.';
+$metaDescription = 'Business, tax and financial insights from the get-accountant team.';
 
 require __DIR__ . '/includes/header.php';
 ?>

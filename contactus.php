@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $pageTitle       = 'Contact Us';
-$metaDescription = 'Get in touch with AJH Consulting for business, tax and financial advice.';
+$metaDescription = 'Get in touch with get-accountant for business, tax and financial advice.';
 
 require __DIR__ . '/includes/header.php';
 ?>

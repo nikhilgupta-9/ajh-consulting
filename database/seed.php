@@ -17,7 +17,7 @@ if (!$pdo) {
     exit(1);
 }
 
-$email    = env('ADMIN_EMAIL', 'admin@ajhconsulting.com');
+$email    = env('ADMIN_EMAIL', 'admin@get-accountant.com');
 $password = env('ADMIN_PASSWORD');
 
 if (!$password) {

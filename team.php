@@ -11,7 +11,7 @@ if ($pdo = db()) {
 }
 
 $pageTitle       = 'Our Team';
-$metaDescription = 'Meet the AJH Consulting team of business, tax and financial experts.';
+$metaDescription = 'Meet the get-accountant team of business, tax and financial experts.';
 
 require __DIR__ . '/includes/header.php';
 ?>
