@@ -15,3 +15,10 @@
 .country-toggle-btn.active{background:#fff;color:var(--color-primary)!important;opacity:1}
 @media (max-width:1200px){.country-toggle{margin-right:10px}}
 @media (max-width:640px){.country-toggle-btn{padding:5px 10px;font-size:12px}}
+
+/* get-accountant logo sizing */
+.header-main-one .thumbnail{display:flex;align-items:center;height:100%}
+.header-main-one .thumbnail a{padding:0;display:flex;align-items:center;height:100%}
+.header-main-one .thumbnail img{max-height:38px;width:auto;height:auto;max-width:220px}
+.rts-sidebar-menu-desktop img.logo{max-height:34px;width:auto;max-width:220px}
+@media (max-width:479px){.header-main-one .thumbnail img{max-height:28px}}

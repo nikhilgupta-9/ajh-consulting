@@ -71,7 +71,7 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                     <div class="xl:w-1/4 px-[15px] lg:w-1/3 md:w-1/3 sm:w-1/3 w-1/3">
                         <div class="thumbnail">
                             <a href='index.php'>
-                                <img src="assets/images/logo/logo-get-accountant-cropped.png" alt="<?php echo e(APP_NAME); ?>">
+                                <img src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>">
                             </a>
                         </div>
                     </div>
@@ -127,9 +127,9 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
     <div id="side-bar" class="side-bar">
         <button class="close-icon-menu"><i class="far fa-times"></i></button>
         <div class="rts-sidebar-menu-desktop">
-            <a class='logo-1' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-cropped.png" alt="<?php echo e(APP_NAME); ?>"></a>
-            <a class='logo-2' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-cropped.png" alt="<?php echo e(APP_NAME); ?>"></a>
-            <a class='logo-3' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-cropped.png" alt="<?php echo e(APP_NAME); ?>"></a>
+            <a class='logo-1' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>"></a>
+            <a class='logo-2' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>"></a>
+            <a class='logo-3' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>"></a>
             <a class='logo-4' href='index.php'><img class="logo" src="assets/images/logo/logo-5.svg" alt="<?php echo e(APP_NAME); ?>"></a>
             <div class="body hidden xl:block">
                 <p class="disc">
