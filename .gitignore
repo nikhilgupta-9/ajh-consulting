@@ -1,0 +1,33 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies (if composer is added later)
+/vendor/
+composer.lock
+
+# User uploaded content (keep the folders + .htaccess, ignore actual uploads)
+/uploads/team/*
+/uploads/blog/*
+/uploads/services/*
+!/uploads/team/.gitkeep
+!/uploads/blog/.gitkeep
+!/uploads/services/.gitkeep
+
+# Logs
+/logs/*.log
+error_log
+php_errorlog
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Local backups / dumps
+*.sql.bak
+*.zip
