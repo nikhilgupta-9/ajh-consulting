@@ -80,6 +80,7 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                             <nav class="nav-main mainmenu-nav hidden xl:block">
                                 <ul class="mainmenu">
                                     <li><a class='nav-item<?php echo $currentPage === 'index.php' ? ' active' : ''; ?>' href='index.php'>Home</a></li>
+                                    <li><a class='nav-item<?php echo $currentPage === 'get-started.php' ? ' active' : ''; ?>' href='get-started.php'>Get Started</a></li>
                                     <li class="has-droupdown">
                                         <a class='nav-link' href='our-service.php'>Services</a>
                                         <ul class="submenu menu-link3">
@@ -173,6 +174,7 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                 <nav class="nav-main mainmenu-nav">
                     <ul class="mainmenu">
                         <li class="menu-item"><a class='menu-link' href='index.php'>Home</a></li>
+                        <li class="menu-item"><a class='menu-link' href='get-started.php'>Get Started</a></li>
                         <li class="has-droupdown menu-item">
                             <a class='menu-link' href='our-service.php'>Services</a>
                             <ul class="submenu">
