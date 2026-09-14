@@ -1,9 +1,13 @@
 -- =====================================================
---  AJH Consulting - Database Schema
+--  get-accountant - Database Schema
 --  Import this file in phpMyAdmin / mysql CLI after
 --  creating a database (name must match DB_NAME in .env).
 --
---  mysql -u root -p ajh_consulting < database/schema.sql
+--  mysql -u root -p get_accountant_nz < database/schema.sql
+--
+--  Already have data in an older AJH-branded DB? Instead of
+--  re-running this file, apply database/migration_002_branch_structure.sql
+--  to add branch support without losing existing rows.
 -- =====================================================
 
 SET NAMES utf8mb4;
@@ -78,6 +82,7 @@ CREATE TABLE IF NOT EXISTS services (
     id                INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title             VARCHAR(190)        NOT NULL,
     slug              VARCHAR(190)        NOT NULL UNIQUE,
+    branch            ENUM('bookkeeping','firm_outsourcing') NOT NULL DEFAULT 'bookkeeping',
     short_description VARCHAR(400)                 DEFAULT NULL,
     description       LONGTEXT                     DEFAULT NULL,
     icon              VARCHAR(120)                 DEFAULT NULL,
@@ -86,17 +91,57 @@ CREATE TABLE IF NOT EXISTS services (
     created_at        DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- ---------------------------------------------------
+-- FAQs (per branch)
+-- ---------------------------------------------------
+CREATE TABLE IF NOT EXISTS faqs (
+    id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    branch      ENUM('bookkeeping','firm_outsourcing') NOT NULL DEFAULT 'bookkeeping',
+    question    VARCHAR(255)        NOT NULL,
+    answer      TEXT                NOT NULL,
+    sort_order  INT                 NOT NULL DEFAULT 0,
+    created_at  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ---------------------------------------------------
+-- Testimonials (per branch)
+-- ---------------------------------------------------
+CREATE TABLE IF NOT EXISTS testimonials (
+    id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    branch        ENUM('bookkeeping','firm_outsourcing') NOT NULL DEFAULT 'bookkeeping',
+    client_name   VARCHAR(120)        NOT NULL,
+    client_role   VARCHAR(150)                 DEFAULT NULL,
+    photo         VARCHAR(255)                 DEFAULT NULL,
+    quote         TEXT                NOT NULL,
+    rating        TINYINT UNSIGNED    NOT NULL DEFAULT 5,
+    sort_order    INT                 NOT NULL DEFAULT 0,
+    created_at    DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- ---------------------------------------------------
 -- Sample seed data (safe to remove/edit from admin panel)
 -- ---------------------------------------------------
-INSERT INTO services (title, slug, short_description, icon, sort_order) VALUES
-('Business Consulting', 'business-consulting', 'Strategic advice to help your business grow and scale efficiently.', 'flaticon-consulting', 1),
-('Tax & Accounting', 'tax-accounting', 'Accurate bookkeeping, tax planning and compliance for every business size.', 'flaticon-accounting', 2),
-('Financial Planning', 'financial-planning', 'Long-term financial strategy tailored to your goals.', 'flaticon-financial', 3),
-('Audit & Assurance', 'audit-assurance', 'Independent audits that build trust with stakeholders and investors.', 'flaticon-audit', 4)
+INSERT INTO services (title, slug, branch, short_description, icon, sort_order) VALUES
+('Bookkeeping', 'bookkeeping', 'bookkeeping', 'Accurate day-to-day bookkeeping for New Zealand small businesses.', 'flaticon-accounting', 1),
+('Tax Returns', 'tax-returns', 'bookkeeping', 'Individual and business tax returns prepared and filed on time.', 'flaticon-financial', 2),
+('Payroll', 'payroll', 'bookkeeping', 'End-to-end payroll processing so your team gets paid accurately.', 'flaticon-consulting', 3),
+('Firm Outsourcing', 'firm-outsourcing', 'firm_outsourcing', 'Back-office bookkeeping and compliance support for accounting firms.', 'flaticon-audit', 1),
+('White-Label Support', 'white-label-support', 'firm_outsourcing', 'Work under your firm''s brand while we handle the workload.', 'flaticon-consulting', 2)
 ON DUPLICATE KEY UPDATE title = VALUES(title);
+
+INSERT INTO faqs (branch, question, answer, sort_order) VALUES
+('bookkeeping', 'Which industries do you support in New Zealand?', 'We work with a wide range of small and medium businesses across New Zealand, including retail, hospitality, trades and professional services.', 1),
+('bookkeeping', 'How quickly can you take over our bookkeeping?', 'Most clients are fully onboarded within 1-2 weeks, depending on the size of your books and how quickly records are shared with us.', 2),
+('firm_outsourcing', 'How does outsourcing work with our accounting firm?', 'We become an extension of your team, handling bookkeeping and compliance workflows under your firm''s branding and processes.', 1),
+('firm_outsourcing', 'Is our clients'' data kept confidential?', 'Yes. All client data is handled under strict confidentiality agreements and secure systems built for accounting firm partnerships.', 2)
+ON DUPLICATE KEY UPDATE question = VALUES(question);
+
+INSERT INTO testimonials (branch, client_name, client_role, quote, rating, sort_order) VALUES
+('bookkeeping', 'Sarah Mitchell', 'Small Business Owner, Auckland', 'They took bookkeeping completely off my plate. I finally have time to focus on running my business.', 5, 1),
+('firm_outsourcing', 'David Chen', 'Partner, Chen & Associates', 'A reliable outsourcing partner that understands how accounting firms work. Highly recommended.', 5, 1)
+ON DUPLICATE KEY UPDATE quote = VALUES(quote);
 
 INSERT INTO team_members (name, designation, sort_order) VALUES
 ('Robert Fox', 'Founder & CEO', 1),

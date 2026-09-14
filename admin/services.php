@@ -14,7 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo) {
     redirect('services.php');
 }
 
-$services = $pdo ? $pdo->query('SELECT * FROM services ORDER BY sort_order ASC, id ASC')->fetchAll() : [];
+$branch = $_GET['branch'] ?? '';
+$branchLabels = ['bookkeeping' => 'Accounting & Bookkeeping', 'firm_outsourcing' => 'Accounting Firm Outsourcing'];
+
+if ($branch && isset($branchLabels[$branch])) {
+    $stmt = $pdo->prepare('SELECT * FROM services WHERE branch = :branch ORDER BY sort_order ASC, id ASC');
+    $stmt->execute(['branch' => $branch]);
+    $services = $pdo ? $stmt->fetchAll() : [];
+} else {
+    $services = $pdo ? $pdo->query('SELECT * FROM services ORDER BY sort_order ASC, id ASC')->fetchAll() : [];
+}
 
 $pageTitle = 'Services';
 $activeNav = 'services';
@@ -27,19 +36,26 @@ require __DIR__ . '/includes/layout-top.php';
         <a href="services-form.php" class="btn">+ Add Service</a>
     </div>
 
+    <div class="tabs" style="margin-bottom:20px;">
+        <a href="services.php" class="btn btn-sm <?php echo $branch === '' ? 'btn' : 'btn-outline'; ?>">All</a>
+        <a href="services.php?branch=bookkeeping" class="btn btn-sm <?php echo $branch === 'bookkeeping' ? 'btn' : 'btn-outline'; ?>">Accounting & Bookkeeping</a>
+        <a href="services.php?branch=firm_outsourcing" class="btn btn-sm <?php echo $branch === 'firm_outsourcing' ? 'btn' : 'btn-outline'; ?>">Accounting Firm Outsourcing</a>
+    </div>
+
     <?php if (empty($services)): ?>
         <div class="empty-state">No services yet. Click "Add Service" to add one.</div>
     <?php else: ?>
         <div class="table-wrap">
             <table>
                 <thead>
-                    <tr><th>Image</th><th>Title</th><th>Short Description</th><th>Order</th><th>Actions</th></tr>
+                    <tr><th>Image</th><th>Title</th><th>Branch</th><th>Short Description</th><th>Order</th><th>Actions</th></tr>
                 </thead>
                 <tbody>
                     <?php foreach ($services as $service): ?>
                         <tr>
                             <td><?php if ($service['image']): ?><img class="thumb-sm" src="../<?php echo e($service['image']); ?>" alt=""><?php else: ?>-<?php endif; ?></td>
                             <td><?php echo e($service['title']); ?></td>
+                            <td><?php echo e($branchLabels[$service['branch']] ?? $service['branch']); ?></td>
                             <td><?php echo e(mb_strimwidth((string) $service['short_description'], 0, 80, '...')); ?></td>
                             <td><?php echo (int) $service['sort_order']; ?></td>
                             <td class="actions">

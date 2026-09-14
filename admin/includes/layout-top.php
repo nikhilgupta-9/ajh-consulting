@@ -12,11 +12,13 @@
 
 $activeNav = $activeNav ?? '';
 $navItems = [
-    'dashboard' => ['url' => 'index.php',    'label' => 'Dashboard',  'icon' => '&#128202;'],
-    'leads'     => ['url' => 'leads.php',    'label' => 'Leads',      'icon' => '&#128231;'],
-    'blog'      => ['url' => 'blog.php',     'label' => 'Blog Posts', 'icon' => '&#128221;'],
-    'team'      => ['url' => 'team.php',     'label' => 'Team',       'icon' => '&#128101;'],
-    'services'  => ['url' => 'services.php', 'label' => 'Services',   'icon' => '&#128188;'],
+    'dashboard'     => ['url' => 'index.php',        'label' => 'Dashboard',     'icon' => '&#128202;'],
+    'leads'         => ['url' => 'leads.php',        'label' => 'Leads',         'icon' => '&#128231;'],
+    'blog'          => ['url' => 'blog.php',         'label' => 'Blog Posts',    'icon' => '&#128221;'],
+    'team'          => ['url' => 'team.php',         'label' => 'Team',          'icon' => '&#128101;'],
+    'services'      => ['url' => 'services.php',     'label' => 'Services',      'icon' => '&#128188;'],
+    'faqs'          => ['url' => 'faqs.php',         'label' => 'FAQs',          'icon' => '&#10067;'],
+    'testimonials'  => ['url' => 'testimonials.php', 'label' => 'Testimonials',  'icon' => '&#11088;'],
 ];
 ?>
 <!DOCTYPE html>

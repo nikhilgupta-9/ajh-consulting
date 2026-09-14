@@ -4,7 +4,7 @@ require_admin();
 
 $pdo = db();
 $id  = (int) ($_GET['id'] ?? 0);
-$service = ['title' => '', 'slug' => '', 'short_description' => '', 'description' => '', 'icon' => '', 'image' => '', 'sort_order' => 0];
+$service = ['title' => '', 'slug' => '', 'branch' => 'bookkeeping', 'short_description' => '', 'description' => '', 'icon' => '', 'image' => '', 'sort_order' => 0];
 
 if ($id > 0 && $pdo) {
     $stmt = $pdo->prepare('SELECT * FROM services WHERE id = :id');
@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_verify();
 
     $service['title']             = clean($_POST['title'] ?? '');
+    $service['branch']            = in_array(($_POST['branch'] ?? ''), ['bookkeeping', 'firm_outsourcing'], true) ? $_POST['branch'] : 'bookkeeping';
     $service['short_description'] = clean($_POST['short_description'] ?? '');
     $service['description']       = clean($_POST['description'] ?? '');
     $service['icon']              = clean($_POST['icon'] ?? '');
@@ -46,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($id > 0) {
             $stmt = $pdo->prepare(
-                'UPDATE services SET title=:title, slug=:slug, short_description=:short_description, description=:description, icon=:icon, image=:image, sort_order=:sort_order WHERE id=:id'
+                'UPDATE services SET title=:title, slug=:slug, branch=:branch, short_description=:short_description, description=:description, icon=:icon, image=:image, sort_order=:sort_order WHERE id=:id'
             );
             $stmt->execute($service + ['id' => $id]);
             flash_set('success', 'Service updated.');
         } else {
             $stmt = $pdo->prepare(
-                'INSERT INTO services (title, slug, short_description, description, icon, image, sort_order) VALUES (:title, :slug, :short_description, :description, :icon, :image, :sort_order)'
+                'INSERT INTO services (title, slug, branch, short_description, description, icon, image, sort_order) VALUES (:title, :slug, :branch, :short_description, :description, :icon, :image, :sort_order)'
             );
             $stmt->execute($service);
             flash_set('success', 'Service added.');
@@ -78,6 +79,14 @@ require __DIR__ . '/includes/layout-top.php';
         <div class="form-group">
             <label>Title</label>
             <input class="form-control" type="text" name="title" required value="<?php echo e($service['title']); ?>">
+        </div>
+
+        <div class="form-group">
+            <label>Branch</label>
+            <select class="form-control" name="branch">
+                <option value="bookkeeping" <?php echo $service['branch'] === 'bookkeeping' ? 'selected' : ''; ?>>Accounting & Bookkeeping</option>
+                <option value="firm_outsourcing" <?php echo $service['branch'] === 'firm_outsourcing' ? 'selected' : ''; ?>>Accounting Firm Outsourcing</option>
+            </select>
         </div>
 
         <div class="form-group">
