@@ -83,6 +83,8 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                                     <li class="has-droupdown">
                                         <a class='nav-link' href='our-service.php'>Services</a>
                                         <ul class="submenu menu-link3">
+                                            <li><a href='accounting-bookkeeping.php'>Accounting & Bookkeeping</a></li>
+                                            <li><a href='accounting-firm-outsourcing.php'>Accounting Firm Outsourcing</a></li>
                                             <li><a href='our-service.php'>Our Service</a></li>
                                             <li><a href='service-details.php'>Service Details</a></li>
                                         </ul>
@@ -174,6 +176,8 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                         <li class="has-droupdown menu-item">
                             <a class='menu-link' href='our-service.php'>Services</a>
                             <ul class="submenu">
+                                <li class="mobile-menu-link"><a href='accounting-bookkeeping.php'>Accounting & Bookkeeping</a></li>
+                                <li class="mobile-menu-link"><a href='accounting-firm-outsourcing.php'>Accounting Firm Outsourcing</a></li>
                                 <li class="mobile-menu-link"><a href='our-service.php'>Our Service</a></li>
                                 <li class="mobile-menu-link"><a href='service-details.php'>Service Details</a></li>
                             </ul>
