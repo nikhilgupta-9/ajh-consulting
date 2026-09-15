@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS blog_posts (
     excerpt     VARCHAR(400)                 DEFAULT NULL,
     content     LONGTEXT            NOT NULL,
     image       VARCHAR(255)                 DEFAULT NULL,
-    author      VARCHAR(120)                 DEFAULT 'AJH Consulting',
+    author      VARCHAR(120)                 DEFAULT 'get-accountant',
     status      ENUM('draft','published') NOT NULL DEFAULT 'published',
     created_at  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -172,9 +172,27 @@ INSERT INTO blog_posts (title, slug, excerpt, content, author, status) VALUES
 ('Best Business Ideas For Getting Solution', 'best-business-ideas-for-getting-solution',
  'A quick look at practical, high-impact ideas that help growing businesses solve common problems.',
  '<p>A quick look at practical, high-impact ideas that help growing businesses solve common problems. Replace this placeholder text from the admin panel.</p>',
- 'AJH Consulting', 'published'),
+ 'get-accountant', 'published'),
 ('How To Plan Your Company Finances', 'how-to-plan-your-company-finances',
  'A short guide on building a realistic, sustainable financial plan for your company.',
  '<p>A short guide on building a realistic, sustainable financial plan for your company. Replace this placeholder text from the admin panel.</p>',
- 'AJH Consulting', 'published')
+ 'get-accountant', 'published')
 ON DUPLICATE KEY UPDATE title = VALUES(title);
+
+-- ---------------------------------------------------
+-- Page Content (CMS-lite) — admin-editable hero content
+-- for pages like Services, keyed by page_slug.
+-- ---------------------------------------------------
+CREATE TABLE IF NOT EXISTS page_content (
+    id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    page_slug   VARCHAR(100)        NOT NULL UNIQUE,
+    heading     VARCHAR(190)                 DEFAULT NULL,
+    subheading  VARCHAR(255)                 DEFAULT NULL,
+    body        TEXT                         DEFAULT NULL,
+    image       VARCHAR(255)                 DEFAULT NULL,
+    updated_at  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO page_content (page_slug, heading, subheading, body) VALUES
+('services', 'Our Services', 'What We Offer', 'Explore the accounting, bookkeeping and outsourcing services we offer across New Zealand.')
+ON DUPLICATE KEY UPDATE heading = VALUES(heading);

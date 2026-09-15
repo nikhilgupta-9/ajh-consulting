@@ -2,9 +2,17 @@
 require_once __DIR__ . '/config/config.php';
 
 $services = [];
+$pageContent = ['heading' => 'Our Services', 'subheading' => '', 'body' => '', 'image' => ''];
 if ($pdo = db()) {
     try {
         $services = $pdo->query('SELECT * FROM services ORDER BY sort_order ASC, id ASC')->fetchAll();
+
+        $stmt = $pdo->prepare('SELECT * FROM page_content WHERE page_slug = :slug');
+        $stmt->execute(['slug' => 'services']);
+        $found = $stmt->fetch();
+        if ($found) {
+            $pageContent = $found;
+        }
     } catch (Throwable $e) {
         $services = [];
     }
@@ -17,23 +25,43 @@ require __DIR__ . '/includes/header.php';
 ?>
 
     <!-- start breadcrumb area -->
-    <div class="rts-breadcrumb-area breadcrumb-bg bg_image">
+    <div class="rts-breadcrumb-area breadcrumb-bg bg_image"<?php echo !empty($pageContent['image']) ? " style=\"background-image:url('" . e($pageContent['image']) . "')\"" : ''; ?>>
         <div class="container">
             <div class="flex flex-wrap -mx-[15px] items-center">
                 <div class="xl:w-1/2 px-[15px] lg:w-1/2 md:w-1/2 sm:w-full w-full breadcrumb-1">
-                    <h1 class="title">Our Services</h1>
+                    <h1 class="title"><?php echo e($pageContent['heading'] ?: 'Our Services'); ?></h1>
                 </div>
                 <div class="xl:w-1/2 px-[15px] lg:w-1/2 md:w-1/2 sm:w-full w-full">
                     <div class="bread-tag">
                         <a href='index.php'>Home</a>
                         <span> / </span>
-                        <a class='active' href='our-service.php'>Our Services</a>
+                        <a class='active' href='our-service.php'><?php echo e($pageContent['heading'] ?: 'Our Services'); ?></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- end breadcrumb area -->
+
+    <?php if (!empty($pageContent['subheading']) || !empty($pageContent['body'])): ?>
+    <!-- editable intro area -->
+    <div class="rts-about-area rts-section-gapTop">
+        <div class="container">
+            <div class="flex flex-wrap -mx-[15px]">
+                <div class="w-full px-[15px] text-center" style="max-width:800px;margin:0 auto;">
+                    <?php if (!empty($pageContent['subheading'])): ?>
+                        <span class="color-primary sub" style="text-transform:uppercase;font-weight:700;letter-spacing:.1em;"><?php echo e($pageContent['subheading']); ?></span>
+                    <?php endif; ?>
+                    <?php if (!empty($pageContent['body'])): ?>
+                        <p class="disc mt--15"><?php echo e($pageContent['body']); ?></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end editable intro area -->
+    <?php endif; ?>
+
 
 
     <!-- our service area start -->
