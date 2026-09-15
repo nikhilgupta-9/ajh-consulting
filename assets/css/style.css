@@ -22,3 +22,11 @@
 .header-main-one .thumbnail img{max-height:38px;width:auto;height:auto;max-width:220px}
 .rts-sidebar-menu-desktop img.logo{max-height:34px;width:auto;max-width:220px}
 @media (max-width:479px){.header-main-one .thumbnail img{max-height:28px}}
+
+/* Branch sub-navigation tabs */
+.branch-subnav{background:#f8f8f8;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
+.branch-subnav-scroll{display:flex;gap:6px;overflow-x:auto;padding:12px 0;white-space:nowrap;-ms-overflow-style:none;scrollbar-width:none}
+.branch-subnav-scroll::-webkit-scrollbar{display:none}
+.branch-subnav-link{padding:8px 16px;border-radius:30px;font-size:14px;font-weight:600;color:#444;background:#fff;border:1px solid #eee;flex-shrink:0}
+.branch-subnav-link:hover{color:var(--color-primary);border-color:var(--color-primary)}
+.branch-subnav-link.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
