@@ -28,6 +28,8 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
 
 <body>
 
+    <?php require __DIR__ . '/entry-gate.php'; ?>
+
     <!-- start header area -->
     <header class="header--sticky header-one">
         <div class="header-top header-top-one bg-1">
