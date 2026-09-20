@@ -45,6 +45,7 @@ $pageTitle       = 'Contact Us';
 $metaDescription = 'Get in touch with get-accountant for business, tax and financial advice.';
 
 require __DIR__ . '/includes/header.php';
+// $settings is already populated by includes/header.php
 ?>
 
     <!-- start breadcrumb area -->
@@ -82,9 +83,9 @@ require __DIR__ . '/includes/header.php';
                                 <img src="assets/images/contact/shape/01.svg" alt="">
                             </div>
                             <div class="info">
-                                <span>Call Us 24/7</span>
-                                <a href="tel:+18475555555">
-                                    <h2>+584 (25) 21453</h2>
+                                <span>Call Us</span>
+                                <a href="tel:<?php echo e($settings['phone']); ?>">
+                                    <h2><?php echo e($settings['phone'] ?: 'Add a phone number in Admin > Settings'); ?></h2>
                                 </a>
                             </div>
                         </div>
@@ -102,9 +103,9 @@ require __DIR__ . '/includes/header.php';
                                 <img src="assets/images/contact/shape/02.svg" alt="">
                             </div>
                             <div class="info">
-                                <span>MAke A Quote</span>
-                                <a href="mailto:someone@example.com">
-                                    <h3>info@finbiz.com</h3>
+                                <span>Email Us</span>
+                                <a href="mailto:<?php echo e($settings['email']); ?>">
+                                    <h3><?php echo e($settings['email'] ?: 'Add an email in Admin > Settings'); ?></h3>
                                 </a>
                             </div>
                         </div>
@@ -122,9 +123,9 @@ require __DIR__ . '/includes/header.php';
                                 <img src="assets/images/contact/shape/03.svg" alt="">
                             </div>
                             <div class="info">
-                                <span>Service Station</span>
-                                <a href="https://www.google.com/maps/search/?api=1&amp;query=13%2FA%20New%20Pro%20State%20NYC">
-                                    <h3>25 Hilton Street.</h3>
+                                <span>Visit Us</span>
+                                <a href="https://www.google.com/maps/search/?api=1&amp;query=<?php echo urlencode($settings['address']); ?>">
+                                    <h3><?php echo e($settings['address'] ?: 'Add an address in Admin > Settings'); ?></h3>
                                 </a>
                             </div>
                         </div>
@@ -137,18 +138,20 @@ require __DIR__ . '/includes/header.php';
     <!-- conact single area end -->
 
     <!-- bizup map area start -->
+    <?php if (!empty($settings['map_embed_url'])): ?>
     <div class="rts-contact-map-area">
         <div class="contaciner-fluid">
             <div class="flex flex-wrap -mx-[15px]">
                 <div class="w-full px-[15px]">
                     <div class="contact-map-area-fluid">
-                        <iframe class="contact-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14602.288851207937!2d90.47855065!3d23.798243149999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1663151706353!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe class="contact-map" src="<?php echo e($settings['map_embed_url']); ?>" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         <img class="location" src="assets/images/contact/shape/location.svg" alt="Business_map">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <?php endif; ?>
     <!-- bizup map area end -->
 
 

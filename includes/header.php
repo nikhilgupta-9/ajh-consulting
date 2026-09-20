@@ -9,6 +9,7 @@ require_once __DIR__ . '/../config/config.php';
 $pageTitle       = $pageTitle ?? APP_NAME;
 $metaDescription = $metaDescription ?? 'get-accountant - accounting, bookkeeping and outsourcing services for New Zealand and Australia.';
 $currentPage     = basename($_SERVER['SCRIPT_NAME']);
+$settings        = site_settings();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,10 +39,10 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                     <div class="lg:w-1/2 px-[15px] xl:block hidden">
                         <div class="left">
                             <div class="mail">
-                                <a href="mailto:<?php echo e(BUSINESS_EMAIL); ?>"><i class="fal fa-envelope"></i> <?php echo e(BUSINESS_EMAIL); ?></a>
+                                <a href="mailto:<?php echo e($settings['email']); ?>"><i class="fal fa-envelope"></i> <?php echo e($settings['email']); ?></a>
                             </div>
                             <div class="working-time">
-                                <p><i class="fal fa-clock"></i> Working: 9.00am - 6.00pm</p>
+                                <p><i class="fal fa-clock"></i> <?php echo e($settings['working_hours'] ?: 'Working: 9.00am - 6.00pm'); ?></p>
                             </div>
                         </div>
                     </div>
@@ -57,10 +58,10 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                                 <li><a href='contactus.php'>Contact</a></li>
                             </ul>
                             <ul class="social-wrapper-one">
-                                <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a></li>
-                                <li><a class="mr--0" href="https://www.linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a></li>
+                                <?php if ($settings['facebook_url']): ?><li><a href="<?php echo e($settings['facebook_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a></li><?php endif; ?>
+                                <?php if ($settings['twitter_url']): ?><li><a href="<?php echo e($settings['twitter_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a></li><?php endif; ?>
+                                <?php if ($settings['instagram_url']): ?><li><a href="<?php echo e($settings['instagram_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a></li><?php endif; ?>
+                                <?php if ($settings['linkedin_url']): ?><li><a class="mr--0" href="<?php echo e($settings['linkedin_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a></li><?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -138,33 +139,40 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
             <a class='logo-4' href='index.php'><img class="logo" src="assets/images/logo/logo-5.svg" alt="<?php echo e(APP_NAME); ?>"></a>
             <div class="body hidden xl:block">
                 <p class="disc">
-                    <?php echo e(APP_NAME); ?> helps businesses grow with clear, practical accounting, tax and consulting advice.
+                    <?php echo e($settings['tagline'] ?: (e(APP_NAME) . ' helps businesses grow with clear, practical accounting, tax and consulting advice.')); ?>
                 </p>
                 <div class="get-in-touch">
                     <div class="h6 title">Get In Touch</div>
                     <div class="wrapper">
+                        <?php if ($settings['phone']): ?>
                         <div class="single">
                             <i class="fas fa-phone-alt"></i>
-                            <a href="tel:<?php echo e(BUSINESS_PHONE); ?>"><?php echo e(BUSINESS_PHONE); ?></a>
+                            <a href="tel:<?php echo e($settings['phone']); ?>"><?php echo e($settings['phone']); ?></a>
                         </div>
+                        <?php endif; ?>
+                        <?php if ($settings['email']): ?>
                         <div class="single">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:<?php echo e(BUSINESS_EMAIL); ?>"><?php echo e(BUSINESS_EMAIL); ?></a>
+                            <a href="mailto:<?php echo e($settings['email']); ?>"><?php echo e($settings['email']); ?></a>
                         </div>
+                        <?php endif; ?>
                         <div class="single">
                             <i class="fas fa-globe"></i>
                             <a href="<?php echo e(APP_URL); ?>"><?php echo e(APP_URL); ?></a>
                         </div>
+                        <?php if ($settings['address']): ?>
                         <div class="single">
                             <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://www.google.com/maps/search/?api=1&amp;query=<?php echo urlencode(BUSINESS_ADDRESS); ?>"><?php echo e(BUSINESS_ADDRESS); ?></a>
+                            <a href="https://www.google.com/maps/search/?api=1&amp;query=<?php echo urlencode($settings['address']); ?>"><?php echo e($settings['address']); ?></a>
                         </div>
+                        <?php endif; ?>
                     </div>
                     <div class="social-wrapper-two menu">
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.whatsapp.com/" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                        <?php if ($settings['facebook_url']): ?><a href="<?php echo e($settings['facebook_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a><?php endif; ?>
+                        <?php if ($settings['twitter_url']): ?><a href="<?php echo e($settings['twitter_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a><?php endif; ?>
+                        <?php if ($settings['instagram_url']): ?><a href="<?php echo e($settings['instagram_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><?php endif; ?>
+                        <?php $waLink = $settings['whatsapp_url'] ?: whatsapp_link($settings['whatsapp_number']); ?>
+                        <?php if ($waLink): ?><a href="<?php echo e($waLink); ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -208,10 +216,10 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
                     </ul>
                 </nav>
                 <div class="social-wrapper-two menu mobile-menu">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.whatsapp.com/" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                    <?php if ($settings['facebook_url']): ?><a href="<?php echo e($settings['facebook_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a><?php endif; ?>
+                    <?php if ($settings['twitter_url']): ?><a href="<?php echo e($settings['twitter_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a><?php endif; ?>
+                    <?php if ($settings['instagram_url']): ?><a href="<?php echo e($settings['instagram_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><?php endif; ?>
+                    <?php if ($waLink): ?><a href="<?php echo e($waLink); ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><?php endif; ?>
                 </div>
                 <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btnmenu' href='contactus.php'>Get Quote</a>
             </div>

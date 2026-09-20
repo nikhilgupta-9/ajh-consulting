@@ -3,6 +3,9 @@
  * Shared footer + scripts, included at the bottom of every public page.
  */
 
+$settings = site_settings();
+$waLink   = $settings['whatsapp_url'] ?: whatsapp_link($settings['whatsapp_number']);
+
 $recentPosts = [];
 if ($pdo = db()) {
     try {
@@ -131,7 +134,7 @@ if ($pdo = db()) {
                 <div class="flex flex-wrap -mx-[15px]">
                     <div class="w-full px-[15px]">
                         <div class="text-center">
-                            <p><?php echo e(APP_NAME); ?> &copy; Copyright <span class="current-year"></span>. All rights reserved.</p>
+                            <p>&copy; <span class="current-year"></span> <?php echo e($settings['copyright_text'] ?: (APP_NAME . '. All rights reserved.')); ?></p>
                         </div>
                     </div>
                 </div>
@@ -139,6 +142,14 @@ if ($pdo = db()) {
         </div>
     </div>
     <!-- rts footer area end -->
+
+    <?php if ($waLink): ?>
+    <!-- floating WhatsApp chat button -->
+    <a href="<?php echo e($waLink); ?>" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp"
+       style="position:fixed; right:22px; bottom:22px; z-index:999; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,.25);">
+        <i class="fab fa-whatsapp" style="color:#fff; font-size:28px;"></i>
+    </a>
+    <?php endif; ?>
 
     <!-- start loader -->
     <div class="loader-wrapper">

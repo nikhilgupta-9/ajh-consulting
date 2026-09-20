@@ -20,6 +20,7 @@ $navItems = [
     'faqs'          => ['url' => 'faqs.php',         'label' => 'FAQs',          'icon' => '&#10067;'],
     'testimonials'  => ['url' => 'testimonials.php', 'label' => 'Testimonials',  'icon' => '&#11088;'],
     'page-content'  => ['url' => 'page-content.php',  'label' => 'Page Content',  'icon' => '&#128196;'],
+    'settings'      => ['url' => 'settings.php',      'label' => 'Site Settings', 'icon' => '&#9881;'],
 ];
 ?>
 <!DOCTYPE html>

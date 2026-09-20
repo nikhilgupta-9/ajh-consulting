@@ -137,3 +137,59 @@ function site_url(string $path = ''): string
 {
     return APP_URL . '/' . ltrim($path, '/');
 }
+
+/**
+ * Site-wide contact / business settings (company name, email, phone,
+ * WhatsApp, address, social links, map embed, copyright text), edited
+ * from the admin panel (Settings). Falls back to sensible defaults if
+ * the site_settings table/row doesn't exist yet (e.g. before the
+ * migration has been run) so the site never fatal-errors on this.
+ */
+function site_settings(): array
+{
+    static $settings = null;
+
+    if ($settings !== null) {
+        return $settings;
+    }
+
+    $defaults = [
+        'company_name'    => APP_NAME,
+        'tagline'         => '',
+        'email'           => defined('BUSINESS_EMAIL') ? BUSINESS_EMAIL : '',
+        'phone'           => defined('BUSINESS_PHONE') ? BUSINESS_PHONE : '',
+        'whatsapp_number' => '',
+        'whatsapp_url'    => '',
+        'address'         => defined('BUSINESS_ADDRESS') ? BUSINESS_ADDRESS : '',
+        'working_hours'   => '',
+        'map_embed_url'   => '',
+        'facebook_url'    => '',
+        'twitter_url'     => '',
+        'instagram_url'   => '',
+        'linkedin_url'    => '',
+        'youtube_url'     => '',
+        'copyright_text'  => APP_NAME . '. All rights reserved.',
+    ];
+
+    if ($pdo = db()) {
+        try {
+            $row = $pdo->query('SELECT * FROM site_settings WHERE id = 1')->fetch();
+            if ($row) {
+                $settings = array_merge($defaults, array_filter($row, fn ($v) => $v !== null && $v !== ''));
+                return $settings;
+            }
+        } catch (Throwable $e) {
+            // Table not migrated yet — fall through to defaults.
+        }
+    }
+
+    $settings = $defaults;
+    return $settings;
+}
+
+/** Build a wa.me click-to-chat link from a settings WhatsApp number. */
+function whatsapp_link(string $number): string
+{
+    $digits = preg_replace('/[^0-9]/', '', $number);
+    return $digits ? 'https://wa.me/' . $digits : '';
+}
