@@ -34,6 +34,9 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 # ---- Redirect .php URLs to extension-less URLs ----
+# GET only: a 301 on a POST request gets replayed as GET by browsers/curl,
+# which would silently drop the submitted form data (login, contact, etc.).
+RewriteCond %{REQUEST_METHOD} =GET
 RewriteCond %{THE_REQUEST} /([^.]+)\.php[\s?] [NC]
 RewriteRule ^ /%1 [NC,L,R=301]
 
