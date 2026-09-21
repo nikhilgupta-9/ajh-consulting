@@ -71,16 +71,61 @@ if ($pdo = db()) {
             </div>
             <?php if (empty($services)): ?>
                 <p class="disc">Services will be listed here soon. Manage them from the admin panel &mdash; Services.</p>
-            <?php else: ?>
+            <?php elseif ($branch === 'bookkeeping'): ?>
+                <!-- icon cards, matching nz/accounting/services.php -->
                 <div class="flex flex-wrap -mx-[15px]">
-                    <?php foreach ($services as $service): ?>
+                    <?php
+                    $__icons = ['01', '02', '03', '04', '05', '06', '07', '08'];
+                    $__variants = ['one', 'two', 'three', 'four'];
+                    $__i = 0;
+                    foreach ($services as $service):
+                        $__icon = $__icons[$__i % count($__icons)];
+                        $__variant = $__variants[$__i % count($__variants)];
+                        $__detailUrl = site_url('service-details.php') . '?slug=' . urlencode($service['slug']);
+                        $__i++;
+                    ?>
                     <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pb--30">
-                        <div class="single-service-home-six" style="height:100%;">
-                            <div class="inner">
-                                <h3 class="title" style="font-size:19px;"><?php echo e($service['title']); ?></h3>
+                        <div class="service-one-inner <?php echo e($__variant); ?>" style="height:100%;">
+                            <div class="thumbnail">
+                                <img src="<?php echo site_url('assets/images/service/icon/' . $__icon . '.svg'); ?>" alt="<?php echo e($service['title']); ?>">
+                            </div>
+                            <div class="service-details">
+                                <a href='<?php echo e($__detailUrl); ?>'>
+                                    <h3 class="title h5"><?php echo e($service['title']); ?></h3>
+                                </a>
                                 <?php if (!empty($service['short_description'])): ?>
                                     <p class="disc"><?php echo e($service['short_description']); ?></p>
                                 <?php endif; ?>
+                                <a class='rts-read-more btn-primary' href='<?php echo e($__detailUrl); ?>'><i class="far fa-arrow-right"></i>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <!-- compact photo cards, matching nz/accounting-firm/services.php -->
+                <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px]">
+                    <?php
+                    $__photos = ['10', '11', '12', '13'];
+                    $__i = 0;
+                    foreach ($services as $service):
+                        $__photo = $__photos[$__i % count($__photos)];
+                        $__detailUrl = site_url('service-details.php') . '?slug=' . urlencode($service['slug']);
+                        $__i++;
+                    ?>
+                    <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pb--30">
+                        <div class="rts-single-service-h2 inner" style="height:100%;">
+                            <a class='thumbnail' href='<?php echo e($__detailUrl); ?>'>
+                                <img src="<?php echo e($service['image'] ?: site_url('assets/images/service/' . $__photo . '.jpg')); ?>" alt="<?php echo e($service['title']); ?>">
+                            </a>
+                            <div class="body">
+                                <a href='<?php echo e($__detailUrl); ?>'>
+                                    <h3 class="title"><?php echo e($service['title']); ?></h3>
+                                </a>
+                                <?php if (!empty($service['short_description'])): ?>
+                                    <p class="disc"><?php echo e($service['short_description']); ?></p>
+                                <?php endif; ?>
+                                <a class='btn-red-more' href='<?php echo e($__detailUrl); ?>'>Learn More<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
