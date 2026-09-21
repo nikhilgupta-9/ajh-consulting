@@ -5,6 +5,23 @@ $pageTitle       = 'About Us';
 $metaDescription = 'Learn more about get-accountant - our mission, values and expert team.';
 
 require __DIR__ . '/includes/header.php';
+
+// Admin-editable hero content (Admin > Page Content > About). Structure of
+// this page is left untouched — only the heading/subheading/body/image
+// text below is wired to the database, with the original copy as fallback.
+$aboutContent = ['heading' => '', 'subheading' => '', 'body' => '', 'image' => ''];
+if ($pdo = db()) {
+    try {
+        $stmt = $pdo->prepare('SELECT * FROM page_content WHERE page_slug = :slug');
+        $stmt->execute(['slug' => 'about']);
+        $found = $stmt->fetch();
+        if ($found) {
+            $aboutContent = $found;
+        }
+    } catch (Throwable $e) {
+        // page_content not migrated yet — fall back to the defaults below.
+    }
+}
 ?>
 
     <!-- start breadcrumb area -->
@@ -33,7 +50,7 @@ require __DIR__ . '/includes/header.php';
                 <div class="lg:w-1/2 px-[15px]">
                     <div class="about-image-v-inner">
                         <div class="image-area">
-                            <img class="mt--110 img-1" src="assets/images/about/main/about-03.jpg" alt="BUsiness_image">
+                            <img class="mt--110 img-1" src="<?php echo e($aboutContent['image'] ?: 'assets/images/about/main/about-03.jpg'); ?>" alt="BUsiness_image">
                             <img class="img-over" src="assets/images/about/main/about-04.jpg" alt="BUsiness_image">
                             <div class="goal-button-wrapper">
                                 <div class="vedio-icone">
@@ -51,15 +68,12 @@ require __DIR__ . '/includes/header.php';
                 <div class="lg:w-1/2 px-[15px]">
                     <div class="about-progress-inner">
                         <div class="title-area">
-                            <span>JUST A CONSULTANCY</span>
-                            <h2 class="title">Get Consulting For Better
-                                Business Growth</h2>
+                            <span><?php echo e($aboutContent['subheading'] ?: 'JUST A CONSULTANCY'); ?></span>
+                            <h2 class="title"><?php echo e($aboutContent['heading'] ?: 'Get Consulting For Better Business Growth'); ?></h2>
                         </div>
                         <!-- inner start -->
                         <div class="inner">
-                            <p class="disc">Dapibus curae risus rutrum curabitur nunc sociis nullam nisl, aliquet quis
-                                iaculis scelerisque primis massa imperdiet, dis senectus blandit aptent nulla cubilia
-                                sodales convallis tortor pellentesque nulla.</p>
+                            <p class="disc"><?php echo e($aboutContent['body'] ?: 'Dapibus curae risus rutrum curabitur nunc sociis nullam nisl, aliquet quis iaculis scelerisque primis massa imperdiet, dis senectus blandit aptent nulla cubilia sodales convallis tortor pellentesque nulla.'); ?></p>
                             <div class="rts-progress-one-wrapper">
                                 <div class="single-progress">
                                     <div class="progress-top">

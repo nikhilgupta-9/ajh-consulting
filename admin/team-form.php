@@ -38,17 +38,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $member['photo'] = $uploaded;
         }
 
+        // Only the known columns — a GET-time SELECT * (when editing) can
+        // leave extra keys like id/created_at in $member, which PDO
+        // rejects now that emulated prepares are off.
+        $memberFields = ['name', 'designation', 'photo', 'facebook', 'twitter', 'linkedin', 'instagram', 'sort_order'];
+        $memberData   = array_intersect_key($member, array_flip($memberFields));
+
         if ($id > 0) {
             $stmt = $pdo->prepare(
                 'UPDATE team_members SET name=:name, designation=:designation, photo=:photo, facebook=:facebook, twitter=:twitter, linkedin=:linkedin, instagram=:instagram, sort_order=:sort_order WHERE id=:id'
             );
-            $stmt->execute($member + ['id' => $id]);
+            $stmt->execute($memberData + ['id' => $id]);
             flash_set('success', 'Team member updated.');
         } else {
             $stmt = $pdo->prepare(
                 'INSERT INTO team_members (name, designation, photo, facebook, twitter, linkedin, instagram, sort_order) VALUES (:name, :designation, :photo, :facebook, :twitter, :linkedin, :instagram, :sort_order)'
             );
-            $stmt->execute($member);
+            $stmt->execute($memberData);
             flash_set('success', 'Team member added.');
         }
 

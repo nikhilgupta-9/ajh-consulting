@@ -33,17 +33,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors) && $pdo) {
+        // Only the known columns — a GET-time SELECT * (when editing) can
+        // leave extra keys like id/created_at in $faq, which PDO rejects
+        // now that emulated prepares are off.
+        $faqFields = ['branch', 'question', 'answer', 'sort_order'];
+        $faqData   = array_intersect_key($faq, array_flip($faqFields));
+
         if ($id > 0) {
             $stmt = $pdo->prepare(
                 'UPDATE faqs SET branch=:branch, question=:question, answer=:answer, sort_order=:sort_order WHERE id=:id'
             );
-            $stmt->execute($faq + ['id' => $id]);
+            $stmt->execute($faqData + ['id' => $id]);
             flash_set('success', 'FAQ updated.');
         } else {
             $stmt = $pdo->prepare(
                 'INSERT INTO faqs (branch, question, answer, sort_order) VALUES (:branch, :question, :answer, :sort_order)'
             );
-            $stmt->execute($faq);
+            $stmt->execute($faqData);
             flash_set('success', 'FAQ added.');
         }
 

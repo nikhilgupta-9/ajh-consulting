@@ -40,17 +40,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $t['photo'] = $uploaded;
         }
 
+        // Only the known columns — a GET-time SELECT * (when editing) can
+        // leave extra keys like id/created_at in $t, which PDO rejects
+        // now that emulated prepares are off.
+        $tFields = ['branch', 'client_name', 'client_role', 'photo', 'quote', 'rating', 'sort_order'];
+        $tData   = array_intersect_key($t, array_flip($tFields));
+
         if ($id > 0) {
             $stmt = $pdo->prepare(
                 'UPDATE testimonials SET branch=:branch, client_name=:client_name, client_role=:client_role, photo=:photo, quote=:quote, rating=:rating, sort_order=:sort_order WHERE id=:id'
             );
-            $stmt->execute($t + ['id' => $id]);
+            $stmt->execute($tData + ['id' => $id]);
             flash_set('success', 'Testimonial updated.');
         } else {
             $stmt = $pdo->prepare(
                 'INSERT INTO testimonials (branch, client_name, client_role, photo, quote, rating, sort_order) VALUES (:branch, :client_name, :client_role, :photo, :quote, :rating, :sort_order)'
             );
-            $stmt->execute($t);
+            $stmt->execute($tData);
             flash_set('success', 'Testimonial added.');
         }
 

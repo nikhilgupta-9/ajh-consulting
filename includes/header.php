@@ -97,6 +97,9 @@ $settings        = site_settings();
                                         <a class='nav-link' href='about-us.php'>Pages</a>
                                         <ul class="submenu menu-link">
                                             <li><a href='about-us.php'>About Us</a></li>
+                                            <li><a href='how-we-work.php'>How We Work</a></li>
+                                            <li><a href='our-peoples.php'>Our Peoples</a></li>
+                                            <li><a href='insight-resources.php'>Insight &amp; Resources</a></li>
                                             <li><a href='team.php'>Our Team</a></li>
                                             <li><a href='project.php'>Portfolio</a></li>
                                             <li><a href='pricing.php'>Pricing</a></li>
@@ -198,6 +201,9 @@ $settings        = site_settings();
                             <a class='menu-link' href='about-us.php'>Pages</a>
                             <ul class="submenu">
                                 <li class="mobile-menu-link"><a href='about-us.php'>About Us</a></li>
+                                <li class="mobile-menu-link"><a href='how-we-work.php'>How We Work</a></li>
+                                <li class="mobile-menu-link"><a href='our-peoples.php'>Our Peoples</a></li>
+                                <li class="mobile-menu-link"><a href='insight-resources.php'>Insight &amp; Resources</a></li>
                                 <li class="mobile-menu-link"><a href='team.php'>Our Team</a></li>
                                 <li class="mobile-menu-link"><a href='project.php'>Portfolio</a></li>
                                 <li class="mobile-menu-link"><a href='pricing.php'>Pricing</a></li>

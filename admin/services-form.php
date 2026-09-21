@@ -45,17 +45,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $service['image'] = $uploaded;
         }
 
+        // Only the known columns — a GET-time SELECT * (when editing) can
+        // leave extra keys like id/created_at in $service, which PDO
+        // rejects now that emulated prepares are off.
+        $serviceFields = ['title', 'slug', 'branch', 'short_description', 'description', 'icon', 'image', 'sort_order'];
+        $serviceData   = array_intersect_key($service, array_flip($serviceFields));
+
         if ($id > 0) {
             $stmt = $pdo->prepare(
                 'UPDATE services SET title=:title, slug=:slug, branch=:branch, short_description=:short_description, description=:description, icon=:icon, image=:image, sort_order=:sort_order WHERE id=:id'
             );
-            $stmt->execute($service + ['id' => $id]);
+            $stmt->execute($serviceData + ['id' => $id]);
             flash_set('success', 'Service updated.');
         } else {
             $stmt = $pdo->prepare(
                 'INSERT INTO services (title, slug, branch, short_description, description, icon, image, sort_order) VALUES (:title, :slug, :branch, :short_description, :description, :icon, :image, :sort_order)'
             );
-            $stmt->execute($service);
+            $stmt->execute($serviceData);
             flash_set('success', 'Service added.');
         }
 

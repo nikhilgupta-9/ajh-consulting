@@ -194,7 +194,15 @@ CREATE TABLE IF NOT EXISTS page_content (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO page_content (page_slug, heading, subheading, body) VALUES
-('services', 'Our Services', 'What We Offer', 'Explore the accounting, bookkeeping and outsourcing services we offer across New Zealand.')
+('services', 'Our Services', 'What We Offer', 'Explore the accounting, bookkeeping and outsourcing services we offer across New Zealand.'),
+('about', 'Get Consulting For Better Business Growth', 'JUST A CONSULTANCY',
+ 'Dapibus curae risus rutrum curabitur nunc sociis nullam nisl, aliquet quis iaculis scelerisque primis massa imperdiet, dis senectus blandit aptent nulla cubilia sodales convallis tortor pellentesque nulla.'),
+('how-we-work', 'How We Work', 'OUR PROCESS',
+ 'A simple, transparent process that keeps you informed at every step — from your first enquiry through to ongoing support. Edit this introduction from Admin > Page Content.'),
+('our-peoples', 'Our Peoples', 'MEET THE TEAM',
+ 'The people behind get-accountant — experienced, approachable and committed to helping your business succeed. Edit this introduction from Admin > Page Content.'),
+('insight-resources', 'Insight & Resources', 'LATEST THINKING',
+ 'Practical guides, updates and ideas to help you run your business or accounting firm more effectively. Edit this introduction from Admin > Page Content.')
 ON DUPLICATE KEY UPDATE heading = VALUES(heading);
 
 -- ---------------------------------------------------

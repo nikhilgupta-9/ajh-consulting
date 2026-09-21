@@ -5,7 +5,13 @@ require_admin();
 $pdo = db();
 
 // Known editable pages — add more slugs here as new pages need this.
-$pages = ['services' => 'Services Page'];
+$pages = [
+    'services'          => ['label' => 'Services Page',          'view' => '../our-service.php'],
+    'about'             => ['label' => 'About',                  'view' => '../about-us.php'],
+    'how-we-work'       => ['label' => 'How We Work',             'view' => '../how-we-work.php'],
+    'our-peoples'       => ['label' => 'Our Peoples',             'view' => '../our-peoples.php'],
+    'insight-resources' => ['label' => 'Insight & Resources',     'view' => '../insight-resources.php'],
+];
 
 $slug = $_GET['page'] ?? 'services';
 if (!isset($pages[$slug])) {
@@ -50,7 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'INSERT INTO page_content (heading, subheading, body, image, page_slug) VALUES (:heading, :subheading, :body, :image, :page_slug)'
             );
         }
-        $stmt->execute($content);
+        // Only pass the placeholders the query actually uses — SELECT *
+        // above may have merged extra keys (id, updated_at) into
+        // $content, which PDO rejects now that emulated prepares are off.
+        $stmt->execute(array_intersect_key($content, ['heading' => 1, 'subheading' => 1, 'body' => 1, 'image' => 1, 'page_slug' => 1]));
 
         flash_set('success', 'Page content updated.');
         redirect('page-content.php?page=' . urlencode($slug));
@@ -64,12 +73,12 @@ require __DIR__ . '/includes/layout-top.php';
 
 <div class="card" style="max-width:720px;">
     <div class="page-header">
-        <h2>Page Content &mdash; <?php echo e($pages[$slug]); ?></h2>
+        <h2>Page Content &mdash; <?php echo e($pages[$slug]['label']); ?></h2>
     </div>
 
     <div class="tabs" style="margin-bottom:20px;">
-        <?php foreach ($pages as $pSlug => $label): ?>
-            <a href="page-content.php?page=<?php echo urlencode($pSlug); ?>" class="btn btn-sm <?php echo $slug === $pSlug ? 'btn' : 'btn-outline'; ?>"><?php echo e($label); ?></a>
+        <?php foreach ($pages as $pSlug => $p): ?>
+            <a href="page-content.php?page=<?php echo urlencode($pSlug); ?>" class="btn btn-sm <?php echo $slug === $pSlug ? 'btn' : 'btn-outline'; ?>"><?php echo e($p['label']); ?></a>
         <?php endforeach; ?>
     </div>
 
@@ -104,7 +113,7 @@ require __DIR__ . '/includes/layout-top.php';
         </div>
 
         <button type="submit" class="btn">Save Changes</button>
-        <a href="../our-service.php" target="_blank" class="btn btn-outline">View Page</a>
+        <a href="<?php echo e($pages[$slug]['view']); ?>" target="_blank" class="btn btn-outline">View Page</a>
     </form>
 </div>
 
