@@ -1,14 +1,14 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Technology & Systems';
 $metaDescription = 'The accounting software and data security practices we use when working with New Zealand accounting firms.';
 $pageHeading     = 'Technology & Systems';
-$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'accounting-firm-outsourcing.php'];
+$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'index.php'];
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/firm-outsourcing-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
 
 $systems = [
     ['name' => 'Xero',              'desc' => 'Cloud-based accounting, widely used across New Zealand accounting practices.'],
@@ -46,4 +46,4 @@ $systems = [
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

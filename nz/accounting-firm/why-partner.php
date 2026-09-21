@@ -1,14 +1,14 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Why Partner with Us';
 $metaDescription = 'Why New Zealand accounting firms partner with get-accountant for outsourcing support.';
 $pageHeading     = 'Why Partner with Us';
-$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'accounting-firm-outsourcing.php'];
+$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'index.php'];
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/firm-outsourcing-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
 
 $whyPoints = [
     'Experienced accounting and bookkeeping expertise',
@@ -35,4 +35,4 @@ $whyPoints = [
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

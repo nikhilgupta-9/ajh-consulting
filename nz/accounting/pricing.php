@@ -1,14 +1,14 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Pricing';
 $metaDescription = 'Transparent, tailored bookkeeping pricing for New Zealand businesses.';
 $pageHeading     = 'Pricing';
-$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'accounting-bookkeeping.php'];
+$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'index.php'];
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/bookkeeping-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/bookkeeping-subnav.php';
 
 $factors = [
     'Volume of monthly transactions',
@@ -47,4 +47,4 @@ $factors = [
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

@@ -1,10 +1,10 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Client Stories';
 $metaDescription = 'What our bookkeeping clients across New Zealand say about working with get-accountant.';
 $pageHeading     = 'Client Stories';
-$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'accounting-bookkeeping.php'];
+$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'index.php'];
 
 $testimonials = [];
 if ($pdo = db()) {
@@ -17,9 +17,9 @@ if ($pdo = db()) {
     }
 }
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/bookkeeping-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/bookkeeping-subnav.php';
 ?>
 
     <div class="rts-client-feedback rts-section-gap">
@@ -51,4 +51,4 @@ require __DIR__ . '/includes/bookkeeping-subnav.php';
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

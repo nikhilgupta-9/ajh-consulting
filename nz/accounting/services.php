@@ -1,10 +1,10 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Bookkeeping Services';
 $metaDescription = 'Bookkeeping, tax returns, payroll and accounting services for New Zealand small businesses.';
 $pageHeading     = 'Services';
-$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'accounting-bookkeeping.php'];
+$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'index.php'];
 
 $services = [];
 if ($pdo = db()) {
@@ -17,9 +17,9 @@ if ($pdo = db()) {
     }
 }
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/bookkeeping-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/bookkeeping-subnav.php';
 ?>
 
     <div class="rts-service-area rts-section-gap">
@@ -48,4 +48,4 @@ require __DIR__ . '/includes/bookkeeping-subnav.php';
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

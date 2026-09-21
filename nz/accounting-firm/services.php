@@ -1,10 +1,10 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Outsourcing Services';
 $metaDescription = 'Accounts payable, accounts receivable, payroll, GST returns and monthly accounting outsourcing for New Zealand accounting firms.';
 $pageHeading     = 'Outsourcing Services';
-$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'accounting-firm-outsourcing.php'];
+$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'index.php'];
 
 $services = [];
 if ($pdo = db()) {
@@ -17,9 +17,9 @@ if ($pdo = db()) {
     }
 }
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/firm-outsourcing-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
 ?>
 
     <div class="rts-service-area rts-section-gap">
@@ -54,4 +54,4 @@ require __DIR__ . '/includes/firm-outsourcing-subnav.php';
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

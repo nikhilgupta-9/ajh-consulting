@@ -1,14 +1,14 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Industries We Support';
 $metaDescription = 'Bookkeeping and accounting support across retail, hospitality, trades and professional services in New Zealand.';
 $pageHeading     = 'Industries We Support';
-$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'accounting-bookkeeping.php'];
+$breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'index.php'];
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/bookkeeping-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/bookkeeping-subnav.php';
 
 $industries = [
     ['name' => 'Retail',                    'desc' => 'Inventory-aware bookkeeping and GST support for retail businesses.'],
@@ -43,4 +43,4 @@ $industries = [
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

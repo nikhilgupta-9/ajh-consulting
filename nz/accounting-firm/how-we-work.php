@@ -1,14 +1,14 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'How We Work with Firms';
 $metaDescription = 'How our outsourcing process works alongside New Zealand accounting firms, from onboarding to ongoing delivery.';
 $pageHeading     = 'How We Work with Firms';
-$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'accounting-firm-outsourcing.php'];
+$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'index.php'];
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/firm-outsourcing-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
 
 $steps = [
     ['step' => '1', 'title' => 'Scoping Call',           'desc' => 'We discuss your firm\'s workflow, client base and which tasks you want to outsource.'],
@@ -42,4 +42,4 @@ $steps = [
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

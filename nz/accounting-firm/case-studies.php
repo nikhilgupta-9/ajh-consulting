@@ -1,14 +1,14 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Case Studies';
 $metaDescription = 'Case studies from accounting firms we work with in New Zealand.';
 $pageHeading     = 'Case Studies';
-$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'accounting-firm-outsourcing.php'];
+$breadcrumbParent = ['label' => 'Accounting Firm Outsourcing', 'url' => 'index.php'];
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/firm-outsourcing-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
 ?>
 
     <div class="rts-service-area rts-section-gap">
@@ -23,4 +23,4 @@ require __DIR__ . '/includes/firm-outsourcing-subnav.php';
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

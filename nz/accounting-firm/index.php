@@ -1,22 +1,22 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Accounting Firm Outsourcing';
 $metaDescription = 'Outsourcing support for accounting firms in New Zealand — accounts payable, receivable, payroll, GST and monthly accounting, aligned with IRD and Companies Office requirements.';
 $pageHeading     = 'Accounting Firm Outsourcing';
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/firm-outsourcing-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
 
 $hubCards = [
-    ['title' => 'Outsourcing Services',            'url' => 'accounting-firm-outsourcing-services.php',     'desc' => 'Accounts payable, receivable, payroll, GST and monthly accounting.'],
-    ['title' => 'How We Work with Firms',          'url' => 'accounting-firm-outsourcing-how-we-work.php',  'desc' => 'Our process for working alongside your firm.'],
-    ['title' => 'Technology & Systems',            'url' => 'accounting-firm-outsourcing-technology.php',   'desc' => 'The software and security we work with.'],
-    ['title' => 'Why Partner with Us',             'url' => 'accounting-firm-outsourcing-why-partner.php',  'desc' => 'What makes us a reliable outsourcing partner.'],
-    ['title' => 'Case Studies',                    'url' => 'accounting-firm-outsourcing-case-studies.php', 'desc' => 'How we\'ve supported other accounting firms.'],
-    ['title' => 'FAQs',                            'url' => 'accounting-firm-outsourcing-faqs.php',         'desc' => 'Answers to common questions from firms.'],
-    ['title' => 'Insights for Accounting Firms',   'url' => 'accounting-firm-outsourcing-insights.php',     'desc' => 'Articles and resources for practice owners.'],
+    ['title' => 'Outsourcing Services',            'url' => 'services.php',     'desc' => 'Accounts payable, receivable, payroll, GST and monthly accounting.'],
+    ['title' => 'How We Work with Firms',          'url' => 'how-we-work.php',  'desc' => 'Our process for working alongside your firm.'],
+    ['title' => 'Technology & Systems',            'url' => 'technology.php',   'desc' => 'The software and security we work with.'],
+    ['title' => 'Why Partner with Us',             'url' => 'why-partner.php',  'desc' => 'What makes us a reliable outsourcing partner.'],
+    ['title' => 'Case Studies',                    'url' => 'case-studies.php', 'desc' => 'How we\'ve supported other accounting firms.'],
+    ['title' => 'FAQs',                            'url' => 'faqs.php',         'desc' => 'Answers to common questions from firms.'],
+    ['title' => 'Insights for Accounting Firms',   'url' => 'insights.php',     'desc' => 'Articles and resources for practice owners.'],
 ];
 ?>
 
@@ -65,11 +65,11 @@ $hubCards = [
                     <p class="disc" style="color:#fff;">Contact us today to explore how our outsourcing services can reduce your operational burden.</p>
                 </div>
                 <div class="cta-right">
-                    <a class='rts-btn btn-primary' style="background:#fff;color:var(--color-primary);" href='contactus.php'>Contact Us</a>
+                    <a class='rts-btn btn-primary' style="background:#fff;color:var(--color-primary);" href='<?php echo site_url("contactus.php"); ?>'>Contact Us</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- end cta area -->
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>

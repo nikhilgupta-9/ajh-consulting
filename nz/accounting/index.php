@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $pageTitle       = 'Accounting & Bookkeeping';
 $metaDescription = 'Accurate, reliable bookkeeping and accounting support for small businesses across New Zealand.';
@@ -40,9 +40,9 @@ $steps = [
     ['step' => '4', 'title' => 'Monthly Reporting',   'desc' => 'You receive clear, regular reports on where your business stands.'],
 ];
 
-require __DIR__ . '/includes/header.php';
-require __DIR__ . '/includes/breadcrumb.php';
-require __DIR__ . '/includes/bookkeeping-subnav.php';
+require __DIR__ . '/../../includes/header.php';
+require __DIR__ . '/../../includes/breadcrumb.php';
+require __DIR__ . '/../../includes/bookkeeping-subnav.php';
 ?>
 
     <!-- 1. intro -->
@@ -67,7 +67,7 @@ require __DIR__ . '/includes/bookkeeping-subnav.php';
                     <h2 class="title">Our Services</h2>
                 </div>
                 <div class="xl:w-1/3 px-[15px] text-right">
-                    <a class='rts-read-more-two color-primary' href='accounting-bookkeeping-services.php'>View All Services<i class="far fa-arrow-right"></i></a>
+                    <a class='rts-read-more-two color-primary' href='services.php'>View All Services<i class="far fa-arrow-right"></i></a>
                 </div>
             </div>
             <?php if (empty($services)): ?>
@@ -111,7 +111,7 @@ require __DIR__ . '/includes/bookkeeping-subnav.php';
             </div>
             <div class="flex flex-wrap -mx-[15px]" style="margin-top:20px;">
                 <div class="w-full px-[15px]">
-                    <a class='rts-read-more-two color-primary' href='accounting-bookkeeping-why-us.php'>See All Reasons<i class="far fa-arrow-right"></i></a>
+                    <a class='rts-read-more-two color-primary' href='why-us.php'>See All Reasons<i class="far fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@ require __DIR__ . '/includes/bookkeeping-subnav.php';
                     <h2 class="title">What Our Clients Say</h2>
                 </div>
                 <div class="xl:w-1/3 px-[15px] text-right">
-                    <a class='rts-read-more-two color-primary' href='accounting-bookkeeping-client-stories.php'>All Client Stories<i class="far fa-arrow-right"></i></a>
+                    <a class='rts-read-more-two color-primary' href='client-stories.php'>All Client Stories<i class="far fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-[15px]">
@@ -201,7 +201,7 @@ require __DIR__ . '/includes/bookkeeping-subnav.php';
                 <?php endforeach; ?>
             </div>
             <div style="margin-top:20px;text-align:center;">
-                <a class='rts-read-more-two color-primary' href='accounting-bookkeeping-faqs.php'>See All FAQs<i class="far fa-arrow-right"></i></a>
+                <a class='rts-read-more-two color-primary' href='faqs.php'>See All FAQs<i class="far fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -216,10 +216,10 @@ require __DIR__ . '/includes/bookkeeping-subnav.php';
                     <p class="disc" style="color:#fff;">Get in touch and we'll take bookkeeping off your plate.</p>
                 </div>
                 <div class="cta-right">
-                    <a class='rts-btn btn-primary' style="background:#fff;color:var(--color-primary);" href='contactus.php'>Contact Us</a>
+                    <a class='rts-btn btn-primary' style="background:#fff;color:var(--color-primary);" href='<?php echo site_url("contactus.php"); ?>'>Contact Us</a>
                 </div>
             </div>
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/../../includes/footer.php'; ?>
