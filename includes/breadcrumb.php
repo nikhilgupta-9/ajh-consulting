@@ -13,7 +13,7 @@ $__parent = $breadcrumbParent ?? null;
             </div>
             <div class="xl:w-1/2 px-[15px] lg:w-1/2 md:w-1/2 sm:w-full w-full">
                 <div class="bread-tag">
-                    <a href='index.php'>Home</a>
+                    <a href='<?php echo site_url('index.php'); ?>'>Home</a>
                     <span> / </span>
                     <?php if ($__parent): ?>
                         <a href="<?php echo e($__parent['url']); ?>"><?php echo e($__parent['label']); ?></a>

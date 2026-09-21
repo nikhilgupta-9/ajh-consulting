@@ -57,8 +57,8 @@ $socialLinks = array_filter([
 
                 <!-- company -->
                 <div class="site-footer-col site-footer-company">
-                    <a href="index.php" class="site-footer-logo">
-                        <img src="assets/images/logo/logo-get-accountant-wordmark.png"
+                    <a href="<?php echo site_url("index.php"); ?>" class="site-footer-logo">
+                        <img src="<?php echo site_url("assets/images/logo/logo-get-accountant-wordmark.png"); ?>"
                             alt="<?php echo e($settings['company_name'] ?: APP_NAME); ?>">
                     </a>
                     <p><?php echo e($settings['tagline'] ?: (APP_NAME . ' helps businesses grow with clear, practical accounting, tax and consulting advice.')); ?>
@@ -78,13 +78,13 @@ $socialLinks = array_filter([
                 <div class="site-footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about-us.php">About Us</a></li>
-                        <li><a href="how-we-work.php">How We Work</a></li>
-                        <li><a href="our-peoples.php">Our Peoples</a></li>
-                        <li><a href="insight-resources.php">Insight &amp; Resources</a></li>
-                        <li><a href="our-service.php">Our Services</a></li>
-                        <li><a href="pricing.php">Pricing</a></li>
+                        <li><a href="<?php echo site_url("index.php"); ?>">Home</a></li>
+                        <li><a href="<?php echo site_url("about-us.php"); ?>">About Us</a></li>
+                        <li><a href="<?php echo site_url("how-we-work.php"); ?>">How We Work</a></li>
+                        <li><a href="<?php echo site_url("our-peoples.php"); ?>">Our Peoples</a></li>
+                        <li><a href="<?php echo site_url("insight-resources.php"); ?>">Insight &amp; Resources</a></li>
+                        <li><a href="<?php echo site_url("our-service.php"); ?>">Our Services</a></li>
+                        <li><a href="<?php echo site_url("pricing.php"); ?>">Pricing</a></li>
                     </ul>
                 </div>
 
@@ -93,19 +93,19 @@ $socialLinks = array_filter([
                     <h4>I'm Looking For&hellip;</h4>
                     <ul class="site-footer-audience">
                         <li>
-                            <a href="accounting-bookkeeping.php">
+                            <a href="<?php echo site_url("nz/accounting/"); ?>">
                                 <span class="site-footer-audience-title">A Business</span>
                                 <span class="site-footer-audience-sub">Accounting &amp; Bookkeeping</span>
                             </a>
                         </li>
                         <li>
-                            <a href="accounting-firm-outsourcing.php">
+                            <a href="<?php echo site_url("nz/accounting-firm/"); ?>">
                                 <span class="site-footer-audience-title">An Accounting Firm</span>
                                 <span class="site-footer-audience-sub">Firm Outsourcing Support</span>
                             </a>
                         </li>
-                        <li><a href="get-started.php">Not sure? Get Started &rarr;</a></li>
-                        <li><a href="appoinment.php">Book an Appointment</a></li>
+                        <li><a href="<?php echo site_url("get-started.php"); ?>">Not sure? Get Started &rarr;</a></li>
+                        <li><a href="<?php echo site_url("appoinment.php"); ?>">Book an Appointment</a></li>
                     </ul>
                 </div>
 
@@ -148,8 +148,8 @@ $socialLinks = array_filter([
                     <h4>Latest Insights</h4>
                     <div class="site-footer-insights-grid">
                         <?php foreach ($recentPosts as $post): ?>
-                            <a class="site-footer-insight" href="blog-details.php?slug=<?php echo urlencode($post['slug']); ?>">
-                                <img src="<?php echo e($post['image'] ?: 'assets/images/footer/post/01.png'); ?>"
+                            <a class="site-footer-insight" href="<?php echo site_url('blog-details.php'); ?>?slug=<?php echo urlencode($post['slug']); ?>">
+                                <img src="<?php echo e($post['image'] ?: site_url('assets/images/footer/post/01.png')); ?>"
                                     alt="<?php echo e($post['title']); ?>">
                                 <span>
                                     <em><?php echo date('jS F, Y', strtotime($post['created_at'])); ?></em>
@@ -171,16 +171,16 @@ $socialLinks = array_filter([
                     <?php echo e($settings['copyright_text'] ?: (APP_NAME . '. All rights reserved.')); ?></p>
 
                 <div class="site-footer-country" role="group" aria-label="Select your country">
-                    <a href="index.php" class="<?php echo $currentPage !== 'australia.php' ? 'is-active' : ''; ?>">New
+                    <a href="<?php echo site_url("index.php"); ?>" class="<?php echo $currentPage !== 'australia.php' ? 'is-active' : ''; ?>">New
                         Zealand</a>
-                    <a href="australia.php"
+                    <a href="<?php echo site_url("australia.php"); ?>"
                         class="<?php echo $currentPage === 'australia.php' ? 'is-active' : ''; ?>">Australia</a>
                 </div>
 
                 <ul class="site-footer-legal">
-                    <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                    <li><a href="terms-of-use.php">Terms of Use</a></li>
-                    <li><a href="sitemap.php">Sitemap</a></li>
+                    <li><a href="<?php echo site_url("privacy-policy.php"); ?>">Privacy Policy</a></li>
+                    <li><a href="<?php echo site_url("terms-of-use.php"); ?>">Terms of Use</a></li>
+                    <li><a href="<?php echo site_url("sitemap.php"); ?>">Sitemap</a></li>
                 </ul>
             </div>
             <p class="site-footer-credit">Crafted by <a href="https://www.nikhilworks.com" target="_blank"
@@ -542,21 +542,21 @@ $socialLinks = array_filter([
 <!-- progress Back to top End -->
 
 <!-- scripts start form hear -->
-<script src="assets/js/vendor/jquery.min.js"></script>
-<script src="assets/js/vendor/jqueryui.js"></script>
-<script src="assets/js/vendor/waypoint.js"></script>
-<script src="assets/js/vendor/waw.js"></script>
-<script src="assets/js/plugins/swiper.js"></script>
-<script src="assets/js/plugins/counterup.js"></script>
-<script src="assets/js/plugins/sal.min.js"></script>
-<script src="assets/js/plugins/contact.form.js"></script>
-<script src="assets/js/plugins/gsap.js"></script>
-<script src="assets/js/plugins/scroll-trigger.js"></script>
-<script src="assets/js/plugins/smooth-scroll.js"></script>
-<script src="assets/js/plugins/split-text.js"></script>
+<script src="<?php echo site_url("assets/js/vendor/jquery.min.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/vendor/jqueryui.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/vendor/waypoint.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/vendor/waw.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/swiper.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/counterup.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/sal.min.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/contact.form.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/gsap.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/scroll-trigger.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/smooth-scroll.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/plugins/split-text.js"); ?>"></script>
 <!-- main Js -->
-<script src="assets/js/main.js"></script>
-<script src="assets/js/inline.js"></script>
+<script src="<?php echo site_url("assets/js/main.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/inline.js"); ?>"></script>
 <!-- scripts end form hear -->
 </body>
 

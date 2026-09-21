@@ -40,7 +40,7 @@ require __DIR__ . '/includes/header.php';
             <div class="flex flex-wrap -mx-[15px] mt--60 justify-center">
                 <!-- bookkeeping card -->
                 <div class="xl:w-5/12 px-[15px] md:w-1/2 sm:w-full w-full pb--30">
-                    <a href="accounting-bookkeeping.php" style="display:block;height:100%;">
+                    <a href="nz/accounting/" style="display:block;height:100%;">
                         <div class="single-business-solution-2" style="height:100%;text-align:center;border-left:none;border-top:5px solid var(--color-primary);margin-left:0;">
                             <div class="content" style="padding-left:0;">
                                 <h3 class="title">I need Accounting & Bookkeeping</h3>
@@ -52,7 +52,7 @@ require __DIR__ . '/includes/header.php';
                 </div>
                 <!-- firm outsourcing card -->
                 <div class="xl:w-5/12 px-[15px] md:w-1/2 sm:w-full w-full pb--30">
-                    <a href="accounting-firm-outsourcing.php" style="display:block;height:100%;">
+                    <a href="nz/accounting-firm/" style="display:block;height:100%;">
                         <div class="single-business-solution-2" style="height:100%;text-align:center;border-left:none;border-top:5px solid var(--color-primary);margin-left:0;">
                             <div class="content" style="padding-left:0;">
                                 <h3 class="title">I'm an Accounting Firm</h3>

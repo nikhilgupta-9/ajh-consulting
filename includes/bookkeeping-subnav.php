@@ -1,14 +1,14 @@
 <?php
 $__bkNav = [
-    'accounting-bookkeeping.php'                  => 'Home',
-    'accounting-bookkeeping-services.php'         => 'Services',
-    'accounting-bookkeeping-industries.php'       => 'Industries We Support',
-    'accounting-bookkeeping-why-us.php'           => 'Why Choose Us',
-    'accounting-bookkeeping-how-it-works.php'     => 'How It Works',
-    'accounting-bookkeeping-pricing.php'          => 'Pricing',
-    'accounting-bookkeeping-faqs.php'             => 'FAQs',
-    'accounting-bookkeeping-client-stories.php'   => 'Client Stories',
-    'accounting-bookkeeping-insights.php'         => 'Insights & Resources',
+    'index.php'          => 'Home',
+    'services.php'       => 'Services',
+    'industries.php'     => 'Industries We Support',
+    'why-us.php'         => 'Why Choose Us',
+    'how-it-works.php'   => 'How It Works',
+    'pricing.php'        => 'Pricing',
+    'faqs.php'           => 'FAQs',
+    'client-stories.php' => 'Client Stories',
+    'insights.php'       => 'Insights & Resources',
 ];
 ?>
 <div class="branch-subnav">
@@ -17,7 +17,7 @@ $__bkNav = [
             <?php foreach ($__bkNav as $__url => $__label): ?>
                 <a href="<?php echo e($__url); ?>" class="branch-subnav-link<?php echo $currentPage === $__url ? ' active' : ''; ?>"><?php echo e($__label); ?></a>
             <?php endforeach; ?>
-            <a href="contactus.php" class="branch-subnav-link">Contact Us</a>
+            <a href="<?php echo site_url('contactus.php'); ?>" class="branch-subnav-link">Contact Us</a>
         </div>
     </div>
 </div>

@@ -8,102 +8,176 @@
  */
 $gateExcludedPages = [
     'get-started.php',
-    'accounting-bookkeeping.php',
-    'accounting-firm-outsourcing.php',
     'australia.php',
     'contactus.php',
 ];
-$showEntryGate = !in_array($currentPage, $gateExcludedPages, true) && empty($_COOKIE['ga_gate']);
+// Any page inside /nz/ or /au/ (the branch hub pages themselves, or their
+// sub-pages) should never show the gate either.
+$__requestPath  = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '';
+$__isBranchPage = (bool) preg_match('#/(nz|au)/#', $__requestPath);
+$showEntryGate  = !$__isBranchPage && !in_array($currentPage, $gateExcludedPages, true) && empty($_COOKIE['ga_gate']);
 ?>
 <?php if ($showEntryGate): ?>
-<div id="entry-gate" class="entry-gate">
-    <div class="entry-gate-box">
-        <div class="entry-gate-logo">
-            <img src="assets/images/logo/logo-get-accountant-wordmark.png" alt="get-accountant">
-        </div>
-
-        <!-- Step 1 -->
-        <div class="entry-gate-step" data-step="1">
-            <h3>Are you a business or an accountant?</h3>
-            <p>This helps us show you the right services.</p>
-            <div class="entry-gate-options">
-                <button type="button" class="entry-gate-btn" data-who="business">I'm a Business</button>
-                <button type="button" class="entry-gate-btn" data-who="accountant">I'm an Accounting Firm</button>
+    <div id="entry-gate" class="entry-gate">
+        <div class="entry-gate-box">
+            <div class="entry-gate-logo">
+                <img src="assets/images/logo/logo-get-accountant-wordmark.png" alt="get-accountant">
             </div>
-        </div>
 
-        <!-- Step 2 -->
-        <div class="entry-gate-step" data-step="2" hidden>
-            <h3>Which country are you in?</h3>
-            <p>We'll take you to the site for your region.</p>
-            <div class="entry-gate-options">
-                <button type="button" class="entry-gate-btn" data-country="nz">New Zealand</button>
-                <button type="button" class="entry-gate-btn" data-country="au">Australia</button>
+            <!-- Step 1 -->
+            <div class="entry-gate-step" data-step="1">
+                <h3>Are you an accountant or representing an accounting firm?</h3>
+                <p>This helps us show you the right services.</p>
+                <div class="entry-gate-options">
+                    <button type="button" class="entry-gate-btn" data-who="accountant">Yes &mdash; Accounting Firm Support</button>
+                    <button type="button" class="entry-gate-btn" data-who="business">No &mdash; Accounting &amp; Bookkeeping</button>
+                </div>
             </div>
-            <button type="button" class="entry-gate-back">&larr; Back</button>
+
+            <!-- Step 2 -->
+            <div class="entry-gate-step" data-step="2" hidden>
+                <h3>Which country are you in?</h3>
+                <p>We'll take you to the site for your region.</p>
+                <div class="entry-gate-options">
+                    <button type="button" class="entry-gate-btn" data-country="nz">New Zealand</button>
+                    <button type="button" class="entry-gate-btn" data-country="au">Australia</button>
+                </div>
+                <button type="button" class="entry-gate-back">&larr; Back</button>
+            </div>
         </div>
     </div>
-</div>
 
-<style>
-.entry-gate{position:fixed;inset:0;z-index:99999;background:#fff;display:flex;align-items:center;justify-content:center;padding:20px}
-.entry-gate-box{max-width:520px;width:100%;text-align:center}
-.entry-gate-logo{margin-bottom:36px}
-.entry-gate-logo img{max-height:34px;width:auto}
-.entry-gate-step h3{font-size:26px;font-weight:700;margin-bottom:10px;color:#1a1a1a}
-.entry-gate-step p{color:#666;margin-bottom:30px}
-.entry-gate-options{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
-.entry-gate-btn{flex:1 1 200px;padding:18px 20px;border:2px solid #eee;border-radius:10px;background:#fff;font-size:16px;font-weight:600;color:#1a1a1a;cursor:pointer;transition:.2s}
-.entry-gate-btn:hover{border-color:var(--color-primary);color:var(--color-primary);background:#fff5f5}
-.entry-gate-back{margin-top:24px;background:none;border:none;color:#999;font-size:14px;cursor:pointer;text-decoration:underline}
-@media (max-width:576px){.entry-gate-step h3{font-size:21px}.entry-gate-options{flex-direction:column}}
-</style>
+    <style>
+        .entry-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px
+        }
 
-<script>
-(function () {
-    function setCookie(name, value, days) {
-        var d = new Date();
-        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-        document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/';
-    }
+        .entry-gate-box {
+            max-width: 520px;
+            width: 100%;
+            text-align: center
+        }
 
-    var gate = document.getElementById('entry-gate');
-    if (!gate) { return; }
+        .entry-gate-logo {
+            margin-bottom: 36px
+        }
 
-    var who = null;
-    var step1 = gate.querySelector('[data-step="1"]');
-    var step2 = gate.querySelector('[data-step="2"]');
+        .entry-gate-logo img {
+            max-height: 34px;
+            width: auto
+        }
 
-    step1.querySelectorAll('[data-who]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            who = btn.getAttribute('data-who');
-            step1.hidden = true;
-            step2.hidden = false;
-        });
-    });
+        .entry-gate-step h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a1a1a
+        }
 
-    step2.querySelector('.entry-gate-back').addEventListener('click', function () {
-        step2.hidden = true;
-        step1.hidden = false;
-    });
+        .entry-gate-step p {
+            color: #666;
+            margin-bottom: 30px
+        }
 
-    step2.querySelectorAll('[data-country]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var country = btn.getAttribute('data-country');
-            var dest = 'index.php';
+        .entry-gate-options {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
 
-            if (country === 'au') {
-                dest = 'australia.php';
-            } else if (who === 'business') {
-                dest = 'accounting-bookkeeping.php';
-            } else if (who === 'accountant') {
-                dest = 'accounting-firm-outsourcing.php';
+        .entry-gate-btn {
+            flex: 1 1 200px;
+            padding: 18px 20px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            background: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .entry-gate-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background: #fff5f5
+        }
+
+        .entry-gate-back {
+            margin-top: 24px;
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline
+        }
+
+        @media (max-width:576px) {
+            .entry-gate-step h3 {
+                font-size: 21px
             }
 
-            setCookie('ga_gate', who + '_' + country, 30);
-            window.location.href = dest;
-        });
-    });
-})();
-</script>
+            .entry-gate-options {
+                flex-direction: column
+            }
+        }
+    </style>
+
+    <script>
+        (function () {
+            function setCookie(name, value, days) {
+                var d = new Date();
+                d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+                document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/';
+            }
+
+            var gate = document.getElementById('entry-gate');
+            if (!gate) { return; }
+
+            var who = null;
+            var step1 = gate.querySelector('[data-step="1"]');
+            var step2 = gate.querySelector('[data-step="2"]');
+
+            step1.querySelectorAll('[data-who]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    who = btn.getAttribute('data-who');
+                    step1.hidden = true;
+                    step2.hidden = false;
+                });
+            });
+
+            step2.querySelector('.entry-gate-back').addEventListener('click', function () {
+                step2.hidden = true;
+                step1.hidden = false;
+            });
+
+            var base = <?php echo json_encode(site_url()); ?>;
+
+            step2.querySelectorAll('[data-country]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var country = btn.getAttribute('data-country');
+                    var dest = base + 'index.php';
+
+                    if (who === 'business') {
+                        dest = base + country + '/accounting/';
+                    } else if (who === 'accountant') {
+                        dest = base + country + '/accounting-firm/';
+                    }
+
+                    setCookie('ga_gate', who + '_' + country, 30);
+                    window.location.href = dest;
+                });
+            });
+        })();
+    </script>
 <?php endif; ?>

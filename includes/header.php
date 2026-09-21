@@ -20,11 +20,11 @@ $settings        = site_settings();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo e($metaDescription); ?>">
     <title><?php echo e($pageTitle); ?> | <?php echo e(APP_NAME); ?></title>
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/fav.png">
-    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/fontawesome-5.css">
-    <link rel="stylesheet" href="assets/css/plugins/unicons.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("assets/images/fav.png"); ?>">
+    <link rel="stylesheet" href="<?php echo site_url("assets/css/plugins/swiper.min.css"); ?>">
+    <link rel="stylesheet" href="<?php echo site_url("assets/css/plugins/fontawesome-5.css"); ?>">
+    <link rel="stylesheet" href="<?php echo site_url("assets/css/plugins/unicons.css"); ?>">
+    <link rel="stylesheet" href="<?php echo site_url("assets/css/style.css"); ?>">
 </head>
 
 <body>
@@ -49,13 +49,13 @@ $settings        = site_settings();
                     <div class="lg:w-1/2 px-[15px] xl:block hidden">
                         <div class="right">
                             <div class="country-toggle">
-                                <a href="index.php" class="country-toggle-btn<?php echo $currentPage !== 'australia.php' ? ' active' : ''; ?>">New Zealand</a>
-                                <a href="australia.php" class="country-toggle-btn<?php echo $currentPage === 'australia.php' ? ' active' : ''; ?>">Australia</a>
+                                <a href="<?php echo site_url("index.php"); ?>" class="country-toggle-btn<?php echo $currentPage !== 'australia.php' ? ' active' : ''; ?>">New Zealand</a>
+                                <a href="<?php echo site_url("australia.php"); ?>" class="country-toggle-btn<?php echo $currentPage === 'australia.php' ? ' active' : ''; ?>">Australia</a>
                             </div>
                             <ul class="top-nav">
-                                <li><a href='about-us.php'>About</a></li>
-                                <li><a href='blog-list.php'>News</a></li>
-                                <li><a href='contactus.php'>Contact</a></li>
+                                <li><a href='<?php echo site_url("about-us.php"); ?>'>About</a></li>
+                                <li><a href='<?php echo site_url("blog-list.php"); ?>'>News</a></li>
+                                <li><a href='<?php echo site_url("contactus.php"); ?>'>Contact</a></li>
                             </ul>
                             <ul class="social-wrapper-one">
                                 <?php if ($settings['facebook_url']): ?><li><a href="<?php echo e($settings['facebook_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a></li><?php endif; ?>
@@ -73,8 +73,8 @@ $settings        = site_settings();
                 <div class="flex flex-wrap -mx-[15px]">
                     <div class="xl:w-1/4 px-[15px] lg:w-1/3 md:w-1/3 sm:w-1/3 w-1/3">
                         <div class="thumbnail">
-                            <a href='index.php'>
-                                <img src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>">
+                            <a href='<?php echo site_url("index.php"); ?>'>
+                                <img src="<?php echo site_url("assets/images/logo/logo-get-accountant-wordmark.png"); ?>" alt="<?php echo e(APP_NAME); ?>">
                             </a>
                         </div>
                     </div>
@@ -82,47 +82,47 @@ $settings        = site_settings();
                         <div class="main-header">
                             <nav class="nav-main mainmenu-nav hidden xl:block">
                                 <ul class="mainmenu">
-                                    <li><a class='nav-item<?php echo $currentPage === 'index.php' ? ' active' : ''; ?>' href='index.php'>Home</a></li>
-                                    <li><a class='nav-item<?php echo $currentPage === 'get-started.php' ? ' active' : ''; ?>' href='get-started.php'>Get Started</a></li>
+                                    <li><a class='nav-item<?php echo $currentPage === 'index.php' ? ' active' : ''; ?>' href='<?php echo site_url("index.php"); ?>'>Home</a></li>
+                                    <li><a class='nav-item<?php echo $currentPage === 'get-started.php' ? ' active' : ''; ?>' href='<?php echo site_url("get-started.php"); ?>'>Get Started</a></li>
                                     <li class="has-droupdown">
-                                        <a class='nav-link' href='our-service.php'>Services</a>
+                                        <a class='nav-link' href='<?php echo site_url("our-service.php"); ?>'>Services</a>
                                         <ul class="submenu menu-link3">
-                                            <li><a href='accounting-bookkeeping.php'>Accounting & Bookkeeping</a></li>
-                                            <li><a href='accounting-firm-outsourcing.php'>Accounting Firm Outsourcing</a></li>
-                                            <li><a href='our-service.php'>Our Service</a></li>
-                                            <li><a href='service-details.php'>Service Details</a></li>
+                                            <li><a href='<?php echo site_url("nz/accounting/"); ?>'>Accounting & Bookkeeping</a></li>
+                                            <li><a href='<?php echo site_url("nz/accounting-firm/"); ?>'>Accounting Firm Outsourcing</a></li>
+                                            <li><a href='<?php echo site_url("our-service.php"); ?>'>Our Service</a></li>
+                                            <li><a href='<?php echo site_url("service-details.php"); ?>'>Service Details</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-droupdown">
-                                        <a class='nav-link' href='about-us.php'>Pages</a>
+                                        <a class='nav-link' href='<?php echo site_url("about-us.php"); ?>'>Pages</a>
                                         <ul class="submenu menu-link">
-                                            <li><a href='about-us.php'>About Us</a></li>
-                                            <li><a href='how-we-work.php'>How We Work</a></li>
-                                            <li><a href='our-peoples.php'>Our Peoples</a></li>
-                                            <li><a href='insight-resources.php'>Insight &amp; Resources</a></li>
-                                            <li><a href='team.php'>Our Team</a></li>
-                                            <li><a href='project.php'>Portfolio</a></li>
-                                            <li><a href='pricing.php'>Pricing</a></li>
-                                            <li><a href='appoinment.php'>Appointment</a></li>
-                                            <li><a href='404.php'>404 Page</a></li>
+                                            <li><a href='<?php echo site_url("about-us.php"); ?>'>About Us</a></li>
+                                            <li><a href='<?php echo site_url("how-we-work.php"); ?>'>How We Work</a></li>
+                                            <li><a href='<?php echo site_url("our-peoples.php"); ?>'>Our Peoples</a></li>
+                                            <li><a href='<?php echo site_url("insight-resources.php"); ?>'>Insight &amp; Resources</a></li>
+                                            <li><a href='<?php echo site_url("team.php"); ?>'>Our Team</a></li>
+                                            <li><a href='<?php echo site_url("project.php"); ?>'>Portfolio</a></li>
+                                            <li><a href='<?php echo site_url("pricing.php"); ?>'>Pricing</a></li>
+                                            <li><a href='<?php echo site_url("appoinment.php"); ?>'>Appointment</a></li>
+                                            <li><a href='<?php echo site_url("404.php"); ?>'>404 Page</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-droupdown">
-                                        <a class='nav-link' href='blog-list.php'>Blog</a>
+                                        <a class='nav-link' href='<?php echo site_url("blog-list.php"); ?>'>Blog</a>
                                         <ul class="submenu">
-                                            <li><a href='blog-list.php'>Blog List</a></li>
-                                            <li><a href='blog-details.php'>Blog Details</a></li>
+                                            <li><a href='<?php echo site_url("blog-list.php"); ?>'>Blog List</a></li>
+                                            <li><a href='<?php echo site_url("blog-details.php"); ?>'>Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a class='nav-item' href='contactus.php'>Contact</a></li>
+                                    <li><a class='nav-item' href='<?php echo site_url("contactus.php"); ?>'>Contact</a></li>
                                 </ul>
                             </nav>
                             <div class="button-area">
                                 <button id="search" class="rts-btn btn-primary-alta"><i class="far fa-search"></i></button>
-                                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btn' href='contactus.php'>Get Quote</a>
+                                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btn' href='<?php echo site_url("contactus.php"); ?>'>Get Quote</a>
                                 <button id="menu-btn" class="menu rts-btn btn-primary-alta ml--20 ml_sm--5">
-                                    <img class="menu-dark" src="assets/images/icon/menu.png" alt="Menu-icon">
-                                    <img class="menu-light" src="assets/images/icon/menu-light.png" alt="Menu-icon">
+                                    <img class="menu-dark" src="<?php echo site_url("assets/images/icon/menu.png"); ?>" alt="Menu-icon">
+                                    <img class="menu-light" src="<?php echo site_url("assets/images/icon/menu-light.png"); ?>" alt="Menu-icon">
                                 </button>
                             </div>
                         </div>
@@ -136,10 +136,10 @@ $settings        = site_settings();
     <div id="side-bar" class="side-bar">
         <button class="close-icon-menu"><i class="far fa-times"></i></button>
         <div class="rts-sidebar-menu-desktop">
-            <a class='logo-1' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>"></a>
-            <a class='logo-2' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>"></a>
-            <a class='logo-3' href='index.php'><img class="logo" src="assets/images/logo/logo-get-accountant-wordmark.png" alt="<?php echo e(APP_NAME); ?>"></a>
-            <a class='logo-4' href='index.php'><img class="logo" src="assets/images/logo/logo-5.svg" alt="<?php echo e(APP_NAME); ?>"></a>
+            <a class='logo-1' href='<?php echo site_url("index.php"); ?>'><img class="logo" src="<?php echo site_url("assets/images/logo/logo-get-accountant-wordmark.png"); ?>" alt="<?php echo e(APP_NAME); ?>"></a>
+            <a class='logo-2' href='<?php echo site_url("index.php"); ?>'><img class="logo" src="<?php echo site_url("assets/images/logo/logo-get-accountant-wordmark.png"); ?>" alt="<?php echo e(APP_NAME); ?>"></a>
+            <a class='logo-3' href='<?php echo site_url("index.php"); ?>'><img class="logo" src="<?php echo site_url("assets/images/logo/logo-get-accountant-wordmark.png"); ?>" alt="<?php echo e(APP_NAME); ?>"></a>
+            <a class='logo-4' href='<?php echo site_url("index.php"); ?>'><img class="logo" src="<?php echo site_url("assets/images/logo/logo-5.svg"); ?>" alt="<?php echo e(APP_NAME); ?>"></a>
             <div class="body hidden xl:block">
                 <p class="disc">
                     <?php echo e($settings['tagline'] ?: (e(APP_NAME) . ' helps businesses grow with clear, practical accounting, tax and consulting advice.')); ?>
@@ -181,44 +181,44 @@ $settings        = site_settings();
             </div>
             <div class="body-mobile block xl:hidden">
                 <div class="country-toggle" style="border-color:#eee;margin:0 0 20px;max-width:max-content">
-                    <a href="index.php" class="country-toggle-btn<?php echo $currentPage !== 'australia.php' ? ' active' : ''; ?>" style="color:#1c2539">New Zealand</a>
-                    <a href="australia.php" class="country-toggle-btn<?php echo $currentPage === 'australia.php' ? ' active' : ''; ?>" style="color:#1c2539">Australia</a>
+                    <a href="<?php echo site_url("index.php"); ?>" class="country-toggle-btn<?php echo $currentPage !== 'australia.php' ? ' active' : ''; ?>" style="color:#1c2539">New Zealand</a>
+                    <a href="<?php echo site_url("australia.php"); ?>" class="country-toggle-btn<?php echo $currentPage === 'australia.php' ? ' active' : ''; ?>" style="color:#1c2539">Australia</a>
                 </div>
                 <nav class="nav-main mainmenu-nav">
                     <ul class="mainmenu">
-                        <li class="menu-item"><a class='menu-link' href='index.php'>Home</a></li>
-                        <li class="menu-item"><a class='menu-link' href='get-started.php'>Get Started</a></li>
+                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("index.php"); ?>'>Home</a></li>
+                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("get-started.php"); ?>'>Get Started</a></li>
                         <li class="has-droupdown menu-item">
-                            <a class='menu-link' href='our-service.php'>Services</a>
+                            <a class='menu-link' href='<?php echo site_url("our-service.php"); ?>'>Services</a>
                             <ul class="submenu">
-                                <li class="mobile-menu-link"><a href='accounting-bookkeeping.php'>Accounting & Bookkeeping</a></li>
-                                <li class="mobile-menu-link"><a href='accounting-firm-outsourcing.php'>Accounting Firm Outsourcing</a></li>
-                                <li class="mobile-menu-link"><a href='our-service.php'>Our Service</a></li>
-                                <li class="mobile-menu-link"><a href='service-details.php'>Service Details</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/"); ?>'>Accounting & Bookkeeping</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/"); ?>'>Accounting Firm Outsourcing</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("our-service.php"); ?>'>Our Service</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("service-details.php"); ?>'>Service Details</a></li>
                             </ul>
                         </li>
                         <li class="has-droupdown menu-item">
-                            <a class='menu-link' href='about-us.php'>Pages</a>
+                            <a class='menu-link' href='<?php echo site_url("about-us.php"); ?>'>Pages</a>
                             <ul class="submenu">
-                                <li class="mobile-menu-link"><a href='about-us.php'>About Us</a></li>
-                                <li class="mobile-menu-link"><a href='how-we-work.php'>How We Work</a></li>
-                                <li class="mobile-menu-link"><a href='our-peoples.php'>Our Peoples</a></li>
-                                <li class="mobile-menu-link"><a href='insight-resources.php'>Insight &amp; Resources</a></li>
-                                <li class="mobile-menu-link"><a href='team.php'>Our Team</a></li>
-                                <li class="mobile-menu-link"><a href='project.php'>Portfolio</a></li>
-                                <li class="mobile-menu-link"><a href='pricing.php'>Pricing</a></li>
-                                <li class="mobile-menu-link"><a href='appoinment.php'>Appointment</a></li>
-                                <li class="mobile-menu-link"><a href='404.php'>404 Page</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("about-us.php"); ?>'>About Us</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("how-we-work.php"); ?>'>How We Work</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("our-peoples.php"); ?>'>Our Peoples</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("insight-resources.php"); ?>'>Insight &amp; Resources</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("team.php"); ?>'>Our Team</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("project.php"); ?>'>Portfolio</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("pricing.php"); ?>'>Pricing</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("appoinment.php"); ?>'>Appointment</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("404.php"); ?>'>404 Page</a></li>
                             </ul>
                         </li>
                         <li class="has-droupdown menu-item">
-                            <a class='menu-link' href='blog-list.php'>Blog</a>
+                            <a class='menu-link' href='<?php echo site_url("blog-list.php"); ?>'>Blog</a>
                             <ul class="submenu">
-                                <li class="mobile-menu-link"><a href='blog-list.php'>Blog List</a></li>
-                                <li class="mobile-menu-link"><a href='blog-details.php'>Blog Details</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("blog-list.php"); ?>'>Blog List</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("blog-details.php"); ?>'>Blog Details</a></li>
                             </ul>
                         </li>
-                        <li class="menu-item"><a class='menu-link' href='contactus.php'>Contact</a></li>
+                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("contactus.php"); ?>'>Contact</a></li>
                     </ul>
                 </nav>
                 <div class="social-wrapper-two menu mobile-menu">
@@ -227,7 +227,7 @@ $settings        = site_settings();
                     <?php if ($settings['instagram_url']): ?><a href="<?php echo e($settings['instagram_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><?php endif; ?>
                     <?php if ($waLink): ?><a href="<?php echo e($waLink); ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><?php endif; ?>
                 </div>
-                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btnmenu' href='contactus.php'>Get Quote</a>
+                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btnmenu' href='<?php echo site_url("contactus.php"); ?>'>Get Quote</a>
             </div>
         </div>
     </div>
