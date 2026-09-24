@@ -38,15 +38,16 @@
     swiperActivation: function () {
       $(document).ready(function () {
         var swiper = new Swiper(".mySwiper", {
-          loop: false,
-          loopedSlides: 50,
-          autoHeight: true,
-          shortSwipes: false,
-          longSwipes: false,
+          loop: true,
           effect: "fade",
-          speed: 500,
+          speed: 800,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
           autoplay: {
-            delay: 4000,
+            delay: 5000,
+            disableOnInteraction: false,
           },
         });
       });

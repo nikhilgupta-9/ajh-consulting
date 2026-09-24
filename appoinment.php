@@ -90,74 +90,46 @@ require __DIR__ . '/includes/header.php';
                 <div class="xl:w-1/4 px-[15px] lg:w-1/3 md:w-1/2 sm:w-1/2 w-full">
                     <!-- single progress area -->
                     <div class="single-circle-progress-inner">
-                        <!-- single -->
                         <div class="progress red">
-                            <span class="progress-left">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <span class="progress-right">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <div class="progress-value">85%</div>
+                            <span class="progress-left"><span class="progress-bar"></span></span>
+                            <span class="progress-right"><span class="progress-bar"></span></span>
+                            <div class="progress-value">99%</div>
                         </div>
-                        <!-- single -->
-                        <h2 class="title">Quality Service</h2>
+                        <h2 class="title">On-Time Lodgement</h2>
                     </div>
-                    <!-- single progress area End -->
                 </div>
                 <div class="xl:w-1/4 px-[15px] lg:w-1/3 md:w-1/2 sm:w-1/2 w-full">
                     <!-- single progress area -->
                     <div class="single-circle-progress-inner">
-                        <!-- single -->
                         <div class="progress red">
-                            <span class="progress-left">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <span class="progress-right">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <div class="progress-value">90%</div>
+                            <span class="progress-left"><span class="progress-bar"></span></span>
+                            <span class="progress-right"><span class="progress-bar"></span></span>
+                            <div class="progress-value">100%</div>
                         </div>
-                        <!-- single -->
-                        <h3 class="title">Skilled Members</h3>
+                        <h3 class="title">Xero &amp; MYOB Certified</h3>
                     </div>
-                    <!-- single progress area End -->
                 </div>
                 <div class="xl:w-1/4 px-[15px] lg:w-1/3 md:w-1/2 sm:w-1/2 w-full">
                     <!-- single progress area -->
                     <div class="single-circle-progress-inner">
-                        <!-- single -->
                         <div class="progress red">
-                            <span class="progress-left">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <span class="progress-right">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <div class="progress-value">78%</div>
+                            <span class="progress-left"><span class="progress-bar"></span></span>
+                            <span class="progress-right"><span class="progress-bar"></span></span>
+                            <div class="progress-value">98%</div>
                         </div>
-                        <!-- single -->
-                        <h3 class="title">Happy Customers</h3>
+                        <h3 class="title">Client Retention</h3>
                     </div>
-                    <!-- single progress area End -->
                 </div>
                 <div class="xl:w-1/4 px-[15px] lg:w-1/3 md:w-1/2 sm:w-1/2 w-full">
                     <!-- single progress area -->
                     <div class="single-circle-progress-inner">
-                        <!-- single -->
                         <div class="progress red">
-                            <span class="progress-left">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <span class="progress-right">
-                                <span class="progress-bar"></span>
-                            </span>
-                            <div class="progress-value">79%</div>
+                            <span class="progress-left"><span class="progress-bar"></span></span>
+                            <span class="progress-right"><span class="progress-bar"></span></span>
+                            <div class="progress-value">50%</div>
                         </div>
-                        <!-- single -->
-                        <h3 class="title">Project Fails</h3>
+                        <h3 class="title">Practice Cost Savings</h3>
                     </div>
-                    <!-- single progress area End -->
                 </div>
             </div>
         </div>

@@ -181,10 +181,12 @@ $socialLinks = array_filter([
                     <li><a href="<?php echo site_url("privacy-policy.php"); ?>">Privacy Policy</a></li>
                     <li><a href="<?php echo site_url("terms-of-use.php"); ?>">Terms of Use</a></li>
                     <li><a href="<?php echo site_url("sitemap.php"); ?>">Sitemap</a></li>
-                </ul>
             </div>
-            <p class="site-footer-credit">Crafted by <a href="https://www.nikhilworks.com" target="_blank"
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                <p style="margin: 0; font-size: 13px; font-weight: 700; color: #ff6b6b; letter-spacing: 0.05em;">People. Process. Possibility.™</p>
+                <p class="site-footer-credit" style="margin: 0;">Crafted by <a href="https://www.nikhilworks.com" target="_blank"
                     rel="noopener noreferrer">Nikhil Works</a></p>
+            </div>
         </div>
     </div>
 </footer>

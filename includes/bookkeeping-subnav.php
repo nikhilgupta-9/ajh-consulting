@@ -9,6 +9,7 @@ $__bkNav = [
     'faqs.php'           => 'FAQs',
     'client-stories.php' => 'Client Stories',
     'insights.php'       => 'Insights & Resources',
+    'contact.php'        => 'Contact Us',
 ];
 ?>
 <div class="branch-subnav">
@@ -17,7 +18,6 @@ $__bkNav = [
             <?php foreach ($__bkNav as $__url => $__label): ?>
                 <a href="<?php echo e($__url); ?>" class="branch-subnav-link<?php echo $currentPage === $__url ? ' active' : ''; ?>"><?php echo e($__label); ?></a>
             <?php endforeach; ?>
-            <a href="<?php echo site_url('contactus.php'); ?>" class="branch-subnav-link">Contact Us</a>
         </div>
     </div>
 </div>

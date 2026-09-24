@@ -111,65 +111,59 @@ if ($pdo = db()) {
                 <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px]">
                     <div class="rts-title-area service-four text-center pt--40 pt_md--0 mt_sm--0 mt_md--0">
                         <p class="pre-title">
-                            Our Services
+                            Our Core Pillars
                         </p>
-                        <h2 class="title">What We Provide</h2>
+                        <h2 class="title">Tailored Accounting Solutions</h2>
                     </div>
                     <!-- start single Service -->
                     <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pt--15 mb--80 mb_md--40 mb_sm--30">
                         <div class="service-one-inner-four">
                             <div class="big-thumbnail-area">
-                                <a class='thumbnail' href='service-details.php'>
-                                    <img src="assets/images/service/07.jpg" alt="Business-service">
+                                <a class='thumbnail' href='<?php echo site_url("nz/accounting/"); ?>'>
+                                    <img src="assets/images/service/07.jpg" alt="Business Accounting">
                                 </a>
                                 <div class="content">
-                                    <img src="assets/images/service/icon/13.svg" alt="Business-icon">
-                                    <h3 class="title h5">Business Consultancy</h3>
-                                    <p class="disc">Aenean augue venenatis est porttitor fames aptent lobortis nam
-                                        potenti</p>
+                                    <img src="assets/images/service/icon/13.svg" alt="Bookkeeping icon">
+                                    <h3 class="title h5">For NZ Businesses</h3>
+                                    <p class="disc">Daily bank feeds, reconciliations, GST returns, payroll processing, and proactive financial management.</p>
                                 </div>
-                                <a class='over_link' href='service-details.php'></a>
+                                <a class='over_link' href='<?php echo site_url("nz/accounting/"); ?>'></a>
                             </div>
-                            <a class='rts-btn btn-primary' href='service-details.php'> Read More<i
-                                    class="fal fa-arrow-right"></i></a>
+                            <a class='rts-btn btn-primary' href='<?php echo site_url("nz/accounting/"); ?>'> Explore Services<i class="fal fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <!-- start single Service -->
                     <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pt--15 mb--80 mb_md--40 mb_sm--30">
                         <div class="service-one-inner-four">
                             <div class="big-thumbnail-area">
-                                <a class='thumbnail' href='service-details.php'>
-                                    <img src="assets/images/service/08.jpg" alt="Business-service">
+                                <a class='thumbnail' href='<?php echo site_url("nz/accounting-firm/"); ?>'>
+                                    <img src="assets/images/service/08.jpg" alt="Firm Outsourcing">
                                 </a>
                                 <div class="content">
-                                    <img src="assets/images/service/icon/14.svg" alt="Business-icon">
-                                    <h3 class="title h5">Business Appoinment</h3>
-                                    <p class="disc">Aenean augue venenatis est porttitor fames aptent lobortis nam
-                                        potenti</p>
+                                    <img src="assets/images/service/icon/14.svg" alt="Firm icon">
+                                    <h3 class="title h5">For Accounting Practices</h3>
+                                    <p class="disc">Dedicated offshore accounting capacity for CA &amp; CPA firms — year-end workpapers, financial statements &amp; tax returns.</p>
                                 </div>
-                                <a class='over_link' href='service-details.php'></a>
+                                <a class='over_link' href='<?php echo site_url("nz/accounting-firm/"); ?>'></a>
                             </div>
-                            <a class='rts-btn btn-primary' href='service-details.php'> Read More<i
-                                    class="fal fa-arrow-right"></i></a>
+                            <a class='rts-btn btn-primary' href='<?php echo site_url("nz/accounting-firm/"); ?>'> Firm Outsourcing<i class="fal fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <!-- start single Service -->
                     <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pt--15 mb--80">
                         <div class="service-one-inner-four">
                             <div class="big-thumbnail-area">
-                                <a class='thumbnail' href='service-details.php'>
-                                    <img src="assets/images/service/09.jpg" alt="Business-service">
+                                <a class='thumbnail' href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'>
+                                    <img src="assets/images/service/09.jpg" alt="Cloud Ecosystem">
                                 </a>
                                 <div class="content">
-                                    <img src="assets/images/service/icon/15.svg" alt="Business-icon">
-                                    <h3 class="title h5">Consultancy Foundation</h3>
-                                    <p class="disc">Aenean augue venenatis est porttitor fames aptent lobortis nam
-                                        potenti</p>
+                                    <img src="assets/images/service/icon/15.svg" alt="Cloud icon">
+                                    <h3 class="title h5">Cloud Tech &amp; Security</h3>
+                                    <p class="disc">Deep expertise in Xero, MYOB, Dext, Hubdoc, and CCH iFirm with enterprise-grade data security protocols.</p>
                                 </div>
-                                <a class='over_link' href='service-details.php'></a>
+                                <a class='over_link' href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'></a>
                             </div>
-                            <a class='rts-btn btn-primary' href='service-details.php'> Read More<i
-                                    class="fal fa-arrow-right"></i></a>
+                            <a class='rts-btn btn-primary' href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'> Learn Systems<i class="fal fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -178,11 +172,10 @@ if ($pdo = db()) {
                 <div class="cta-one-bg w-full px-[15px]">
                     <div class="cta-one-inner">
                         <div class="cta-left">
-                            <h3 class="title animated fadeIn">Let’s discuss about how we can help
-                                make your business better</h3>
+                            <h3 class="title animated fadeIn">Ready to scale your accounting with precision and confidence?</h3>
                         </div>
                         <div class="cta-right">
-                            <a class='rts-btn btn-white' href='contactus.php'>Lets Work Togather</a>
+                            <a class='rts-btn btn-white' href='<?php echo site_url("contactus.php"); ?>'>Schedule Consultation</a>
                         </div>
                     </div>
                 </div>
@@ -198,91 +191,73 @@ if ($pdo = db()) {
                 <div class="w-full px-[15px]">
                     <div class="rts-title-area team text-center">
                         <p class="pre-title">
-                            Professionals Team
+                            Our Leadership
                         </p>
-                        <h2 class="title">Professionals Team</h2>
+                        <h2 class="title">Experienced Accounting Leadership</h2>
                     </div>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px] mt--15 mt_sm--0">
                 <!-- single team -->
                 <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full">
-                    <!-- single team inner -->
                     <div class="team-inner-two">
-                        <a class='thumbnail' href='team.php'>
-                            <img src="assets/images/team/tm/lg-01.jpg" alt="">
+                        <a class='thumbnail' href='<?php echo site_url("our-peoples.php"); ?>'>
+                            <img src="assets/images/team/tm/lg-01.jpg" alt="Partner">
                         </a>
-                        <!-- Acquaintance area -->
                         <div class="acquaintance-area">
                             <div class="header">
-                                <a href='team.php'>
-                                    <h3 class="title h5">Kevin Martin</h3>
+                                <a href='<?php echo site_url("our-peoples.php"); ?>'>
+                                    <h3 class="title h5">Robert Fox</h3>
                                 </a>
-                                <span>Consultant</span>
+                                <span>Managing Director &amp; Lead Partner</span>
                             </div>
                             <div class="acquaintance-social">
-                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fal fa-envelope"></i></a>
                             </div>
                         </div>
-                        <!-- Acquaintance area -->
                     </div>
-                    <!-- single team inner End -->
                 </div>
-                <!-- single team End -->
                 <!-- single team -->
                 <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full">
-                    <!-- single team inner -->
                     <div class="team-inner-two">
-                        <a class='thumbnail' href='team.php'>
-                            <img src="assets/images/team/tm/lg-02.jpg" alt="">
+                        <a class='thumbnail' href='<?php echo site_url("our-peoples.php"); ?>'>
+                            <img src="assets/images/team/tm/lg-02.jpg" alt="CA Specialist">
                         </a>
-                        <!-- Acquaintance area -->
                         <div class="acquaintance-area">
                             <div class="header">
-                                <a href='team.php'>
-                                    <h3 class="title h5">Martin Jone</h3>
+                                <a href='<?php echo site_url("our-peoples.php"); ?>'>
+                                    <h3 class="title h5">Jane Cooper</h3>
                                 </a>
-                                <span>Manager</span>
+                                <span>Senior CA ANZ Practice Lead</span>
                             </div>
                             <div class="acquaintance-social">
-                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fal fa-envelope"></i></a>
                             </div>
                         </div>
-                        <!-- Acquaintance area -->
                     </div>
-                    <!-- single team inner End -->
                 </div>
-                <!-- single team End -->
                 <!-- single team -->
                 <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full">
-                    <!-- single team inner -->
                     <div class="team-inner-two">
-                        <a class='thumbnail' href='team.php'>
-                            <img src="assets/images/team/tm/lg-03.jpg" alt="">
+                        <a class='thumbnail' href='<?php echo site_url("our-peoples.php"); ?>'>
+                            <img src="assets/images/team/tm/lg-03.jpg" alt="Tax Manager">
                         </a>
-                        <!-- Acquaintance area -->
                         <div class="acquaintance-area">
                             <div class="header">
-                                <a href='team.php'>
-                                    <h3 class="title h5">Jone Lee</h3>
+                                <a href='<?php echo site_url("our-peoples.php"); ?>'>
+                                    <h3 class="title h5">Esther Howard</h3>
                                 </a>
-                                <span>CEO</span>
+                                <span>NZ Tax &amp; IRD Compliance Manager</span>
                             </div>
                             <div class="acquaintance-social">
-                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fal fa-envelope"></i></a>
                             </div>
                         </div>
-                        <!-- Acquaintance area -->
                     </div>
-                    <!-- single team inner End -->
                 </div>
-                <!-- single team End -->
             </div>
         </div>
     </div>
@@ -295,64 +270,54 @@ if ($pdo = db()) {
                 <div class="lg:w-1/2 px-[15px]">
                     <div class="faq-two-inner">
                         <div class="title-area-faq">
-                            <span class="sub">WHY CHOOSE US</span>
-                            <h2 class="title">We Are Experienced
-                                <span class="sm-title">Business <span>Solution</span></span>
-                            </h2>
+                            <span class="sub">FREQUENTLY ASKED QUESTIONS</span>
+                            <h2 class="title">Clear Answers to Common Questions</h2>
                         </div>
-                        <!-- faq accordion area -->
                         <div class="faq-accordion-area">
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <span>01. </span> What should i included my personal details?
+                                            <span>01. </span> How does get-accountant work with our existing software?
                                         </button>
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            Neque partrient nascetur facilisis suscipit ridiculus agna lobortis
-                                            imperdiet vivamus est aliquam euismod nector quam convallis ornare justo
-                                            service lifereu visionary sources unleash online businesss solutions
+                                            We connect directly into your existing Xero, MYOB, or CCH iFirm software. You do not need to migrate systems or change your chart of accounts. We adapt to your standard operating procedures.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <span>02. </span> Where i can find my business growth result?
+                                            <span>02. </span> Are your services fully compliant with New Zealand regulations?
                                         </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            Neque partrient nascetur facilisis suscipit ridiculus agna lobortis
-                                            imperdiet vivamus est aliquam euismod nector quam convallis ornare justo
-                                            service lifereu visionary sources unleash online businesss solutions
+                                            Yes. All deliverables are built around the New Zealand Tax Administration Act, Goods and Services Tax Act 1985, and Holidays Act 2003, with strict adherence to the NZ Privacy Act 2020.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            <span>03. </span> Did you get any business consultant?
+                                            <span>03. </span> How do you protect practice client confidentiality?
                                         </button>
                                     </h2>
                                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            Neque partrient nascetur facilisis suscipit ridiculus agna lobortis
-                                            imperdiet vivamus est aliquam euismod nector quam convallis ornare justo
-                                            service lifereu visionary sources unleash online businesss solutions
+                                            We operate under comprehensive bilateral NDAs. Our staff work on secure, encrypted virtual machines with zero local data storage, multi-factor authentication, and IP-restricted cloud access.
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- faq accordion area end -->
                     </div>
                 </div>
                 <div class="lg:w-1/2 px-[15px]">
                     <div class="thumbnail-faq-four">
-                        <img src="assets/images/faq/02.png" alt="">
+                        <img src="assets/images/faq/02.png" alt="FAQ">
                     </div>
                 </div>
             </div>
@@ -366,9 +331,9 @@ if ($pdo = db()) {
             <div class="flex flex-wrap -mx-[15px]">
                 <div class="rts-title-area feedback team text-center">
                     <p class="pre-title">
-                        Feedbacks
+                        Client Trust
                     </p>
-                    <h2 class="title">Customer Feedbacks</h2>
+                    <h2 class="title">What Our New Zealand Clients Say</h2>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px] mt--20">
@@ -376,19 +341,16 @@ if ($pdo = db()) {
                     <div class="testimopnial-wrapper-two">
                         <div class="test-header">
                             <div class="thumbnail">
-                                <img src="assets/images/testimonials/02.png" alt="">
+                                <img src="assets/images/testimonials/02.png" alt="Liam Gallagher">
                             </div>
                             <div class="name-desig">
-                                <h3 class="title h5">David Smith</h3>
-                                <span class="designation">Business Expert</span>
+                                <h3 class="title h5">Liam Gallagher</h3>
+                                <span class="designation">Managing Director, Auckland Trade Services</span>
                             </div>
                         </div>
                         <div class="test-body">
                             <p class="disc">
-                                “Parallel task user friendly convergence through supply are chains type siflify reliable
-                                meta provide service visionary sources unleash tactical thinking via granular
-                                intellectual capital architect dynamic information value online business solution
-                                services”
+                                “get-accountant eliminated our end-of-month reconciliation headaches. Our GST returns are filed on time every period, and we finally have reliable monthly cashflow dashboards.”
                             </p>
                         </div>
                     </div>
@@ -397,19 +359,16 @@ if ($pdo = db()) {
                     <div class="testimopnial-wrapper-two">
                         <div class="test-header">
                             <div class="thumbnail">
-                                <img src="assets/images/testimonials/03.png" alt="">
+                                <img src="assets/images/testimonials/03.png" alt="Sarah Jenkins">
                             </div>
                             <div class="name-desig">
-                                <h3 class="title h5">David Smith</h3>
-                                <span class="designation">Business Expert</span>
+                                <h3 class="title h5">Sarah Jenkins</h3>
+                                <span class="designation">Principal CA, Christchurch Advisory Practice</span>
                             </div>
                         </div>
                         <div class="test-body">
                             <p class="disc">
-                                “Parallel task user friendly convergence through supply are chains type siflify reliable
-                                meta provide service visionary sources unleash tactical thinking via granular
-                                intellectual capital architect dynamic information value online business solution
-                                services”
+                                “Partnering with get-accountant solved our senior staffing bottleneck during the peak March tax rush. Their workpapers are clean, indexed, and ready for partner review immediately.”
                             </p>
                         </div>
                     </div>

@@ -28,6 +28,18 @@ RewriteRule "(^|/)\." - [F]
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# ---- Aliases matching client architecture diagram ----
+RewriteRule ^nz/accounting-firms/?$ nz/accounting-firm/ [NC,L]
+RewriteRule ^nz/accounting-firms/(.*)$ nz/accounting-firm/$1 [NC,L]
+RewriteRule ^au/accounting-firms/?$ au/accounting-firm/ [NC,L]
+RewriteRule ^au/accounting-firms/(.*)$ au/accounting-firm/$1 [NC,L]
+
+RewriteRule ^about/?$ about-us.php [NC,L]
+RewriteRule ^how-we-work/?$ how-we-work.php [NC,L]
+RewriteRule ^our-people/?$ our-peoples.php [NC,L]
+RewriteRule ^insights/?$ insight-resources.php [NC,L]
+RewriteRule ^contact/?$ contactus.php [NC,L]
+
 # ---- Remove .php extension from URLs ----
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f

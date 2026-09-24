@@ -8,6 +8,7 @@ $__foNav = [
     'case-studies.php'  => 'Case Studies',
     'faqs.php'          => 'FAQs',
     'insights.php'      => 'Insights for Accounting Firms',
+    'contact.php'       => 'Contact Us',
 ];
 ?>
 <div class="branch-subnav">
@@ -16,7 +17,6 @@ $__foNav = [
             <?php foreach ($__foNav as $__url => $__label): ?>
                 <a href="<?php echo e($__url); ?>" class="branch-subnav-link<?php echo $currentPage === $__url ? ' active' : ''; ?>"><?php echo e($__label); ?></a>
             <?php endforeach; ?>
-            <a href="<?php echo site_url('contactus.php'); ?>" class="branch-subnav-link">Contact Us</a>
         </div>
     </div>
 </div>

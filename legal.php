@@ -58,7 +58,7 @@ require __DIR__ . '/includes/header.php';
     <div class="rts-section-gap">
         <div class="container">
             <div class="flex flex-wrap -mx-[15px]">
-                <div class="w-full px-[15px]" style="max-width:860px; margin:0 auto;">
+                <div class="w-full px-[15px]" style="max-width:100%; margin:0 auto;">
                     <div class="legal-content" style="line-height:1.8;">
                         <?php echo $page['content']; ?>
                     </div>

@@ -61,7 +61,7 @@ $activeNav = 'settings';
 require __DIR__ . '/includes/layout-top.php';
 ?>
 
-<div class="card" style="max-width:820px;">
+<div class="card" style="max-width:100%;">
     <div class="page-header">
         <h2>Contact &amp; Site Settings</h2>
         <a href="../contactus.php" target="_blank" class="btn btn-outline btn-sm">View Contact Page</a>

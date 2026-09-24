@@ -21,13 +21,13 @@ require __DIR__ . '/includes/header.php';
         <div class="container">
             <div class="flex flex-wrap -mx-[15px] items-center">
                 <div class="xl:w-1/2 px-[15px] lg:w-1/2 md:w-1/2 sm:w-full w-full breadcrumb-1">
-                    <h1 class="title">Team Style 1</h1>
+                    <h1 class="title">Our Team</h1>
                 </div>
                 <div class="xl:w-1/2 px-[15px] lg:w-1/2 md:w-1/2 sm:w-full w-full">
                     <div class="bread-tag">
                         <a href='index.php'>Home</a>
                         <span> / </span>
-                        <a class='active' href='team.php'>Team Style 1</a>
+                        <a class='active' href='team.php'>Our Team</a>
                     </div>
                 </div>
             </div>
