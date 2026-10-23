@@ -17,6 +17,8 @@ if ($pdo = db()) {
     }
 }
 
+$requestedService = clean($_GET['service'] ?? '');
+
 require __DIR__ . '/../../includes/header.php';
 require __DIR__ . '/../../includes/breadcrumb.php';
 require __DIR__ . '/../../includes/bookkeeping-subnav.php';
@@ -25,6 +27,22 @@ require __DIR__ . '/../../includes/bookkeeping-subnav.php';
     <!-- Services Header Introduction -->
     <div class="rts-service-area rts-section-gapTop" style="padding-top: 70px;">
         <div class="container">
+            <?php if ($requestedService): ?>
+            <div style="background: #fff5f5; border: 1px solid #fecaca; color: #991b1b; padding: 16px 24px; border-radius: 12px; margin-bottom: 35px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; box-shadow: 0 4px 15px rgba(229,57,53,0.06);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #e53935; color: #fff; font-size: 14px;">✓</span>
+                    <div>
+                        <strong style="color: #172333; font-size: 15px;">Target Service Selected:</strong> 
+                        <span style="font-weight: 700; color: #e53935;"><?php echo e(ucwords(str_replace('-', ' ', $requestedService))); ?></span>
+                        <div style="font-size: 13px; color: #64748b; margin-top: 2px;">Review our scope below or discuss your exact requirements with a chartered accountant.</div>
+                    </div>
+                </div>
+                <a href="<?php echo site_url('nz/accounting/contact.php') . '?service=' . urlencode($requestedService); ?>" class="rts-btn btn-primary" style="padding: 10px 20px; font-size: 13px; font-weight: 700;">
+                    Book Consultation on This Service &rarr;
+                </a>
+            </div>
+            <?php endif; ?>
+
             <div class="flex flex-wrap -mx-[15px] justify-center text-center mb--40">
                 <div class="w-full px-[15px]" style="max-width: 800px;">
                     <span class="color-primary sub" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Full Suite of Accounting Solutions</span>

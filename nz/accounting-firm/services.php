@@ -17,6 +17,8 @@ if ($pdo = db()) {
     }
 }
 
+$requestedService = clean($_GET['service'] ?? '');
+
 require __DIR__ . '/../../includes/header.php';
 require __DIR__ . '/../../includes/breadcrumb.php';
 require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
@@ -24,6 +26,22 @@ require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
 
     <div class="rts-service-area rts-section-gapTop" style="padding-top: 70px;">
         <div class="container">
+            <?php if ($requestedService): ?>
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-left: 5px solid #0f172a; color: #0f172a; padding: 16px 24px; border-radius: 12px; margin-bottom: 35px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; box-shadow: 0 4px 15px rgba(15,23,42,0.05);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #0f172a; color: #fff; font-size: 14px;">✓</span>
+                    <div>
+                        <strong style="color: #0f172a; font-size: 15px;">Practice Workflow Selected:</strong> 
+                        <span style="font-weight: 700; color: #e53935;"><?php echo e(ucwords(str_replace('-', ' ', $requestedService))); ?></span>
+                        <div style="font-size: 13px; color: #64748b; margin-top: 2px;">Explore our preparation standards, reviewer handover checklist, or request a pilot job.</div>
+                    </div>
+                </div>
+                <a href="<?php echo site_url('nz/accounting-firm/contact.php') . '?service=' . urlencode($requestedService); ?>" class="rts-btn btn-primary" style="padding: 10px 20px; font-size: 13px; font-weight: 700;">
+                    Discuss Pilot Job on This Workflow &rarr;
+                </a>
+            </div>
+            <?php endif; ?>
+
             <div class="flex flex-wrap -mx-[15px] justify-center text-center mb--50">
                 <div class="w-full px-[15px]" style="max-width: 800px;">
                     <span class="color-primary sub" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Specialized Practice Solutions</span>

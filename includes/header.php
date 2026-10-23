@@ -26,6 +26,7 @@ $isAuSection     = (strpos($_SERVER['REQUEST_URI'] ?? '', '/au/') !== false || $
     <link rel="stylesheet" href="<?php echo site_url("assets/css/plugins/fontawesome-5.css"); ?>">
     <link rel="stylesheet" href="<?php echo site_url("assets/css/plugins/unicons.css"); ?>">
     <link rel="stylesheet" href="<?php echo site_url("assets/css/style.css"); ?>">
+    <link rel="stylesheet" href="<?php echo site_url("assets/css/gateway-mockup.css"); ?>">
 </head>
 
 <body>

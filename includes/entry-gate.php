@@ -16,7 +16,7 @@ $gateExcludedPages = [
 // sub-pages) should never show the gate either.
 $__requestPath  = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '';
 $__isBranchPage = (bool) preg_match('#/(nz|au)/#', $__requestPath);
-$showEntryGate  = !$__isBranchPage && !in_array($currentPage, $gateExcludedPages, true) && empty($_COOKIE['ga_gate']);
+$showEntryGate  = !$__isBranchPage && !in_array($currentPage, $gateExcludedPages, true) && empty($_COOKIE['ga_gate']) && empty($_COOKIE['ga_user_track']);
 ?>
 <?php if ($showEntryGate): ?>
     <div id="entry-gate" class="entry-gate">
