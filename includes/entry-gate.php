@@ -7,7 +7,6 @@
  * gate itself, the branch pages and the admin panel are never blocked.
  */
 $gateExcludedPages = [
-    'index.php',
     'get-started.php',
     'australia.php',
     'contactus.php',
