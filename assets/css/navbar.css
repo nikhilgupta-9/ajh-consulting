@@ -1,0 +1,440 @@
+/**
+ * Professional Navbar Dropdowns & Hover Physics
+ * Clean floating cards, smooth CSS transforms, zero-gap hover bridge,
+ * icon badges, and enterprise micro-interactions.
+ */
+
+/* ==========================================================================
+   1. TRIGGER NAV LINKS & CHEVRON ANIMATION
+   ========================================================================== */
+
+.mainmenu li.has-droupdown {
+  position: relative !important;
+}
+
+/* Nav Link Hover & Persistent Active State while inside dropdown */
+.mainmenu li.has-droupdown > a.nav-link {
+  position: relative !important;
+  transition: color 0.2s ease !important;
+}
+
+.mainmenu li.has-droupdown:hover > a.nav-link,
+.mainmenu li.has-droupdown:focus-within > a.nav-link {
+  color: #e53935 !important;
+}
+
+/* Underline indicator active on hover */
+.mainmenu li.has-droupdown > a.nav-link::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 46px !important;
+  height: 2px !important;
+  width: 0 !important;
+  background: #e53935 !important;
+  border-radius: 1px !important;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.mainmenu li.has-droupdown:hover > a.nav-link::after,
+.mainmenu li.has-droupdown:focus-within > a.nav-link::after {
+  width: 100% !important;
+}
+
+/* Chevron arrow: rotate smoothly instead of font icon swap */
+.mainmenu li.has-droupdown > a.nav-link::before {
+  content: "\f078" !important;
+  font-family: "Font Awesome 5 Pro" !important;
+  font-weight: 900 !important;
+  font-size: 10px !important;
+  position: absolute !important;
+  right: -16px !important;
+  top: 51% !important;
+  transform: translateY(-50%) rotate(0deg) !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease !important;
+  color: #94a3b8 !important;
+}
+
+.mainmenu li.has-droupdown:hover > a.nav-link::before,
+.mainmenu li.has-droupdown:focus-within > a.nav-link::before {
+  transform: translateY(-50%) rotate(180deg) !important;
+  color: #e53935 !important;
+}
+
+/* ==========================================================================
+   2. DROPDOWN SUBMENU CONTAINER & HOVER BRIDGE (ANTI-FLICKER)
+   ========================================================================== */
+
+.mainmenu li.has-droupdown .submenu {
+  display: block !important;
+  position: absolute !important;
+  top: calc(100% - 15px) !important;
+  left: 0 !important;
+  z-index: 9999 !important;
+  min-width: 250px !important;
+  padding: 10px !important;
+  margin: 0 !important;
+  list-style: none !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  border-top: 3px solid #e53935 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.05) !important;
+  
+  /* Smooth Fade & Slide Physics */
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(8px) !important;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.2s ease !important;
+}
+
+/* Invisible Hover Bridge: eliminates any gap between trigger and dropdown */
+.mainmenu li.has-droupdown .submenu::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -24px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 24px !important;
+  background: transparent !important;
+  pointer-events: auto !important;
+}
+
+/* Trigger reveal on hover or focus-within */
+.mainmenu li.has-droupdown:hover > .submenu,
+.mainmenu li.has-droupdown:focus-within > .submenu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+/* ==========================================================================
+   3. STANDARD DROPDOWN ITEMS (Company, Resources)
+   ========================================================================== */
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  color: #334155 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li a i:first-child {
+  width: 18px !important;
+  font-size: 14px !important;
+  color: #64748b !important;
+  text-align: center !important;
+  transition: color 0.18s ease, transform 0.18s ease !important;
+}
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li a span {
+  flex: 1 1 auto !important;
+}
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li a .micro-arrow {
+  font-size: 10px !important;
+  color: #e53935 !important;
+  opacity: 0 !important;
+  transform: translateX(-4px) !important;
+  transition: all 0.18s ease !important;
+}
+
+/* Item Hover Effect */
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li a:hover {
+  background: #f8fafc !important;
+  color: #e53935 !important;
+  padding-left: 17px !important;
+}
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li a:hover i:first-child {
+  color: #e53935 !important;
+  transform: scale(1.1) !important;
+}
+
+.mainmenu li.has-droupdown .submenu:not(.menu-link1) li a:hover .micro-arrow {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* ==========================================================================
+   4. TWO-COLUMN MEGA SUBMENU (Services)
+   ========================================================================== */
+
+.mainmenu li.has-droupdown .submenu.menu-link1 {
+  width: 760px !important;
+  max-width: 90vw !important;
+  padding: 0 !important;
+  left: -160px !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  display: block !important;
+}
+
+@media (max-width: 1399px) {
+  .mainmenu li.has-droupdown .submenu.menu-link1 {
+    left: -220px !important;
+    width: 730px !important;
+  }
+}
+
+.mega-columns-wrap {
+  display: flex !important;
+  align-items: stretch !important;
+  padding: 20px 22px 16px !important;
+  gap: 20px !important;
+}
+
+.mega-column {
+  flex: 1 1 50% !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.mega-column:first-child {
+  padding-right: 18px !important;
+  border-right: 1px solid #f1f5f9 !important;
+}
+
+/* Mega Column Header */
+.mega-col-header {
+  margin-bottom: 12px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.mega-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #e53935 !important;
+  margin-bottom: 3px !important;
+}
+
+.mega-col-title {
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin: 0 0 2px 0 !important;
+  line-height: 1.3 !important;
+}
+
+.mega-col-desc {
+  font-size: 11.5px !important;
+  color: #64748b !important;
+  margin: 0 !important;
+  line-height: 1.35 !important;
+}
+
+/* Mega Service Links List */
+.mega-service-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  flex: 1 1 auto !important;
+}
+
+.mega-service-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.mega-service-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 6px 10px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Service Icon Badge */
+.mega-service-link .ms-icon {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 7px !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 11px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.18s ease !important;
+}
+
+.mega-service-link .ms-text {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.mega-service-link .ms-title {
+  display: block !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+  line-height: 1.35 !important;
+  transition: color 0.18s ease !important;
+}
+
+.mega-service-link .ms-arrow {
+  font-size: 10px !important;
+  color: #e53935 !important;
+  opacity: 0 !important;
+  transform: translateX(-4px) !important;
+  transition: all 0.18s ease !important;
+  flex-shrink: 0 !important;
+}
+
+/* Service Item Hover State */
+.mega-service-link:hover {
+  background: #f8fafc !important;
+  padding-left: 12px !important;
+}
+
+.mega-service-link:hover .ms-icon {
+  background: #fee2e2 !important;
+  color: #e53935 !important;
+  transform: scale(1.08) !important;
+}
+
+.mega-service-link:hover .ms-title {
+  color: #e53935 !important;
+}
+
+.mega-service-link:hover .ms-arrow {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Column Footer CTA Button */
+.mega-col-footer {
+  margin-top: 10px !important;
+  padding-top: 8px !important;
+  border-top: 1px dashed #e2e8f0 !important;
+}
+
+.mega-view-all {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  background: #fff5f5 !important;
+  border: 1px solid #fee2e2 !important;
+  color: #e53935 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.mega-view-all:hover {
+  background: #e53935 !important;
+  color: #ffffff !important;
+  border-color: #e53935 !important;
+  box-shadow: 0 4px 12px rgba(229, 57, 53, 0.22) !important;
+  padding-left: 14px !important;
+}
+
+/* Mega Menu Bottom Trust Strip */
+.mega-bottom-trust {
+  background: #f8fafc !important;
+  border-top: 1px solid #f1f5f9 !important;
+  padding: 11px 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 11.5px !important;
+  color: #64748b !important;
+}
+
+.mega-bottom-trust .mbt-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+}
+
+.mega-bottom-trust .mbt-badge i {
+  color: #10b981 !important;
+  font-size: 13px !important;
+}
+
+.mega-bottom-trust .mbt-action {
+  color: #0f172a !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: color 0.18s ease !important;
+}
+
+.mega-bottom-trust .mbt-action strong {
+  color: #e53935 !important;
+}
+
+.mega-bottom-trust .mbt-action:hover {
+  color: #e53935 !important;
+}
+
+/* ==========================================================================
+   5. MOBILE SUBMENU ACCORDION STYLING
+   ========================================================================== */
+
+.mobile-menu-heading {
+  padding: 10px 0 4px !important;
+  margin: 6px 0 2px !important;
+}
+
+.mobile-menu-heading .badge-mini {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #e53935 !important;
+  background: #fee2e2 !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+}
+
+.mobile-cta-link a {
+  color: #e53935 !important;
+  font-weight: 700 !important;
+  display: inline-block !important;
+  padding: 6px 0 10px !important;
+}

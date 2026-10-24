@@ -28,6 +28,7 @@ $metaDescription = $content['body'] ? mb_substr(strip_tags($content['body']), 0,
 
 require __DIR__ . '/includes/header.php';
 ?>
+<link rel="stylesheet" href="<?php echo site_url('assets/css/people.css'); ?>">
 
     <!-- start breadcrumb area -->
     <div class="rts-breadcrumb-area breadcrumb-bg bg_image">
@@ -66,49 +67,54 @@ require __DIR__ . '/includes/header.php';
     <!-- team area start-->
     <div class="rts-team-area rts-section-gap bg-team-color">
         <div class="container">
-            <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px]">
-                <?php if (empty($teamMembers)): ?>
-                    <div class="w-full px-[15px] text-center" style="padding:40px 0; color:#6b7091;">
-                        Add team members from Admin &rarr; Team to show them here.
-                    </div>
-                <?php endif; ?>
-                <?php
-                $photos = ['06', '07', '08', '09', '10', '11', '12', '13'];
-                $i = 0;
-                foreach ($teamMembers as $member):
-                    $photo = $photos[$i % count($photos)];
-                    $i++;
-                ?>
-                <!-- team single start -->
-                <div class="xl:w-1/4 px-[15px] lg:w-1/3 md:w-1/2 sm:w-1/2 w-full">
-                    <div class="team-single-one-start">
-                        <div class="team-image-area">
-                            <a href='our-peoples.php'>
-                                <img src="<?php echo e($member['photo'] ?: 'assets/images/team/tm/' . $photo . '.jpg'); ?>" alt="<?php echo e($member['name']); ?>">
-                                <div class="team-social">
-                                    <div class="main">
-                                        <i class="fal fa-plus"></i>
-                                    </div>
-                                    <div class="team-social-one">
-                                        <?php if (!empty($member['facebook'])): ?><a href="<?php echo e($member['facebook']); ?>" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a><?php endif; ?>
-                                        <?php if (!empty($member['twitter'])): ?><a href="<?php echo e($member['twitter']); ?>" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a><?php endif; ?>
-                                        <?php if (!empty($member['instagram'])): ?><a href="<?php echo e($member['instagram']); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><?php endif; ?>
-                                        <?php if (!empty($member['linkedin'])): ?><a href="<?php echo e($member['linkedin']); ?>" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a><?php endif; ?>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="single-details">
-                            <a href='our-peoples.php'>
-                                <h3 class="title h5"><?php echo e($member['name']); ?></h3>
-                            </a>
-                            <p><?php echo e($member['designation']); ?></p>
-                        </div>
-                    </div>
+            <?php if (empty($teamMembers)): ?>
+                <div class="w-full px-[15px] text-center" style="padding:40px 0; color:#6b7091;">
+                    Add team members from Admin &rarr; Team to show them here.
                 </div>
-                <!-- team single end -->
-                <?php endforeach; ?>
-            </div>
+            <?php else: ?>
+                <div class="people-grid">
+                    <?php
+                    $photos = ['06', '07', '08', '09', '10', '11', '12', '13'];
+                    $i = 0;
+                    foreach ($teamMembers as $member):
+                        $photo = $photos[$i % count($photos)];
+                        $isLeader = $i === 0;
+                        $i++;
+                    ?>
+                    <!-- team single start -->
+                    <div class="people-grid-item<?php echo $isLeader ? ' is-leader' : ''; ?>">
+                        <div class="team-single-one-start">
+                            <div class="team-image-area">
+                                <a href='<?php echo site_url('our-peoples.php'); ?>'>
+                                    <img src="<?php echo e($member['photo'] ?: site_url('assets/images/team/tm/' . $photo . '.jpg')); ?>" alt="<?php echo e($member['name']); ?>">
+                                    <?php if ($isLeader): ?><span class="people-leader-badge">Leadership</span><?php endif; ?>
+                                    <?php if (!empty($member['facebook']) || !empty($member['twitter']) || !empty($member['instagram']) || !empty($member['linkedin'])): ?>
+                                    <div class="team-social">
+                                        <div class="main">
+                                            <i class="fal fa-plus"></i>
+                                        </div>
+                                        <div class="team-social-one">
+                                            <?php if (!empty($member['facebook'])): ?><a href="<?php echo e($member['facebook']); ?>" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><?php endif; ?>
+                                            <?php if (!empty($member['twitter'])): ?><a href="<?php echo e($member['twitter']); ?>" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a><?php endif; ?>
+                                            <?php if (!empty($member['instagram'])): ?><a href="<?php echo e($member['instagram']); ?>" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><?php endif; ?>
+                                            <?php if (!empty($member['linkedin'])): ?><a href="<?php echo e($member['linkedin']); ?>" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                </a>
+                            </div>
+                            <div class="single-details">
+                                <a href='<?php echo site_url('our-peoples.php'); ?>'>
+                                    <h3 class="title h5"><?php echo e($member['name']); ?></h3>
+                                </a>
+                                <p><?php echo e($member['designation']); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- team single end -->
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <!-- team area End -->

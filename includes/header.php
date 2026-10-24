@@ -10,7 +10,11 @@ $pageTitle       = $pageTitle ?? APP_NAME;
 $metaDescription = $metaDescription ?? 'get-accountant - accounting, bookkeeping and outsourcing services for New Zealand and Australia.';
 $currentPage     = basename($_SERVER['SCRIPT_NAME']);
 $settings        = site_settings();
-$isAuSection     = (strpos($_SERVER['REQUEST_URI'] ?? '', '/au/') !== false || $currentPage === 'australia.php');
+$activeCountry   = current_country();
+$isAuSection     = ($activeCountry === 'au');
+$firmHubUrl      = $isAuSection ? site_url('au/accounting-firm/') : site_url('nz/accounting-firm/');
+$bizHubUrl       = $isAuSection ? site_url('au/accounting/') : site_url('nz/accounting/');
+$navServices     = site_nav_services();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +31,7 @@ $isAuSection     = (strpos($_SERVER['REQUEST_URI'] ?? '', '/au/') !== false || $
     <link rel="stylesheet" href="<?php echo site_url("assets/css/plugins/unicons.css"); ?>">
     <link rel="stylesheet" href="<?php echo site_url("assets/css/style.css"); ?>">
     <link rel="stylesheet" href="<?php echo site_url("assets/css/gateway-mockup.css"); ?>">
+    <link rel="stylesheet" href="<?php echo site_url("assets/css/navbar.css"); ?>">
 </head>
 
 <body>
@@ -51,8 +56,8 @@ $isAuSection     = (strpos($_SERVER['REQUEST_URI'] ?? '', '/au/') !== false || $
                     <div class="lg:w-1/2 px-[15px] xl:block hidden">
                         <div class="right">
                             <div class="country-toggle">
-                                <a href="<?php echo site_url("nz/accounting/"); ?>" class="country-toggle-btn<?php echo !$isAuSection ? ' active' : ''; ?>">🇳🇿 New Zealand</a>
-                                <a href="<?php echo site_url("australia.php"); ?>" class="country-toggle-btn<?php echo $isAuSection ? ' active' : ''; ?>">🇦🇺 Australia <span style="font-size:10px; background:#e53935; color:#fff; padding:1px 6px; border-radius:10px; margin-left:4px; text-transform:uppercase;">Soon</span></a>
+                                <a href="<?php echo site_url("?country=nz"); ?>" class="country-toggle-btn<?php echo !$isAuSection ? ' active' : ''; ?>">🇳🇿 New Zealand</a>
+                                <a href="<?php echo site_url("?country=au"); ?>" class="country-toggle-btn<?php echo $isAuSection ? ' active' : ''; ?>">🇦🇺 Australia <span style="font-size:10px; background:#e53935; color:#fff; padding:1px 6px; border-radius:10px; margin-left:4px; text-transform:uppercase;">Soon</span></a>
                             </div>
                             <ul class="top-nav">
                                 <li><a href='<?php echo site_url("about-us.php"); ?>'>About</a></li>
@@ -84,86 +89,105 @@ $isAuSection     = (strpos($_SERVER['REQUEST_URI'] ?? '', '/au/') !== false || $
                         <div class="main-header" style="justify-content: flex-end; align-items: center;">
                             <nav class="nav-main mainmenu-nav hidden xl:block">
                                 <ul class="mainmenu">
-                                    <li><a class='nav-item<?php echo $currentPage === 'index.php' ? ' active' : ''; ?>' href='<?php echo site_url("index.php"); ?>'>Home</a></li>
                                     <li class="has-droupdown">
-                                        <a class='nav-link' href='<?php echo site_url("nz/accounting/"); ?>'>NZ Bookkeeping</a>
-                                        <ul class="submenu menu-link1">
-                                            <li class="menu-item">
-                                                <a class='tag' href='<?php echo site_url("nz/accounting/"); ?>'>Core Services</a>
-                                                <ul>
-                                                    <li><a href='<?php echo site_url("nz/accounting/"); ?>'>Accounting &amp; Bookkeeping Hub</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/services.php"); ?>'>All Services Overview</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/industries.php"); ?>'>Industries We Support</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/pricing.php"); ?>'>Fixed Monthly Pricing</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/client-stories.php"); ?>'>Client Stories &amp; Reviews</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a class='tag' href='<?php echo site_url("nz/accounting/how-it-works.php"); ?>'>How We Help</a>
-                                                <ul>
-                                                    <li><a href='<?php echo site_url("nz/accounting/how-it-works.php"); ?>'>4-Step Onboarding Process</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/why-us.php"); ?>'>Why Choose get-accountant</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/insights.php"); ?>'>Tax &amp; IRD Insights</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/faqs.php"); ?>'>Business Owner FAQs</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting/contact.php"); ?>' style='color:#e53935; font-weight:700;'>Book Free Consultation &rarr;</a></li>
-                                                </ul>
-                                            </li>
+                                        <a class='nav-link' href='<?php echo site_url("about-us.php"); ?>'>Company</a>
+                                        <ul class="submenu">
+                                            <li><a href='<?php echo site_url("about-us.php"); ?>'><i class="far fa-building"></i> <span>About Us</span> <i class="far fa-chevron-right micro-arrow"></i></a></li>
+                                            <li><a href='<?php echo site_url("our-peoples.php"); ?>'><i class="far fa-user-friends"></i> <span>Leadership Team</span> <i class="far fa-chevron-right micro-arrow"></i></a></li>
+                                            <li><a href='<?php echo site_url("nz/accounting/faqs.php"); ?>'><i class="far fa-question-circle"></i> <span>FAQs</span> <i class="far fa-chevron-right micro-arrow"></i></a></li>
                                         </ul>
                                     </li>
+                                    <li class="has-droupdown nav-mega-item">
+                                        <a class='nav-link' href='<?php echo e($bizHubUrl); ?>'>Services</a>
+                                        <div class="submenu menu-link1 mega-menu-box">
+                                            <div class="mega-columns-wrap">
+                                                <!-- Column 1: For Businesses -->
+                                                <div class="mega-column">
+                                                    <div class="mega-col-header">
+                                                        <span class="mega-tag"><i class="fas fa-briefcase"></i> For Businesses</span>
+                                                        <h4 class="mega-col-title">Accounting &amp; Bookkeeping</h4>
+                                                        <p class="mega-col-desc">Complete financial peace-of-mind for Kiwi &amp; Aussie SMEs</p>
+                                                    </div>
+                                                    <ul class="mega-service-list">
+                                                        <?php if (!empty($navServices['biz'])): ?>
+                                                            <?php foreach ($navServices['biz'] as $s): ?>
+                                                                <li>
+                                                                    <a href='<?php echo site_url("service-details.php?slug=" . urlencode($s['slug'])); ?>' class="mega-service-link">
+                                                                        <span class="ms-icon"><i class="fas <?php echo e($s['icon'] ?: 'fa-calculator'); ?>"></i></span>
+                                                                        <span class="ms-text">
+                                                                            <strong class="ms-title"><?php echo e($s['title']); ?></strong>
+                                                                        </span>
+                                                                        <i class="far fa-arrow-right ms-arrow"></i>
+                                                                    </a>
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                    <div class="mega-col-footer">
+                                                        <a href='<?php echo $isAuSection ? site_url("au/accounting/") : site_url("nz/accounting/services.php"); ?>' class="mega-view-all">
+                                                            <span>View All Business Services</span>
+                                                            <i class="far fa-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Column 2: For CA/CPA Firms -->
+                                                <div class="mega-column">
+                                                    <div class="mega-col-header">
+                                                        <span class="mega-tag"><i class="fas fa-chart-network"></i> For CA/CPA Firms</span>
+                                                        <h4 class="mega-col-title">Practice Outsourcing Pods</h4>
+                                                        <p class="mega-col-desc">Dedicated white-label capacity inside your existing firm software</p>
+                                                    </div>
+                                                    <ul class="mega-service-list">
+                                                        <?php if (!empty($navServices['firm'])): ?>
+                                                            <?php foreach ($navServices['firm'] as $s): ?>
+                                                                <li>
+                                                                    <a href='<?php echo site_url("service-details.php?slug=" . urlencode($s['slug'])); ?>' class="mega-service-link">
+                                                                        <span class="ms-icon"><i class="fas <?php echo e($s['icon'] ?: 'fa-handshake'); ?>"></i></span>
+                                                                        <span class="ms-text">
+                                                                            <strong class="ms-title"><?php echo e($s['title']); ?></strong>
+                                                                        </span>
+                                                                        <i class="far fa-arrow-right ms-arrow"></i>
+                                                                    </a>
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                    <div class="mega-col-footer">
+                                                        <a href='<?php echo $isAuSection ? site_url("au/accounting-firm/") : site_url("nz/accounting-firm/services.php"); ?>' class="mega-view-all">
+                                                            <span>View All Firm Solutions</span>
+                                                            <i class="far fa-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Trust bar across the bottom -->
+                                            <div class="mega-bottom-trust">
+                                                <div class="mbt-badge">
+                                                    <i class="fas fa-shield-check" style="color: #10b981;"></i>
+                                                    <span>SOC 2 Type II &amp; ISO 27001 Certified · Privacy Act &amp; GDPR Compliant</span>
+                                                </div>
+                                                <a href="<?php echo site_url('get-started.php'); ?>" class="mbt-action">
+                                                    Need a Scoping Call? <strong>Get In Touch &rarr;</strong>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a class='nav-item' href='<?php echo site_url("nz/accounting/industries.php"); ?>'>Industries</a></li>
                                     <li class="has-droupdown">
-                                        <a class='nav-link' href='<?php echo site_url("nz/accounting-firm/"); ?>'>Firm Outsourcing</a>
-                                        <ul class="submenu menu-link1">
-                                            <li class="menu-item">
-                                                <a class='tag' href='<?php echo site_url("nz/accounting-firm/"); ?>'>Outsourcing Services</a>
-                                                <ul>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/"); ?>'>Firm Outsourcing Hub</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/services.php"); ?>'>All Practice Services</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/how-we-work.php"); ?>'>How We Work with Firms</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'>Technology &amp; ISO Security</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/case-studies.php"); ?>'>Firm Case Studies</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a class='tag' href='<?php echo site_url("nz/accounting-firm/why-partner.php"); ?>'>Practice Growth</a>
-                                                <ul>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/why-partner.php"); ?>'>Why Partner with Us</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/insights.php"); ?>'>Accounting Firm Trends</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/faqs.php"); ?>'>Firm Partnership FAQs</a></li>
-                                                    <li><a href='<?php echo site_url("nz/accounting-firm/contact.php"); ?>' style='color:#e53935; font-weight:700;'>Request Scoping Call &rarr;</a></li>
-                                                </ul>
-                                            </li>
+                                        <a class='nav-link' href='<?php echo site_url("insight-resources.php"); ?>'>Resources</a>
+                                        <ul class="submenu">
+                                            <li><a href='<?php echo site_url("blog-list.php"); ?>'><i class="far fa-newspaper"></i> <span>Insights &amp; Blogs</span> <i class="far fa-chevron-right micro-arrow"></i></a></li>
+                                            <li><a href='<?php echo site_url("events.php"); ?>'><i class="far fa-calendar-star"></i> <span>Events &amp; Webinars</span> <i class="far fa-chevron-right micro-arrow"></i></a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-droupdown">
-                                        <a class='nav-link' href='<?php echo site_url("about-us.php"); ?>'>About &amp; Practice</a>
-                                        <ul class="submenu menu-link1" style="width: 480px;">
-                                            <li class="menu-item" style="width: 48%;">
-                                                <a class='tag' href='<?php echo site_url("about-us.php"); ?>'>Our Practice</a>
-                                                <ul>
-                                                    <li><a href='<?php echo site_url("about-us.php"); ?>'>About get-accountant</a></li>
-                                                    <li><a href='<?php echo site_url("how-we-work.php"); ?>'>Our Methodology</a></li>
-                                                    <li><a href='<?php echo site_url("our-peoples.php"); ?>'>Our Leadership Team</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item" style="width: 48%;">
-                                                <a class='tag' href='<?php echo site_url("insight-resources.php"); ?>'>Resources</a>
-                                                <ul>
-                                                    <li><a href='<?php echo site_url("insight-resources.php"); ?>'>Insight &amp; Resources</a></li>
-                                                    <li><a href='<?php echo site_url("blog-list.php"); ?>'>Tax &amp; Business News</a></li>
-                                                    <li><a href='<?php echo site_url("contactus.php"); ?>' style='color:#e53935; font-weight:700;'>Contact Us &rarr;</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <!-- <li>
-                                        <a class='nav-item<?php echo $isAuSection ? ' active' : ''; ?>' href='<?php echo site_url("australia.php"); ?>'>Australia <span style="font-size:10px; background:#e53935; color:#fff; padding:2px 6px; border-radius:10px; font-weight:700; margin-left:2px;">SOON</span></a>
-                                    </li> -->
-                                    <li><a class='nav-item<?php echo $currentPage === 'contactus.php' ? ' active' : ''; ?>' href='<?php echo site_url("contactus.php"); ?>'>Contact</a></li>
+                                    <li><a class='nav-item<?php echo $currentPage === 'contactus.php' ? ' active' : ''; ?>' href='<?php echo site_url("contactus.php"); ?>'>Contact Us</a></li>
                                 </ul>
                             </nav>
                             <div class="button-area">
                                 <button id="search" class="rts-btn btn-primary-alta" aria-label="Search"><i class="far fa-search"></i></button>
-                                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btn' href='<?php echo site_url("get-started.php"); ?>'>Get Started</a>
+                                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btn' href='<?php echo site_url("get-started.php"); ?>'>Get In Touch</a>
                                 <button id="menu-btn" class="menu rts-btn btn-primary-alta ml--20 ml_sm--5" aria-label="Open Navigation">
                                     <img class="menu-dark" src="<?php echo site_url("assets/images/icon/menu.png"); ?>" alt="Menu-icon">
                                     <img class="menu-light" src="<?php echo site_url("assets/images/icon/menu-light.png"); ?>" alt="Menu-icon">
@@ -230,48 +254,65 @@ $isAuSection     = (strpos($_SERVER['REQUEST_URI'] ?? '', '/au/') !== false || $
                 </div>
                 <nav class="nav-main mainmenu-nav">
                     <ul class="mainmenu">
-                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("index.php"); ?>'>Home</a></li>
                         <li class="has-droupdown menu-item">
-                            <a class='menu-link' href='<?php echo site_url("nz/accounting/"); ?>'>NZ Bookkeeping</a>
+                            <a class='menu-link' href='<?php echo site_url("about-us.php"); ?>'>Company</a>
                             <ul class="submenu">
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/"); ?>'>Accounting &amp; Bookkeeping Hub</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/services.php"); ?>'>All Services Overview</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/industries.php"); ?>'>Industries We Support</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/pricing.php"); ?>'>Fixed Monthly Pricing</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/client-stories.php"); ?>'>Client Stories &amp; Reviews</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/how-it-works.php"); ?>'>How It Works</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/why-us.php"); ?>'>Why Choose Us</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/insights.php"); ?>'>Tax &amp; IRD Insights</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/faqs.php"); ?>'>Business Owner FAQs</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/contact.php"); ?>' style='color:#e53935; font-weight:700;'>Book Free Consultation</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("about-us.php"); ?>'>About Us</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("our-peoples.php"); ?>'>Leadership Team</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting/faqs.php"); ?>'>FAQs</a></li>
                             </ul>
                         </li>
                         <li class="has-droupdown menu-item">
-                            <a class='menu-link' href='<?php echo site_url("nz/accounting-firm/"); ?>'>Firm Outsourcing</a>
+                            <a class='menu-link' href='javascript:void(0)'>Services</a>
                             <ul class="submenu">
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/"); ?>'>Firm Outsourcing Hub</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/services.php"); ?>'>All Practice Services</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/how-we-work.php"); ?>'>How We Work with Firms</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'>Technology &amp; ISO Security</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/why-partner.php"); ?>'>Why Partner with Us</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/case-studies.php"); ?>'>Firm Case Studies</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/insights.php"); ?>'>Accounting Firm Trends</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/faqs.php"); ?>'>Firm Partnership FAQs</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("nz/accounting-firm/contact.php"); ?>' style='color:#e53935; font-weight:700;'>Request Scoping Call</a></li>
+                                <li class="mobile-menu-heading">
+                                    <span class="badge-mini">For Businesses</span>
+                                </li>
+                                <?php if (!empty($navServices['biz'])): ?>
+                                    <?php foreach ($navServices['biz'] as $s): ?>
+                                        <li class="mobile-menu-link">
+                                            <a href='<?php echo site_url("service-details.php?slug=" . urlencode($s['slug'])); ?>' style="display:flex; align-items:center; gap:8px;">
+                                                <i class="fas <?php echo e($s['icon'] ?: 'fa-calculator'); ?>" style="color:#e53935; font-size:12px; width:16px; text-align:center;"></i>
+                                                <span><?php echo e($s['title']); ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                                <li class="mobile-menu-link mobile-cta-link">
+                                    <a href='<?php echo $isAuSection ? site_url("au/accounting/") : site_url("nz/accounting/services.php"); ?>' style='color:#e53935; font-weight:700;'>
+                                        View All Business Services &rarr;
+                                    </a>
+                                </li>
+
+                                <li class="mobile-menu-heading">
+                                    <span class="badge-mini">For CA/CPA Firms</span>
+                                </li>
+                                <?php if (!empty($navServices['firm'])): ?>
+                                    <?php foreach ($navServices['firm'] as $s): ?>
+                                        <li class="mobile-menu-link">
+                                            <a href='<?php echo site_url("service-details.php?slug=" . urlencode($s['slug'])); ?>' style="display:flex; align-items:center; gap:8px;">
+                                                <i class="fas <?php echo e($s['icon'] ?: 'fa-handshake'); ?>" style="color:#e53935; font-size:12px; width:16px; text-align:center;"></i>
+                                                <span><?php echo e($s['title']); ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                                <li class="mobile-menu-link mobile-cta-link">
+                                    <a href='<?php echo $isAuSection ? site_url("au/accounting-firm/") : site_url("nz/accounting-firm/services.php"); ?>' style='color:#e53935; font-weight:700;'>
+                                        View All Firm Solutions &rarr;
+                                    </a>
+                                </li>
                             </ul>
                         </li>
+                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("nz/accounting/industries.php"); ?>'>Industries</a></li>
                         <li class="has-droupdown menu-item">
-                            <a class='menu-link' href='<?php echo site_url("about-us.php"); ?>'>About &amp; Practice</a>
+                            <a class='menu-link' href='<?php echo site_url("insight-resources.php"); ?>'>Resources</a>
                             <ul class="submenu">
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("about-us.php"); ?>'>About get-accountant</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("how-we-work.php"); ?>'>Our Methodology</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("our-peoples.php"); ?>'>Our People</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("insight-resources.php"); ?>'>Insight &amp; Resources</a></li>
-                                <li class="mobile-menu-link"><a href='<?php echo site_url("blog-list.php"); ?>'>Tax &amp; Business News</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("blog-list.php"); ?>'>Blogs</a></li>
+                                <li class="mobile-menu-link"><a href='<?php echo site_url("events.php"); ?>'>Events</a></li>
                             </ul>
                         </li>
-                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("australia.php"); ?>'>Australia (Coming Soon)</a></li>
-                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("contactus.php"); ?>'>Contact</a></li>
+                        <li class="menu-item"><a class='menu-link' href='<?php echo site_url("contactus.php"); ?>'>Contact Us</a></li>
                     </ul>
                 </nav>
                 <div class="social-wrapper-two menu mobile-menu">
@@ -280,7 +321,7 @@ $isAuSection     = (strpos($_SERVER['REQUEST_URI'] ?? '', '/au/') !== false || $
                     <?php if ($settings['instagram_url']): ?><a href="<?php echo e($settings['instagram_url']); ?>" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><?php endif; ?>
                     <?php if ($waLink): ?><a href="<?php echo e($waLink); ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><?php endif; ?>
                 </div>
-                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btnmenu' href='<?php echo site_url("contactus.php"); ?>'>Get Quote</a>
+                <a class='rts-btn btn-primary ml--20 ml_sm--5 header-one-btn quote-btnmenu' href='<?php echo site_url("get-started.php"); ?>'>Get In Touch</a>
             </div>
         </div>
     </div>

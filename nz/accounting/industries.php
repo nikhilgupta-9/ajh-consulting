@@ -8,7 +8,6 @@ $breadcrumbParent = ['label' => 'Accounting & Bookkeeping', 'url' => 'index.php'
 
 require __DIR__ . '/../../includes/header.php';
 require __DIR__ . '/../../includes/breadcrumb.php';
-require __DIR__ . '/../../includes/bookkeeping-subnav.php';
 
 $industries = [
     [
@@ -106,34 +105,31 @@ $industries = [
 
             <div class="flex flex-wrap -mx-[15px]">
                 <?php foreach ($industries as $ind): ?>
-                <div class="xl:w-1/2 lg:w-1/2 px-[15px] pb--40">
-                    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); height: 100%; display: flex; flex-direction: column;">
-                        <div style="padding: 32px 30px; flex-grow: 1;">
-                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-                                <div style="width: 54px; height: 54px; border-radius: 12px; background: #fef2f2; color: #e53935; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                                    <i class="fas <?php echo $ind['icon']; ?>"></i>
-                                </div>
-                                <div>
-                                    <h3 class="title h4" style="margin: 0; font-size: 22px; color: #0f172a;"><?php echo e($ind['title']); ?></h3>
-                                    <span style="font-size: 13px; color: #64748b; font-weight: 500;"><?php echo e($ind['subtitle']); ?></span>
-                                </div>
+                <div class="xl:w-1/3 lg:w-1/2 md:w-1/2 px-[15px] pb--35">
+                    <div style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06); height: 100%; display: flex; flex-direction: column; border: 1px solid #e2e8f0; transition: transform .3s, box-shadow .3s;">
+                        <div style="height: 190px; overflow: hidden; position: relative;">
+                            <img src="<?php echo site_url($ind['image']); ?>" alt="<?php echo e($ind['title']); ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div style="position: absolute; top: 15px; left: 15px; width: 42px; height: 42px; border-radius: 10px; background: rgba(11,18,32,0.85); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                                <i class="fas <?php echo $ind['icon']; ?>"></i>
                             </div>
-                            <p style="color: #475569; font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
+                        </div>
+                        <div style="padding: 26px 24px; flex-grow: 1; display: flex; flex-direction: column;">
+                            <h3 class="title h5" style="margin-bottom: 4px; font-size: 19px; color: #0f172a;"><?php echo e($ind['title']); ?></h3>
+                            <span style="font-size: 12.5px; color: #64748b; font-weight: 500; display: block; margin-bottom: 14px;"><?php echo e($ind['subtitle']); ?></span>
+                            <p class="disc" style="color: #64748b; font-size: 14px; line-height: 1.6; margin-bottom: 18px;">
                                 <?php echo e($ind['description']); ?>
                             </p>
-                            <h5 style="font-size: 14.5px; font-weight: 700; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Key Services Provided:</h5>
-                            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;">
-                                <?php foreach ($ind['points'] as $p): ?>
-                                <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #334155;">
-                                    <i class="fas fa-check-circle" style="color: #22c55e; margin-top: 3px;"></i>
+                            <ul style="list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
+                                <?php foreach (array_slice($ind['points'], 0, 3) as $p): ?>
+                                <li style="display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: #334155; line-height: 1.5;">
+                                    <i class="fas fa-check-circle" style="color: #22c55e; margin-top: 3px; font-size: 12px;"></i>
                                     <span><?php echo e($p); ?></span>
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
-                        </div>
-                        <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 16px 30px; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 13px; color: #64748b; font-weight: 600;">Customized Chart of Accounts</span>
-                            <a class="rts-read-more color-primary" href="contact.php" style="font-weight: 700; font-size: 14px;">Inquire for Your Sector <i class="far fa-arrow-right"></i></a>
+                            <div style="border-top: 1px solid #f1f5f9; padding-top: 16px;">
+                                <a class="rts-read-more color-primary" href="contact.php" style="font-weight: 700; font-size: 14px; text-decoration: none;">Inquire for Your Sector <i class="far fa-arrow-right" style="margin-left: 6px;"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

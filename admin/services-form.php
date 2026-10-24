@@ -4,7 +4,7 @@ require_admin();
 
 $pdo = db();
 $id  = (int) ($_GET['id'] ?? 0);
-$service = ['title' => '', 'slug' => '', 'branch' => 'bookkeeping', 'short_description' => '', 'description' => '', 'icon' => '', 'image' => '', 'sort_order' => 0];
+$service = ['title' => '', 'slug' => '', 'branch' => 'bookkeeping', 'short_description' => '', 'description' => '', 'icon' => '', 'image' => '', 'starting_price' => '', 'sort_order' => 0];
 
 if ($id > 0 && $pdo) {
     $stmt = $pdo->prepare('SELECT * FROM services WHERE id = :id');
@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $service['short_description'] = clean($_POST['short_description'] ?? '');
     $service['description']       = clean($_POST['description'] ?? '');
     $service['icon']              = clean($_POST['icon'] ?? '');
+    $service['starting_price']    = clean($_POST['starting_price'] ?? '');
     $service['sort_order']        = (int) ($_POST['sort_order'] ?? 0);
 
     if ($service['title'] === '') {
@@ -48,18 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Only the known columns — a GET-time SELECT * (when editing) can
         // leave extra keys like id/created_at in $service, which PDO
         // rejects now that emulated prepares are off.
-        $serviceFields = ['title', 'slug', 'branch', 'short_description', 'description', 'icon', 'image', 'sort_order'];
+        $serviceFields = ['title', 'slug', 'branch', 'short_description', 'description', 'icon', 'image', 'starting_price', 'sort_order'];
         $serviceData   = array_intersect_key($service, array_flip($serviceFields));
 
         if ($id > 0) {
             $stmt = $pdo->prepare(
-                'UPDATE services SET title=:title, slug=:slug, branch=:branch, short_description=:short_description, description=:description, icon=:icon, image=:image, sort_order=:sort_order WHERE id=:id'
+                'UPDATE services SET title=:title, slug=:slug, branch=:branch, short_description=:short_description, description=:description, icon=:icon, image=:image, starting_price=:starting_price, sort_order=:sort_order WHERE id=:id'
             );
             $stmt->execute($serviceData + ['id' => $id]);
             flash_set('success', 'Service updated.');
         } else {
             $stmt = $pdo->prepare(
-                'INSERT INTO services (title, slug, branch, short_description, description, icon, image, sort_order) VALUES (:title, :slug, :branch, :short_description, :description, :icon, :image, :sort_order)'
+                'INSERT INTO services (title, slug, branch, short_description, description, icon, image, starting_price, sort_order) VALUES (:title, :slug, :branch, :short_description, :description, :icon, :image, :starting_price, :sort_order)'
             );
             $stmt->execute($serviceData);
             flash_set('success', 'Service added.');
@@ -102,7 +103,7 @@ require __DIR__ . '/includes/layout-top.php';
 
         <div class="form-group">
             <label>Full Description (shown on the service details page)</label>
-            <textarea class="form-control" name="description" style="min-height:160px;"><?php echo e($service['description']); ?></textarea>
+            <textarea id="service-description-editor" class="form-control" name="description" style="min-height:220px;"><?php echo e($service['description']); ?></textarea>
         </div>
 
         <div class="form-row">
@@ -111,9 +112,14 @@ require __DIR__ . '/includes/layout-top.php';
                 <input class="form-control" type="text" name="icon" value="<?php echo e($service['icon']); ?>">
             </div>
             <div class="form-group">
-                <label>Sort Order (lower shows first)</label>
-                <input class="form-control" type="number" name="sort_order" value="<?php echo (int) $service['sort_order']; ?>">
+                <label>Starting Price (optional, e.g. "199" shown as NZ$199/month)</label>
+                <input class="form-control" type="text" name="starting_price" value="<?php echo e($service['starting_price']); ?>">
             </div>
+        </div>
+
+        <div class="form-group">
+            <label>Sort Order (lower shows first)</label>
+            <input class="form-control" type="number" name="sort_order" value="<?php echo (int) $service['sort_order']; ?>">
         </div>
 
         <div class="form-group">
@@ -128,5 +134,20 @@ require __DIR__ . '/includes/layout-top.php';
         <a href="services.php" class="btn btn-outline">Cancel</a>
     </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#service-description-editor',
+        height: 420,
+        menubar: false,
+        plugins: 'lists link image table code wordcount',
+        toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image | alignleft aligncenter alignright | removeformat | code',
+        branding: false,
+        images_upload_url: 'editor-image-upload.php',
+        automatic_uploads: true,
+        content_style: 'body { font-family: Segoe UI, Arial, sans-serif; font-size: 15px; line-height: 1.7; } img { max-width: 100%; height: auto; }'
+    });
+</script>
 
 <?php require __DIR__ . '/includes/layout-bottom.php'; ?>

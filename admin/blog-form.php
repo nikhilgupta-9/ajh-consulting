@@ -99,8 +99,8 @@ require __DIR__ . '/includes/layout-top.php';
 
         <div class="form-group">
             <label>Content</label>
-            <textarea class="form-control" name="content" style="min-height:220px;"><?php echo e($post['content']); ?></textarea>
-            <small style="color:#6b7091;">Basic HTML tags like &lt;p&gt;, &lt;b&gt;, &lt;a&gt; are allowed.</small>
+            <textarea id="blog-content-editor" class="form-control" name="content" style="min-height:220px;"><?php echo e($post['content']); ?></textarea>
+            <small style="color:#6b7091;">Use the toolbar to add headings, lists, bold text and inline images — just like a normal document editor.</small>
         </div>
 
         <div class="form-row">
@@ -129,5 +129,20 @@ require __DIR__ . '/includes/layout-top.php';
         <a href="blog.php" class="btn btn-outline">Cancel</a>
     </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#blog-content-editor',
+        height: 480,
+        menubar: false,
+        plugins: 'lists link image table code wordcount',
+        toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image | alignleft aligncenter alignright | removeformat | code',
+        branding: false,
+        images_upload_url: 'editor-image-upload.php',
+        automatic_uploads: true,
+        content_style: 'body { font-family: Segoe UI, Arial, sans-serif; font-size: 15px; line-height: 1.7; } img { max-width: 100%; height: auto; }'
+    });
+</script>
 
 <?php require __DIR__ . '/includes/layout-bottom.php'; ?>

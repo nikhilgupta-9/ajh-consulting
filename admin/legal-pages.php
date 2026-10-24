@@ -84,12 +84,25 @@ require __DIR__ . '/includes/layout-top.php';
         </div>
 
         <div class="form-group">
-            <label>Content (basic HTML allowed — &lt;p&gt;, &lt;h3&gt;, &lt;ul&gt;/&lt;li&gt;, &lt;b&gt;, &lt;a&gt;)</label>
-            <textarea class="form-control" name="content" style="min-height:420px; font-family:monospace; font-size:13px;"><?php echo e($page['content']); ?></textarea>
+            <label>Content</label>
+            <textarea id="legal-content-editor" class="form-control" name="content" style="min-height:420px;"><?php echo e($page['content']); ?></textarea>
         </div>
 
         <button type="submit" class="btn">Save Page</button>
     </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#legal-content-editor',
+        height: 480,
+        menubar: false,
+        plugins: 'lists link table code wordcount',
+        toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link | alignleft aligncenter alignright | removeformat | code',
+        branding: false,
+        content_style: 'body { font-family: Segoe UI, Arial, sans-serif; font-size: 15px; line-height: 1.7; }'
+    });
+</script>
 
 <?php require __DIR__ . '/includes/layout-bottom.php'; ?>

@@ -1,0 +1,675 @@
+/*
+ * Branch landing pages (nz/accounting/ and nz/accounting-firm/ homepages).
+ * Section order and the alternating dark / light rhythm follow
+ * indianmuneem.com. Markup lives in includes/branch-landing.php.
+ */
+
+.bl {
+  --bl-navy: #00101f;
+  --bl-navy-2: #07182f;
+  --bl-card-dark: #0c2136;
+  --bl-line-dark: rgba(255, 255, 255, 0.1);
+  --bl-light: #ffffff;
+  --bl-cream: #f6f2ea;
+  --bl-ink: #0f172a;
+  --bl-muted: #64748b;
+  --bl-muted-dark: #a9b4c2;
+  --bl-red: #e53935;
+  --bl-red-dark: #c62828;
+  --bl-radius: 14px;
+  font-size: 16px;
+}
+
+.bl *,
+.bl *::before,
+.bl *::after { box-sizing: border-box; }
+
+.bl h1, .bl h2, .bl h3, .bl h4 { line-height: 1.3; }
+.bl-section { padding: 90px 0; }
+.bl-dark { background: var(--bl-navy); color: var(--bl-muted-dark); }
+.bl-dark.bl-glow { background: radial-gradient(ellipse at 50% 0%, var(--bl-navy-2) 0%, var(--bl-navy) 70%); }
+.bl-light { background: var(--bl-light); color: var(--bl-muted); }
+.bl-cream { background: var(--bl-cream); color: var(--bl-muted); }
+
+.bl-container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* ---- Headings ---- */
+.bl-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--bl-red); margin-bottom: 12px;
+}
+.bl-eyebrow::before { content: ""; width: 10px; height: 10px; border-radius: 2px; background: var(--bl-red); box-shadow: 4px 4px 0 -1px rgba(229, 57, 53, 0.45); }
+.bl .bl-title { font-size: 38px; line-height: 1.2; font-weight: 700; margin: 0 0 14px; color: var(--bl-ink); }
+.bl-dark .bl-title { color: #fff; }
+.bl-title em { font-style: normal; color: var(--bl-red); }
+.bl-title-rule { display: block; width: 64px; height: 3px; background: var(--bl-red); border-radius: 3px; margin: 14px 0 0; }
+.bl-head { margin-bottom: 44px; }
+.bl-head.center { text-align: center; max-width: 760px; margin-left: auto; margin-right: auto; }
+.bl-head.center .bl-title-rule { margin-left: auto; margin-right: auto; }
+.bl-lead { font-size: 16px; line-height: 1.7; margin: 14px 0 0; }
+
+/* ---- Buttons ---- */
+.bl-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px; border-radius: 8px; font-size: 15px; font-weight: 600;
+  text-decoration: none; border: 1px solid transparent; transition: background .2s, color .2s, border-color .2s;
+}
+.bl-btn-primary { background: var(--bl-red); color: #fff; }
+.bl-btn-primary:hover { background: var(--bl-red-dark); color: #fff; }
+.bl-btn-ghost { background: #fff; color: var(--bl-ink); border-color: #fff; }
+.bl-btn-ghost:hover { background: transparent; color: #fff; }
+.bl-light .bl-btn-ghost, .bl-cream .bl-btn-ghost { border-color: var(--bl-ink); }
+.bl-light .bl-btn-ghost:hover, .bl-cream .bl-btn-ghost:hover { background: var(--bl-ink); color: #fff; }
+.bl-btn-outline { background: transparent; color: var(--bl-red); border-color: var(--bl-red); padding: 8px 14px; font-size: 13px; }
+.bl-btn-outline:hover { background: var(--bl-red); color: #fff; }
+.bl-btn-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+
+/* ---- 1. Hero ---- */
+.bl-hero { padding: 80px 0; background: linear-gradient(110deg, rgba(0, 16, 31, 0.97) 40%, rgba(0, 16, 31, 0.85)); }
+.bl-hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+.bl-hero h1 { font-size: 46px; line-height: 1.15; font-weight: 700; color: #fff; margin: 0 0 18px; }
+.bl-hero h1 em { font-style: normal; color: var(--bl-red); }
+.bl-hero p { font-size: 17px; line-height: 1.7; margin: 0; color: #c9d2dd; }
+.bl-hero-media { border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45); }
+.bl-hero-media img { display: block; width: 100%; height: 100%; max-height: 420px; object-fit: cover; }
+.bl-badges { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 26px; font-size: 14px; color: #dbe3ec; }
+.bl-badges i { color: #22c55e; margin-right: 6px; }
+
+/* ---- 2. Who we serve ---- */
+.bl-serve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.bl-serve-card {
+  border-radius: var(--bl-radius); padding: 34px; background: #fff; border: 1px solid #e2e8f0;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06); display: flex; flex-direction: column;
+}
+.bl-serve-card.is-current { border-top: 4px solid var(--bl-red); }
+.bl-serve-tag { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bl-red); }
+.bl-serve-card h3 { font-size: 24px; margin: 8px 0 10px; color: var(--bl-ink); }
+.bl-serve-card > p { margin: 0 0 18px; line-height: 1.65; }
+.bl-checks { list-style: none; padding: 0; margin: 0 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; }
+.bl-checks li { display: flex; gap: 8px; font-size: 14.5px; color: #334155; line-height: 1.45; }
+.bl-checks i { color: var(--bl-red); margin-top: 3px; }
+.bl-serve-card .bl-btn { margin-top: auto; align-self: flex-start; }
+.bl-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 36px; }
+.bl-stat { border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px 16px; text-align: center; background: #f8fafc; }
+.bl-stat strong { display: block; font-size: 34px; line-height: 1; color: var(--bl-ink); margin-bottom: 8px; }
+.bl-stat span { font-size: 14px; }
+
+/* ---- 3. Services ---- */
+.bl-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 34px; flex-wrap: wrap; }
+.bl .bl-tab {
+  width: auto; height: auto; line-height: 1.2; flex: 0 0 auto;
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px;
+  font-size: 14px; font-weight: 600; border: 1px solid var(--bl-line-dark); background: transparent; color: #fff; cursor: pointer;
+}
+.bl .bl-tab.active { background: var(--bl-red); border-color: var(--bl-red); }
+.bl-tab-panel[hidden] { display: none; }
+.bl-service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.bl-service-card { background: #fff; border-radius: var(--bl-radius); padding: 28px 24px; display: flex; flex-direction: column; color: var(--bl-muted); }
+.bl-service-icon { width: 46px; height: 46px; border-radius: 10px; background: #fef2f2; color: var(--bl-red); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+.bl-service-card h3 { font-size: 19px; margin: 0 0 10px; color: var(--bl-ink); }
+.bl-service-card h3 a { color: inherit; text-decoration: none; }
+.bl-service-card p { font-size: 14.5px; line-height: 1.6; margin: 0 0 18px; flex-grow: 1; }
+.bl-service-card .bl-btn { align-self: flex-start; }
+.bl-center-cta { text-align: center; margin-top: 36px; }
+
+/* ---- 4. Key partners / 8. Software (logo tiles) ---- */
+.bl-band { padding: 56px 0; }
+.bl-band .bl-title { font-size: 30px; text-align: center; margin-bottom: 28px; }
+.bl-logo-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.bl-logo-tile {
+  min-width: 170px; padding: 18px 22px; border-radius: 10px; text-align: center;
+  background: var(--bl-navy-2); color: #fff; border: 1px solid var(--bl-line-dark);
+}
+.bl-light .bl-logo-tile, .bl-cream .bl-logo-tile { background: #fff; color: var(--bl-ink); border-color: #e2e8f0; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05); }
+.bl-logo-tile strong { display: block; font-size: 18px; font-weight: 800; letter-spacing: 0.01em; }
+.bl-logo-tile span { display: block; font-size: 12px; margin-top: 4px; opacity: 0.7; }
+
+/* Modern Software Grid with Logos */
+.bl-software-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+}
+
+.bl-software-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 124px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.bl-software-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+.bl-software-img-wrap {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.bl-software-img {
+  max-height: 42px;
+  max-width: 120px;
+  object-fit: contain;
+  transition: transform .2s ease;
+}
+
+.bl-software-card:hover .bl-software-img {
+  transform: scale(1.05);
+}
+
+.bl-software-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--bl-ink);
+  line-height: 1.25;
+  margin-bottom: 3px;
+}
+
+.bl-software-note {
+  font-size: 11px;
+  color: var(--bl-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- 5. Industries ---- */
+.bl-industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.bl-industry { background: var(--bl-card-dark); border: 1px solid var(--bl-line-dark); border-radius: var(--bl-radius); padding: 26px; }
+.bl-industry-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.bl-industry-head i { width: 44px; height: 44px; border-radius: 10px; background: rgba(229, 57, 53, 0.15); color: #ff6b6b; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.bl-industry h3 { font-size: 18px; margin: 0; color: #fff; }
+.bl-industry p { font-size: 14px; line-height: 1.6; margin: 0; }
+
+/* ---- 6. Why choose + form ---- */
+.bl-why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.bl-why-list { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
+.bl-why-list li { display: flex; gap: 10px; line-height: 1.55; color: #334155; }
+.bl-why-list i { color: var(--bl-red); margin-top: 4px; }
+.bl-why-list strong { color: var(--bl-ink); }
+.bl-form { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08); }
+.bl-form h3 { font-size: 22px; margin: 0 0 4px; color: var(--bl-ink); }
+.bl-form > p { font-size: 14px; margin: 0 0 20px; }
+.bl-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bl-form-grid .full { grid-column: 1 / -1; }
+.bl-form input, .bl-form select, .bl-form textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px;
+  background: #fff; color: var(--bl-ink); font-family: inherit;
+}
+.bl-form textarea { resize: vertical; min-height: 96px; }
+.bl-form input:focus, .bl-form select:focus, .bl-form textarea:focus { outline: none; border-color: var(--bl-red); }
+.bl .bl-form button { width: auto; height: auto; margin-top: 16px; border: none; cursor: pointer; }
+
+/* ---- 7. Workflow ---- */
+.bl-phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.bl-phase { background: var(--bl-card-dark); border: 1px solid var(--bl-line-dark); border-radius: var(--bl-radius); padding: 30px 26px; }
+.bl-phase-icon { font-size: 30px; color: var(--bl-red); margin-bottom: 14px; }
+.bl-phase h3 { color: #fff; font-size: 19px; margin: 0 0 18px; }
+.bl-step + .bl-step { margin-top: 16px; }
+.bl-step h4 { color: #fff; font-size: 15px; margin: 0 0 4px; }
+.bl-step p { font-size: 14px; line-height: 1.55; margin: 0; }
+
+/* ---- 9. Testimonials ---- */
+.bl-reviews { display: grid; grid-template-columns: 300px 1fr; gap: 32px; background: #fff; border-radius: 18px; padding: 36px; color: var(--bl-muted); }
+.bl-reviews-intro h2 { font-size: 30px; line-height: 1.2; margin: 0 0 10px; color: var(--bl-ink); }
+.bl-review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.bl-review { border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
+.bl-review-who { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.bl-avatar { width: 40px; height: 40px; border-radius: 50%; background: #fee2e2; color: var(--bl-red); font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.bl-review-who strong { display: block; color: var(--bl-ink); font-size: 15px; }
+.bl-review-who span { font-size: 12.5px; }
+.bl-stars { color: #f59e0b; font-size: 13px; margin-bottom: 10px; }
+.bl-review p { margin: 0; font-size: 14.5px; line-height: 1.6; color: #334155; }
+
+/* ---- 10. FAQ ---- */
+.bl-faq-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 44px; align-items: start; }
+.bl-faq-media { position: relative; border-radius: 16px; overflow: hidden; }
+.bl-faq-media img { display: block; width: 100%; height: 360px; object-fit: cover; }
+.bl-faq-media .bl-faq-badge { position: absolute; top: 18px; right: 18px; background: var(--bl-navy); color: #fff; border-radius: 10px; padding: 14px 18px; text-align: center; }
+.bl-faq-badge strong { display: block; font-size: 22px; }
+.bl-faq-badge span { font-size: 12px; color: var(--bl-muted-dark); }
+.bl-faq-list { display: grid; gap: 12px; }
+.bl-faq { border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; }
+.bl-faq summary { cursor: pointer; list-style: none; padding: 16px 18px; font-weight: 600; color: var(--bl-ink); display: flex; justify-content: space-between; gap: 12px; }
+.bl-faq summary::-webkit-details-marker { display: none; }
+.bl-faq summary i { color: var(--bl-red); transition: transform .2s; margin-top: 4px; }
+.bl-faq[open] summary i { transform: rotate(180deg); }
+.bl-faq-answer { padding: 0 18px 16px; line-height: 1.65; font-size: 15px; }
+
+/* ---- 11. Insights ---- */
+.bl-head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.bl-head-row .bl-head { margin-bottom: 0; }
+.bl-blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.bl-blog { background: var(--bl-card-dark); border: 1px solid var(--bl-line-dark); border-radius: var(--bl-radius); overflow: hidden; display: flex; flex-direction: column; }
+.bl-blog img { width: 100%; height: 190px; object-fit: cover; display: block; }
+.bl-blog-body { padding: 20px 22px 24px; display: flex; flex-direction: column; flex-grow: 1; }
+.bl-blog-date { font-size: 13px; margin-bottom: 8px; }
+.bl-blog h3 { font-size: 17px; line-height: 1.4; margin: 0 0 16px; color: #fff; flex-grow: 1; }
+.bl-blog h3 a { color: inherit; text-decoration: none; }
+.bl-blog .bl-btn { align-self: flex-start; padding: 9px 16px; font-size: 13px; }
+
+/* ---- 12. Certifications & Standards ---- */
+.bl-cert-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.bl-cert-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--bl-radius);
+  padding: 34px 22px 28px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bl-cert-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--bl-red);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.bl-cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+.bl-cert-card:hover::before {
+  opacity: 1;
+}
+
+.bl-cert-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #fef2f2;
+  color: var(--bl-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  border: 1px solid #fee2e2;
+  transition: transform .25s ease;
+}
+
+.bl-cert-card:hover .bl-cert-icon {
+  transform: scale(1.08);
+}
+
+.bl-cert-code {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--bl-ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.bl-cert-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bl-red);
+  margin-bottom: 12px;
+}
+
+.bl-cert-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--bl-muted);
+  margin: 0 0 18px;
+  flex-grow: 1;
+}
+
+.bl-cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #16a34a;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- 13. Closing CTA ---- */
+.bl-cta { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.bl-cta .bl-title { margin: 0 0 6px; font-size: 30px; }
+.bl-cta p { margin: 0; }
+
+.bl-empty { text-align: center; font-size: 15px; opacity: 0.8; }
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .bl-hero-grid, .bl-why-grid, .bl-faq-grid { grid-template-columns: 1fr; gap: 36px; }
+  .bl-service-grid, .bl-industry-grid, .bl-phase-grid, .bl-blog-grid, .bl-cert-grid { grid-template-columns: repeat(2, 1fr); }
+  .bl-software-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .bl-reviews { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .bl-section { padding: 64px 0; }
+  .bl-hero { padding: 56px 0; }
+  .bl-hero h1 { font-size: 32px; }
+  .bl-title { font-size: 28px; }
+  .bl-serve-grid, .bl-service-grid, .bl-industry-grid, .bl-phase-grid, .bl-blog-grid, .bl-cert-grid { grid-template-columns: 1fr; }
+  .bl-software-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .bl-stats { grid-template-columns: repeat(2, 1fr); }
+  .bl-checks, .bl-form-grid { grid-template-columns: 1fr; }
+  .bl-serve-card, .bl-reviews, .bl-form, .bl-cert-card { padding: 24px; }
+  .bl-faq-media img { height: 240px; }
+  .bl-logo-tile { min-width: 0; flex: 1 1 140px; }
+}
+
+@media (max-width: 480px) {
+  .bl-section { padding: 48px 0; }
+  .bl-hero h1 { font-size: 26px; }
+  .bl-title { font-size: 23px; }
+  .bl-stats { grid-template-columns: 1fr; }
+  .bl-stat strong { font-size: 28px; }
+  .bl-serve-card, .bl-reviews, .bl-form { padding: 18px 14px; }
+  .bl-software-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .bl-software-card { padding: 14px 10px; min-height: 105px; }
+  .bl-software-img { max-height: 34px; max-width: 90px; }
+  .bl-tabs { gap: 8px; }
+  .bl .bl-tab { font-size: 13.5px; padding: 9px 14px; width: 100%; justify-content: center; }
+  .bl-btn-row { flex-direction: column; width: 100%; }
+  .bl-btn-row .bl-btn { width: 100%; justify-content: center; }
+  .bl-cta { flex-direction: column; text-align: center; }
+  .bl-cta .bl-btn { width: 100%; justify-content: center; }
+}
+
+/* ==========================================================================
+   DYNAMIC ANIMATION & MICRO-INTERACTION EFFECTS
+   Optimized for High Visual Appeal, 60fps Compositor Performance
+   ========================================================================== */
+
+/* 1. Pulsing Eyebrow Indicator */
+@keyframes blPulseDot {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 4px 4px 0 -1px rgba(229, 57, 53, 0.45);
+  }
+  50% {
+    transform: scale(1.22);
+    box-shadow: 4px 4px 8px rgba(229, 57, 53, 0.7);
+  }
+}
+.bl-eyebrow::before {
+  animation: blPulseDot 2.6s infinite ease-in-out;
+}
+
+/* 2. Shimmer Reflection Sweep on Primary Buttons */
+.bl-btn-primary,
+.rts-btn.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s, box-shadow 0.25s;
+}
+
+.bl-btn-primary::after,
+.rts-btn.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -70%;
+  width: 45%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: left 0.75s ease;
+}
+
+.bl-btn-primary:hover,
+.rts-btn.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(229, 57, 53, 0.35);
+}
+
+.bl-btn-primary:hover::after,
+.rts-btn.btn-primary:hover::after {
+  left: 140%;
+}
+
+/* 3. Enhanced Card Hover Elevation & Glows */
+.bl-service-card {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.32s ease;
+  position: relative;
+  border: 1px solid #e2e8f0;
+}
+
+.bl-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(229, 57, 53, 0.12);
+  border-color: #fca5a5;
+}
+
+.bl-service-card:hover .bl-service-icon {
+  transform: scale(1.1) rotate(4deg);
+  background: #e53935;
+  color: #ffffff;
+}
+
+.bl-service-icon {
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.bl-service-card .bl-btn-outline {
+  transition: all 0.25s ease;
+}
+
+.bl-service-card:hover .bl-btn-outline {
+  background: var(--bl-red);
+  color: #fff;
+  border-color: var(--bl-red);
+}
+
+.bl-service-card:hover .bl-btn-outline i {
+  transform: translateX(4px);
+}
+
+.bl-service-card .bl-btn-outline i {
+  transition: transform 0.25s ease;
+}
+
+/* 4. Dual Track "Who We Serve" Interactive Hover */
+.bl-serve-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.bl-serve-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(15, 23, 42, 0.1);
+  border-color: #cbd5e1;
+}
+
+/* 5. Stats Cards Floating Hover */
+.bl-stat {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.bl-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  border-color: #e53935;
+  background: #ffffff;
+}
+
+.bl-stat strong {
+  transition: color 0.25s ease;
+}
+
+.bl-stat:hover strong {
+  color: var(--bl-red);
+}
+
+/* 6. Industries & Workflow Cards Hover */
+.bl-industry {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.bl-industry:hover {
+  transform: translateY(-5px);
+  border-color: rgba(229, 57, 53, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+.bl-industry:hover .bl-industry-head i {
+  transform: scale(1.12);
+  background: var(--bl-red);
+  color: #ffffff;
+}
+
+.bl-industry-head i {
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.bl-phase {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bl-phase:hover {
+  transform: translateY(-5px);
+  border-color: rgba(229, 57, 53, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+.bl-phase:hover .bl-phase-icon {
+  transform: scale(1.12);
+}
+
+.bl-phase-icon {
+  transition: transform 0.25s ease;
+}
+
+/* 7. Tab Switch Smooth Animation */
+.bl-tab-panel {
+  animation: blPanelFadeIn 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes blPanelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 8. Scroll-Driven Reveal Engine */
+.bl-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.bl-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for grid items */
+.bl-service-grid.bl-reveal-stagger > *:nth-child(1),
+.bl-software-grid.bl-reveal-stagger > *:nth-child(1),
+.bl-cert-grid.bl-reveal-stagger > *:nth-child(1),
+.bl-industry-grid.bl-reveal-stagger > *:nth-child(1),
+.bl-phase-grid.bl-reveal-stagger > *:nth-child(1) { transition-delay: 0.05s; }
+
+.bl-service-grid.bl-reveal-stagger > *:nth-child(2),
+.bl-software-grid.bl-reveal-stagger > *:nth-child(2),
+.bl-cert-grid.bl-reveal-stagger > *:nth-child(2),
+.bl-industry-grid.bl-reveal-stagger > *:nth-child(2),
+.bl-phase-grid.bl-reveal-stagger > *:nth-child(2) { transition-delay: 0.12s; }
+
+.bl-service-grid.bl-reveal-stagger > *:nth-child(3),
+.bl-software-grid.bl-reveal-stagger > *:nth-child(3),
+.bl-cert-grid.bl-reveal-stagger > *:nth-child(3),
+.bl-industry-grid.bl-reveal-stagger > *:nth-child(3),
+.bl-phase-grid.bl-reveal-stagger > *:nth-child(3) { transition-delay: 0.19s; }
+
+.bl-service-grid.bl-reveal-stagger > *:nth-child(4),
+.bl-software-grid.bl-reveal-stagger > *:nth-child(4),
+.bl-cert-grid.bl-reveal-stagger > *:nth-child(4),
+.bl-industry-grid.bl-reveal-stagger > *:nth-child(4),
+.bl-phase-grid.bl-reveal-stagger > *:nth-child(4) { transition-delay: 0.26s; }
+
+.bl-service-grid.bl-reveal-stagger > *:nth-child(5),
+.bl-software-grid.bl-reveal-stagger > *:nth-child(5),
+.bl-industry-grid.bl-reveal-stagger > *:nth-child(5),
+.bl-phase-grid.bl-reveal-stagger > *:nth-child(5) { transition-delay: 0.33s; }
+
+.bl-service-grid.bl-reveal-stagger > *:nth-child(6),
+.bl-software-grid.bl-reveal-stagger > *:nth-child(6),
+.bl-industry-grid.bl-reveal-stagger > *:nth-child(6),
+.bl-phase-grid.bl-reveal-stagger > *:nth-child(6) { transition-delay: 0.40s; }
+
+.bl-service-grid.bl-reveal-stagger > *:nth-child(7),
+.bl-software-grid.bl-reveal-stagger > *:nth-child(7) { transition-delay: 0.47s; }
+
+.bl-software-grid.bl-reveal-stagger > *:nth-child(8) { transition-delay: 0.54s; }
+.bl-software-grid.bl-reveal-stagger > *:nth-child(9) { transition-delay: 0.61s; }
+.bl-software-grid.bl-reveal-stagger > *:nth-child(10) { transition-delay: 0.68s; }
+.bl-software-grid.bl-reveal-stagger > *:nth-child(11) { transition-delay: 0.75s; }
+.bl-software-grid.bl-reveal-stagger > *:nth-child(12) { transition-delay: 0.82s; }
+
+/* 9. Accessibility: Respect User's Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .bl-reveal,
+  .bl-tab-panel,
+  .bl-service-card,
+  .bl-software-card,
+  .bl-cert-card,
+  .bl-serve-card,
+  .bl-stat,
+  .bl-industry,
+  .bl-phase {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .bl-eyebrow::before,
+  .bl-btn-primary::after,
+  .rts-btn.btn-primary::after {
+    animation: none !important;
+    display: none !important;
+  }
+}

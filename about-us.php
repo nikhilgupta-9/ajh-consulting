@@ -2,13 +2,11 @@
 require_once __DIR__ . '/config/config.php';
 
 $pageTitle       = 'About Us';
-$metaDescription = 'Learn more about get-accountant - our mission, values and expert team.';
+$metaDescription = 'get-accountant provides outsourced accounting and bookkeeping for New Zealand businesses, and dedicated outsourcing capacity for accounting firms.';
 
 require __DIR__ . '/includes/header.php';
 
-// Admin-editable hero content (Admin > Page Content > About). Structure of
-// this page is left untouched — only the heading/subheading/body/image
-// text below is wired to the database, with the original copy as fallback.
+// Admin-editable hero content (Admin > Page Content > About).
 $aboutContent = ['heading' => '', 'subheading' => '', 'body' => '', 'image' => ''];
 if ($pdo = db()) {
     try {
@@ -22,7 +20,18 @@ if ($pdo = db()) {
         // page_content not migrated yet — fall back to the defaults below.
     }
 }
+
+// Pull real team members from Admin > Team (falls back to an empty list if none yet).
+$teamMembers = [];
+if ($pdo) {
+    try {
+        $teamMembers = $pdo->query('SELECT * FROM team_members ORDER BY id ASC LIMIT 3')->fetchAll();
+    } catch (Throwable $e) {
+        $teamMembers = [];
+    }
+}
 ?>
+<link rel="stylesheet" href="<?php echo site_url('assets/css/about.css'); ?>">
 
     <!-- start breadcrumb area -->
     <div class="rts-breadcrumb-area breadcrumb-bg bg_image">
@@ -33,9 +42,9 @@ if ($pdo = db()) {
                 </div>
                 <div class="xl:w-1/2 px-[15px] lg:w-1/2 md:w-1/2 sm:w-full w-full">
                     <div class="bread-tag">
-                        <a href='index.php'>Home</a>
+                        <a href='<?php echo site_url('index.php'); ?>'>Home</a>
                         <span> / </span>
-                        <a class='active' href='about-us.php'>About Us</a>
+                        <a class='active' href='#'>About Us</a>
                     </div>
                 </div>
             </div>
@@ -43,227 +52,121 @@ if ($pdo = db()) {
     </div>
     <!-- end breadcrumb area -->
 
-    <!-- rts about us section start -->
-    <div class="rts-about-area rts-section-gap">
+    <!-- ===== Who we are ===== -->
+    <div class="about-intro">
         <div class="container">
-            <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px] items-center">
-                <div class="lg:w-1/2 px-[15px]">
-                    <div class="about-image-v-inner">
-                        <div class="image-area">
-                            <img class="mt--110 img-1" src="<?php echo e($aboutContent['image'] ?: 'assets/images/about/main/about-03.jpg'); ?>" alt="BUsiness_image">
-                            <img class="img-over" src="assets/images/about/main/about-04.jpg" alt="BUsiness_image">
-                            <div class="goal-button-wrapper">
-                                <div class="vedio-icone">
-                                    <a id="play-video" class="video-play-button" href="https://www.youtube.com/watch?v=6stlCkUDG_s">
-                                        <span></span>
-                                    </a>
-                                    <div id="video-overlay" class="video-overlay">
-                                        <a href="javascript:void(0)" class="video-overlay-close">×</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="about-intro-grid">
+                <div class="about-intro-image">
+                    <img src="<?php echo e($aboutContent['image'] ?: site_url('assets/images/about/main/about-03.jpg')); ?>" alt="get-accountant team">
                 </div>
-                <div class="lg:w-1/2 px-[15px]">
-                    <div class="about-progress-inner">
-                        <div class="title-area">
-                            <span><?php echo e($aboutContent['subheading'] ?: 'JUST A CONSULTANCY'); ?></span>
-                            <h2 class="title"><?php echo e($aboutContent['heading'] ?: 'Get Consulting For Better Business Growth'); ?></h2>
-                        </div>
-                        <!-- inner start -->
-                        <div class="inner">
-                            <p class="disc"><?php echo e($aboutContent['body'] ?: 'Dapibus curae risus rutrum curabitur nunc sociis nullam nisl, aliquet quis iaculis scelerisque primis massa imperdiet, dis senectus blandit aptent nulla cubilia sodales convallis tortor pellentesque nulla.'); ?></p>
-                            <div class="rts-progress-one-wrapper">
-                                <div class="single-progress">
-                                    <div class="progress-top">
-                                        <p class="progress-title">Business Strategy</p>
-                                        <span class="persectage">70%</span>
-                                    </div>
-                                    <div class="meter cadetblue">
-                                        <span data-progress="70" style="width:0;"></span>
-                                    </div>
-                                </div>
-                                <div class="single-progress">
-                                    <div class="progress-top">
-                                        <p class="progress-title">Company Strength</p>
-                                        <span class="persectage">93%</span>
-                                    </div>
-                                    <div class="meter">
-                                        <span data-progress="93" style="width:0;"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class='rts-btn btn-primary' href='appoinment.php'>Make an Appointment</a>
-                        </div>
-                        <!-- end -->
-                    </div>
+                <div class="about-intro-copy">
+                    <span class="about-eyebrow"><?php echo e($aboutContent['subheading'] ?: 'WHO WE ARE'); ?></span>
+                    <h2><?php echo e($aboutContent['heading'] ?: 'Outsourced Accounting Built for Two Kinds of Clients'); ?></h2>
+                    <p><?php echo e($aboutContent['body'] ?: 'get-accountant exists to solve two very different problems with one disciplined team: business owners who need accurate books and tax compliance without hiring in-house, and accounting firms that need extra qualified capacity during peak season without the overhead of a new hire.'); ?></p>
+                    <ul class="about-intro-points">
+                        <li><i class="fas fa-check-circle"></i> Dedicated New Zealand &amp; Australia focused team</li>
+                        <li><i class="fas fa-check-circle"></i> Direct integration with Xero, MYOB &amp; CCH iFirm</li>
+                        <li><i class="fas fa-check-circle"></i> Fixed, transparent monthly pricing — no surprises</li>
+                    </ul>
+                    <a class="rts-btn btn-primary" href="<?php echo site_url('contactus.php'); ?>">Talk to Our Team</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- rts about us section end -->
 
-    <!-- rts services area start -->
-    <div class="rts-service-area rts-section-gapBottom">
-        <div class="w-full px-[15px] service-main about-service-width-controler">
-            <div class="background-service service-three flex flex-wrap -mx-[15px]">
-                <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px]">
-                    <div class="rts-title-area service-four text-center pt--40 pt_md--0 mt_sm--0 mt_md--0">
-                        <p class="pre-title">
-                            Our Core Pillars
-                        </p>
-                        <h2 class="title">Tailored Accounting Solutions</h2>
-                    </div>
-                    <!-- start single Service -->
-                    <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pt--15 mb--80 mb_md--40 mb_sm--30">
-                        <div class="service-one-inner-four">
-                            <div class="big-thumbnail-area">
-                                <a class='thumbnail' href='<?php echo site_url("nz/accounting/"); ?>'>
-                                    <img src="assets/images/service/07.jpg" alt="Business Accounting">
-                                </a>
-                                <div class="content">
-                                    <img src="assets/images/service/icon/13.svg" alt="Bookkeeping icon">
-                                    <h3 class="title h5">For NZ Businesses</h3>
-                                    <p class="disc">Daily bank feeds, reconciliations, GST returns, payroll processing, and proactive financial management.</p>
-                                </div>
-                                <a class='over_link' href='<?php echo site_url("nz/accounting/"); ?>'></a>
-                            </div>
-                            <a class='rts-btn btn-primary' href='<?php echo site_url("nz/accounting/"); ?>'> Explore Services<i class="fal fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- start single Service -->
-                    <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pt--15 mb--80 mb_md--40 mb_sm--30">
-                        <div class="service-one-inner-four">
-                            <div class="big-thumbnail-area">
-                                <a class='thumbnail' href='<?php echo site_url("nz/accounting-firm/"); ?>'>
-                                    <img src="assets/images/service/08.jpg" alt="Firm Outsourcing">
-                                </a>
-                                <div class="content">
-                                    <img src="assets/images/service/icon/14.svg" alt="Firm icon">
-                                    <h3 class="title h5">For Accounting Practices</h3>
-                                    <p class="disc">Dedicated offshore accounting capacity for CA &amp; CPA firms — year-end workpapers, financial statements &amp; tax returns.</p>
-                                </div>
-                                <a class='over_link' href='<?php echo site_url("nz/accounting-firm/"); ?>'></a>
-                            </div>
-                            <a class='rts-btn btn-primary' href='<?php echo site_url("nz/accounting-firm/"); ?>'> Firm Outsourcing<i class="fal fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- start single Service -->
-                    <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full pt--15 mb--80">
-                        <div class="service-one-inner-four">
-                            <div class="big-thumbnail-area">
-                                <a class='thumbnail' href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'>
-                                    <img src="assets/images/service/09.jpg" alt="Cloud Ecosystem">
-                                </a>
-                                <div class="content">
-                                    <img src="assets/images/service/icon/15.svg" alt="Cloud icon">
-                                    <h3 class="title h5">Cloud Tech &amp; Security</h3>
-                                    <p class="disc">Deep expertise in Xero, MYOB, Dext, Hubdoc, and CCH iFirm with enterprise-grade data security protocols.</p>
-                                </div>
-                                <a class='over_link' href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'></a>
-                            </div>
-                            <a class='rts-btn btn-primary' href='<?php echo site_url("nz/accounting-firm/technology.php"); ?>'> Learn Systems<i class="fal fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+    <!-- ===== The two paths we serve ===== -->
+    <div class="about-paths">
+        <div class="container">
+            <div class="about-section-head">
+                <p class="pre-title">Our Purpose</p>
+                <h2 class="title">One Team. Two Ways We Help.</h2>
+                <p class="about-section-sub">Whichever side of accounting you're on, our job is the same: give you accurate numbers and time back.</p>
             </div>
-            <div class="flex flex-wrap -mx-[15px]">
-                <div class="cta-one-bg w-full px-[15px]">
-                    <div class="cta-one-inner">
-                        <div class="cta-left">
-                            <h3 class="title animated fadeIn">Ready to scale your accounting with precision and confidence?</h3>
-                        </div>
-                        <div class="cta-right">
-                            <a class='rts-btn btn-white' href='<?php echo site_url("contactus.php"); ?>'>Schedule Consultation</a>
-                        </div>
-                    </div>
+            <div class="about-paths-grid">
+                <a class="about-path-card" href="<?php echo site_url('nz/accounting/'); ?>">
+                    <div class="about-path-icon"><i class="fas fa-building"></i></div>
+                    <h3>For Businesses</h3>
+                    <p>Day-to-day bookkeeping, GST returns, payroll and management reporting — so you can run your business instead of your spreadsheets.</p>
+                    <span class="about-path-link">Explore Business Services <i class="far fa-arrow-right"></i></span>
+                </a>
+                <a class="about-path-card" href="<?php echo site_url('nz/accounting-firm/'); ?>">
+                    <div class="about-path-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>For Accounting Firms</h3>
+                    <p>Outsourced capacity for CA &amp; CPA practices — bookkeeping, year-end workpapers, financial statements and tax return preparation under your review.</p>
+                    <span class="about-path-link">Explore Firm Outsourcing <i class="far fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Why choose us ===== -->
+    <div class="about-values">
+        <div class="container">
+            <div class="about-section-head">
+                <p class="pre-title">Why Choose Us</p>
+                <h2 class="title">What Makes Us Dependable</h2>
+            </div>
+            <div class="about-values-grid">
+                <div class="about-value-card">
+                    <div class="about-value-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Compliance First</h4>
+                    <p>Every deliverable is built around NZ tax, GST and Holidays Act requirements — reviewed and signed off, not just filed.</p>
+                </div>
+                <div class="about-value-card">
+                    <div class="about-value-icon"><i class="fas fa-users"></i></div>
+                    <h4>A Dedicated Team</h4>
+                    <p>You work with the same people every month, not a rotating queue — so context never gets lost between periods.</p>
+                </div>
+                <div class="about-value-card">
+                    <div class="about-value-icon"><i class="fas fa-cloud"></i></div>
+                    <h4>Modern Cloud Tools</h4>
+                    <p>We work directly inside your existing Xero, MYOB or CCH iFirm setup — no migrations, no disruption to your workflow.</p>
+                </div>
+                <div class="about-value-card">
+                    <div class="about-value-icon"><i class="fas fa-lock"></i></div>
+                    <h4>Confidentiality by Design</h4>
+                    <p>Encrypted systems, bilateral NDAs and strict access controls protect your data and your clients' data at every step.</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- rts services area End -->
 
-    <!-- rts team two area -->
+    <?php if (!empty($teamMembers)): ?>
+    <!-- ===== Leadership team ===== -->
     <div class="rts-team-area rts-section-gapBottom appoinment-team team-two">
         <div class="container">
             <div class="flex flex-wrap -mx-[15px]">
                 <div class="w-full px-[15px]">
                     <div class="rts-title-area team text-center">
-                        <p class="pre-title">
-                            Our Leadership
-                        </p>
-                        <h2 class="title">Experienced Accounting Leadership</h2>
+                        <p class="pre-title">Our Leadership</p>
+                        <h2 class="title">The People Behind the Numbers</h2>
                     </div>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-[24px] [&>*]:!px-[24px] mt--15 mt_sm--0">
-                <!-- single team -->
+                <?php foreach ($teamMembers as $member): ?>
                 <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full">
                     <div class="team-inner-two">
-                        <a class='thumbnail' href='<?php echo site_url("our-peoples.php"); ?>'>
-                            <img src="assets/images/team/tm/lg-01.jpg" alt="Partner">
+                        <a class='thumbnail' href='<?php echo site_url('our-peoples.php'); ?>'>
+                            <img src="<?php echo e($member['photo'] ?: site_url('assets/images/team/tm/lg-01.jpg')); ?>" alt="<?php echo e($member['name']); ?>">
                         </a>
                         <div class="acquaintance-area">
                             <div class="header">
-                                <a href='<?php echo site_url("our-peoples.php"); ?>'>
-                                    <h3 class="title h5">Robert Fox</h3>
+                                <a href='<?php echo site_url('our-peoples.php'); ?>'>
+                                    <h3 class="title h5"><?php echo e($member['name']); ?></h3>
                                 </a>
-                                <span>Managing Director &amp; Lead Partner</span>
-                            </div>
-                            <div class="acquaintance-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fal fa-envelope"></i></a>
+                                <span><?php echo e($member['designation']); ?></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- single team -->
-                <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full">
-                    <div class="team-inner-two">
-                        <a class='thumbnail' href='<?php echo site_url("our-peoples.php"); ?>'>
-                            <img src="assets/images/team/tm/lg-02.jpg" alt="CA Specialist">
-                        </a>
-                        <div class="acquaintance-area">
-                            <div class="header">
-                                <a href='<?php echo site_url("our-peoples.php"); ?>'>
-                                    <h3 class="title h5">Jane Cooper</h3>
-                                </a>
-                                <span>Senior CA ANZ Practice Lead</span>
-                            </div>
-                            <div class="acquaintance-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fal fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single team -->
-                <div class="xl:w-1/3 px-[15px] md:w-1/2 sm:w-full w-full">
-                    <div class="team-inner-two">
-                        <a class='thumbnail' href='<?php echo site_url("our-peoples.php"); ?>'>
-                            <img src="assets/images/team/tm/lg-03.jpg" alt="Tax Manager">
-                        </a>
-                        <div class="acquaintance-area">
-                            <div class="header">
-                                <a href='<?php echo site_url("our-peoples.php"); ?>'>
-                                    <h3 class="title h5">Esther Howard</h3>
-                                </a>
-                                <span>NZ Tax &amp; IRD Compliance Manager</span>
-                            </div>
-                            <div class="acquaintance-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fal fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
-    <!-- rts team two area End -->
+    <?php endif; ?>
 
-    <!-- rts faq section area -->
+    <!-- ===== FAQ ===== -->
     <div class="rts-faq-section rts-section-gap rts-faq-bg bg_image">
         <div class="container">
             <div class="flex flex-wrap -mx-[15px] items-center">
@@ -325,14 +228,12 @@ if ($pdo = db()) {
     </div>
     <!-- rts faq section area End -->
 
-    <!-- customers feed back area start -->
+    <!-- ===== Testimonials ===== -->
     <div class="rts-customer-feedback-area rts-section-gap bg-customer-feedback">
         <div class="container">
             <div class="flex flex-wrap -mx-[15px]">
                 <div class="rts-title-area feedback team text-center">
-                    <p class="pre-title">
-                        Client Trust
-                    </p>
+                    <p class="pre-title">Client Trust</p>
                     <h2 class="title">What Our New Zealand Clients Say</h2>
                 </div>
             </div>
@@ -350,7 +251,7 @@ if ($pdo = db()) {
                         </div>
                         <div class="test-body">
                             <p class="disc">
-                                “get-accountant eliminated our end-of-month reconciliation headaches. Our GST returns are filed on time every period, and we finally have reliable monthly cashflow dashboards.”
+                                "get-accountant eliminated our end-of-month reconciliation headaches. Our GST returns are filed on time every period, and we finally have reliable monthly cashflow dashboards."
                             </p>
                         </div>
                     </div>
@@ -368,7 +269,7 @@ if ($pdo = db()) {
                         </div>
                         <div class="test-body">
                             <p class="disc">
-                                “Partnering with get-accountant solved our senior staffing bottleneck during the peak March tax rush. Their workpapers are clean, indexed, and ready for partner review immediately.”
+                                "Partnering with get-accountant solved our senior staffing bottleneck during the peak March tax rush. Their workpapers are clean, indexed, and ready for partner review immediately."
                             </p>
                         </div>
                     </div>
@@ -377,5 +278,7 @@ if ($pdo = db()) {
         </div>
     </div>
     <!-- customers feed back area end -->
+
+    
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

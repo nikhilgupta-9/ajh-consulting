@@ -1,0 +1,75 @@
+/* Our Peoples / Leadership grid — real responsive grid (the theme's
+   bracket utility classes like xl:w-1/4 aren't backed by any CSS, so this
+   page needs its own grid instead of relying on them). */
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+}
+
+.people-grid-item {
+    width: 100%;
+}
+
+.people-grid-item .team-single-one-start {
+    height: 100%;
+}
+
+.people-leader-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--color-primary, #e53935);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 5px 11px;
+    border-radius: 6px;
+    z-index: 2;
+}
+
+/* Make the hover-reveal social icons usable without hover on touch devices. */
+@media (hover: none) {
+    .people-grid-item .team-social .main { opacity: 0; }
+    .people-grid-item .team-social .team-social-one {
+        position: static;
+        flex-direction: row;
+        transform: none;
+        opacity: 1;
+        margin-top: 10px;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+    .people-grid-item .team-social .team-social-one i {
+        margin-bottom: 0;
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+        line-height: 1;
+    }
+    .people-grid-item .team-image-area { position: relative; }
+    .people-grid-item .team-social {
+        position: static;
+        padding: 0 16px 16px;
+    }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1199px) {
+    .people-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 767px) {
+    .people-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .people-grid-item .single-details { padding: 18px 16px 16px; }
+    .people-grid-item .single-details .title { font-size: 15px; }
+    .people-grid-item .single-details p { font-size: 13px; }
+    .people-leader-badge { font-size: 9.5px; padding: 4px 8px; top: 10px; left: 10px; }
+}
+
+@media (max-width: 420px) {
+    .people-grid { gap: 12px; }
+}

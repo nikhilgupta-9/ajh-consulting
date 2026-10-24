@@ -16,7 +16,7 @@ $gateExcludedPages = [
 // sub-pages) should never show the gate either.
 $__requestPath  = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '';
 $__isBranchPage = (bool) preg_match('#/(nz|au)/#', $__requestPath);
-$showEntryGate  = !$__isBranchPage && !in_array($currentPage, $gateExcludedPages, true) && empty($_COOKIE['ga_gate']) && empty($_COOKIE['ga_user_track']);
+$showEntryGate  = !$__isBranchPage && !in_array($currentPage, $gateExcludedPages, true) && empty($_COOKIE['ga_gate']) && empty($_COOKIE['ga_country']) && empty($_COOKIE['ga_user_track']);
 ?>
 <?php if ($showEntryGate): ?>
     <div id="entry-gate" class="entry-gate">
@@ -175,7 +175,9 @@ $showEntryGate  = !$__isBranchPage && !in_array($currentPage, $gateExcludedPages
                         dest = base + country + '/accounting-firm/';
                     }
 
-                    setCookie('ga_gate', who + '_' + country, 30);
+                    setCookie('ga_country', country, 365);
+                    setCookie('ga_track', (who === 'accountant' ? 'firm' : 'business'), 365);
+                    setCookie('ga_gate', who + '_' + country, 365);
                     window.location.href = dest;
                 });
             });

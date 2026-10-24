@@ -24,94 +24,73 @@ if ($pdo = db()) {
 }
 
 $socialLinks = array_filter([
-    'facebook' => [$settings['facebook_url'], 'fa-facebook-f'],
-    'twitter' => [$settings['twitter_url'], 'fa-twitter'],
-    'instagram' => [$settings['instagram_url'], 'fa-instagram'],
-    'linkedin' => [$settings['linkedin_url'], 'fa-linkedin-in'],
-    'youtube' => [$settings['youtube_url'], 'fa-youtube'],
+    'facebook' => [$settings['facebook_url'] ?: 'https://www.facebook.com/', 'fa-facebook-f'],
+    'twitter' => [$settings['twitter_url'] ?: 'https://twitter.com/', 'fa-twitter'],
+    'instagram' => [$settings['instagram_url'] ?: 'https://www.instagram.com/', 'fa-instagram'],
+    'linkedin' => [$settings['linkedin_url'] ?: 'https://www.linkedin.com/', 'fa-linkedin-in'],
+    'youtube' => [$settings['youtube_url'] ?: 'https://www.youtube.com/', 'fa-youtube'],
 ], fn($s) => !empty($s[0]));
 ?>
 <footer class="site-footer">
 
-    <!-- newsletter strip -->
-    <!-- <div class="site-footer-newsletter">
+    <!-- top: brand, tagline, socials -->
+    <div class="site-footer-top">
         <div class="container">
-            <div class="site-footer-newsletter-inner">
-                <div>
-                    <p class="eyebrow">Stay Informed</p>
-                    <h3>Sign up for our newsletter</h3>
-                </div>
-                <form action="newsletter.php" method="post">
-                    <?php echo csrf_field(); ?>
-                    <input type="email" name="email" placeholder="Enter your email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
+            <a href="<?php echo site_url("index.php"); ?>" class="site-footer-logo">
+                <img src="<?php echo site_url("assets/images/logo/logo-get-accountant-wordmark.png"); ?>"
+                    alt="<?php echo e($settings['company_name'] ?: APP_NAME); ?>">
+            </a>
+            <p class="site-footer-tagline"><?php echo e($settings['tagline'] ?: (APP_NAME . ' helps businesses grow with clear, practical accounting, tax and consulting advice.')); ?></p>
+            
         </div>
-    </div> -->
+    </div>
 
     <!-- main footer body -->
     <div class="site-footer-main">
         <div class="container">
             <div class="site-footer-grid">
 
-                <!-- company -->
-                <div class="site-footer-col site-footer-company">
-                    <a href="<?php echo site_url("index.php"); ?>" class="site-footer-logo">
-                        <img src="<?php echo site_url("assets/images/logo/logo-get-accountant-wordmark.png"); ?>"
-                            alt="<?php echo e($settings['company_name'] ?: APP_NAME); ?>">
-                    </a>
-                    <p><?php echo e($settings['tagline'] ?: (APP_NAME . ' helps businesses grow with clear, practical accounting, tax and consulting advice.')); ?>
-                    </p>
-                    <?php if (!empty($socialLinks)): ?>
-                        <div class="site-footer-social">
-                            <?php foreach ($socialLinks as $url => $meta): ?>
-                                <a href="<?php echo e($url); ?>" target="_blank" rel="noopener"
-                                    aria-label="<?php echo e(ucfirst($meta[1])); ?>"><i
-                                        class="fab <?php echo e($meta[1]); ?>"></i></a>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
+                <!-- for accounting firms -->
+                <details class="site-footer-col" open>
+                    <summary><h4>For Accounting Firms</h4></summary>
+                    <ul>
+                        <li><a href="<?php echo site_url("nz/accounting-firm/"); ?>">Firm Outsourcing Support</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=bookkeeping-reconciliations"); ?>">White-Label Bookkeeping Pods</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=year-end-workpapers"); ?>">Year-End Workpaper Production</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=tax-gst-preparation"); ?>">Tax Return &amp; GST Preparation</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=payroll-support"); ?>">Practice Payroll Support</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=management-reporting"); ?>">Virtual CFO Advisory</a></li>
+                    </ul>
+                </details>
 
-                <!-- quick links -->
-                <div class="site-footer-col">
-                    <h4>Quick Links</h4>
+                <!-- for businesses -->
+                <details class="site-footer-col" open>
+                    <summary><h4>For Businesses</h4></summary>
+                    <ul>
+                        <li><a href="<?php echo site_url("nz/accounting/"); ?>">Accounting &amp; Bookkeeping</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=bookkeeping"); ?>">Cloud Bookkeeping &amp; Reconciliations</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=tax-returns-gst"); ?>">GST Lodgement &amp; Tax Compliance</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=payroll"); ?>">Payroll &amp; Wage Compliance</a></li>
+                        <li><a href="<?php echo site_url("service-details.php?slug=business-reporting"); ?>">Cash Flow &amp; Financial Reporting</a></li>
+                        <li><a href="<?php echo site_url("get-started.php"); ?>">Not sure? Get Started &rarr;</a></li>
+                    </ul>
+                </details>
+
+                <!-- company & resources -->
+                <details class="site-footer-col" open>
+                    <summary><h4>Company &amp; Resources</h4></summary>
                     <ul>
                         <li><a href="<?php echo site_url("index.php"); ?>">Home</a></li>
                         <li><a href="<?php echo site_url("about-us.php"); ?>">About Us</a></li>
-                        <li><a href="<?php echo site_url("how-we-work.php"); ?>">How We Work</a></li>
                         <li><a href="<?php echo site_url("our-peoples.php"); ?>">Our Peoples</a></li>
                         <li><a href="<?php echo site_url("insight-resources.php"); ?>">Insight &amp; Resources</a></li>
-                        <li><a href="<?php echo site_url("our-service.php"); ?>">Our Services</a></li>
-                        <li><a href="<?php echo site_url("pricing.php"); ?>">Pricing</a></li>
+                        <li><a href="<?php echo site_url("nz/accounting/faqs.php"); ?>">FAQs</a></li>
                     </ul>
-                </div>
-
-                <!-- audience selector -->
-                <div class="site-footer-col">
-                    <h4>I'm Looking For&hellip;</h4>
-                    <ul class="site-footer-audience">
-                        <li>
-                            <a href="<?php echo site_url("nz/accounting/"); ?>">
-                                <span class="site-footer-audience-title">A Business</span>
-                                <span class="site-footer-audience-sub">Accounting &amp; Bookkeeping</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url("nz/accounting-firm/"); ?>">
-                                <span class="site-footer-audience-title">An Accounting Firm</span>
-                                <span class="site-footer-audience-sub">Firm Outsourcing Support</span>
-                            </a>
-                        </li>
-                        <li><a href="<?php echo site_url("get-started.php"); ?>">Not sure? Get Started &rarr;</a></li>
-                        <li><a href="<?php echo site_url("appoinment.php"); ?>">Book an Appointment</a></li>
-                    </ul>
-                </div>
+                </details>
 
                 <!-- get in touch -->
-                <div class="site-footer-col">
-                    <h4>Get In Touch</h4>
+                <details class="site-footer-col" open>
+                    <summary><h4>Contact</h4></summary>
                     <ul class="site-footer-contact">
                         <?php if ($settings['address']): ?>
                             <li>
@@ -138,28 +117,20 @@ $socialLinks = array_filter([
                             <li><i class="fas fa-clock"></i> <?php echo e($settings['working_hours']); ?></li>
                         <?php endif; ?>
                     </ul>
-                </div>
+                    <?php if (!empty($socialLinks)): ?>
+                        <div class="site-footer-social site-footer-contact-social">
+                            <?php foreach ($socialLinks as $meta): ?>
+                                <a href="<?php echo e($meta[0]); ?>" target="_blank" rel="noopener"
+                                    aria-label="<?php echo e(ucfirst($meta[1])); ?>"><i
+                                        class="fab <?php echo e($meta[1]); ?>"></i></a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </details>
 
             </div>
 
-            <?php if (!empty($recentPosts)): ?>
-                <!-- latest insights -->
-                <div class="site-footer-insights">
-                    <h4>Latest Insights</h4>
-                    <div class="site-footer-insights-grid">
-                        <?php foreach ($recentPosts as $post): ?>
-                            <a class="site-footer-insight" href="<?php echo site_url('blog-details.php'); ?>?slug=<?php echo urlencode($post['slug']); ?>">
-                                <img src="<?php echo e($post['image'] ?: site_url('assets/images/footer/post/01.png')); ?>"
-                                    alt="<?php echo e($post['title']); ?>">
-                                <span>
-                                    <em><?php echo date('jS F, Y', strtotime($post['created_at'])); ?></em>
-                                    <strong><?php echo e($post['title']); ?></strong>
-                                </span>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
+            
         </div>
     </div>
 
@@ -171,20 +142,23 @@ $socialLinks = array_filter([
                     <?php echo e($settings['copyright_text'] ?: (APP_NAME . '. All rights reserved.')); ?></p>
 
                 <div class="site-footer-country" role="group" aria-label="Select your country">
-                    <a href="<?php echo site_url("index.php"); ?>" class="<?php echo $currentPage !== 'australia.php' ? 'is-active' : ''; ?>">New
-                        Zealand</a>
-                    <a href="<?php echo site_url("australia.php"); ?>"
-                        class="<?php echo $currentPage === 'australia.php' ? 'is-active' : ''; ?>">Australia</a>
+                    <a href="<?php echo site_url("?country=nz"); ?>" class="<?php echo current_country() !== 'au' ? 'is-active' : ''; ?>">New Zealand</a>
+                    <a href="<?php echo site_url("?country=au"); ?>" class="<?php echo current_country() === 'au' ? 'is-active' : ''; ?>">Australia</a>
                 </div>
 
                 <ul class="site-footer-legal">
                     <li><a href="<?php echo site_url("privacy-policy.php"); ?>">Privacy Policy</a></li>
                     <li><a href="<?php echo site_url("terms-of-use.php"); ?>">Terms of Use</a></li>
                     <li><a href="<?php echo site_url("sitemap.php"); ?>">Sitemap</a></li>
+                </ul>
+
+                <button type="button" class="site-footer-top-btn" aria-label="Scroll to top" onclick="window.scrollTo({top:0, behavior:'smooth'});">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
-                <p style="margin: 0; font-size: 13px; font-weight: 700; color: #ff6b6b; letter-spacing: 0.05em;">People. Process. Possibility.™</p>
-                <p class="site-footer-credit" style="margin: 0;">Crafted by <a href="https://www.nikhilworks.com" target="_blank"
+            <div class="site-footer-tagline-row">
+                <p class="site-footer-tagline-row-text">People. Process. Possibility.™</p>
+                <p class="site-footer-credit">Crafted by <a href="https://www.nikhilworks.com" target="_blank"
                     rel="noopener noreferrer">Nikhil Works</a></p>
             </div>
         </div>
@@ -210,7 +184,7 @@ $socialLinks = array_filter([
     }
 
     .site-footer .container {
-        max-width: 1290px;
+        max-width: 1440px;
         margin: 0 auto;
         padding: 0 15px;
     }
@@ -273,14 +247,35 @@ $socialLinks = array_filter([
         background: #000;
     }
 
+    .site-footer-top {
+        padding: 44px 0 36px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .site-footer-top .site-footer-logo {
+        margin-bottom: 14px;
+    }
+
+    .site-footer-tagline {
+        max-width: 560px;
+        margin: 0 auto 18px;
+        color: #9aa1b4;
+        line-height: 1.7;
+    }
+
+    .site-footer-top .site-footer-social {
+        justify-content: center;
+    }
+
     .site-footer-main {
-        padding: 60px 0 20px;
+        padding: 50px 0 20px;
         border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
 
     .site-footer-grid {
         display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
         gap: 36px;
     }
 
@@ -335,6 +330,23 @@ $socialLinks = array_filter([
         color: var(--color-primary);
     }
 
+    .site-footer-col summary {
+        list-style: none;
+        cursor: default;
+    }
+
+    .site-footer-col summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .site-footer-col summary::marker {
+        content: '';
+    }
+
+    .site-footer-col summary h4 {
+        display: inline-block;
+    }
+
     .site-footer-audience li a {
         display: block;
         padding: 12px 14px;
@@ -376,6 +388,10 @@ $socialLinks = array_filter([
 
     .site-footer-contact li a:hover {
         color: #fff;
+    }
+
+    .site-footer-contact-social {
+        margin-top: 18px;
     }
 
     .site-footer-insights {
@@ -425,7 +441,7 @@ $socialLinks = array_filter([
     }
 
     .site-footer-bottom {
-        padding: 22px 0;
+        padding: 14px 0;
     }
 
     .site-footer-bottom-inner {
@@ -473,9 +489,48 @@ $socialLinks = array_filter([
         color: #fff;
     }
 
+    .site-footer-top-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, .15);
+        background: rgba(255, 255, 255, .06);
+        color: #c9cedb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: .2s;
+        flex: none;
+    }
+
+    .site-footer-top-btn:hover {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: #fff;
+    }
+
+    .site-footer-tagline-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .site-footer-tagline-row-text {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        color: #ff6b6b;
+        letter-spacing: 0.05em;
+    }
+
     .site-footer-credit {
-        margin: 16px 0 0;
-        text-align: center;
+        margin: 0;
         font-size: 12px;
         color: #5a6070;
     }
@@ -491,6 +546,80 @@ $socialLinks = array_filter([
     @media (max-width:991px) {
         .site-footer-grid {
             grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width:767px) {
+        .site-footer-top {
+            padding: 32px 0 28px;
+        }
+
+        .site-footer-tagline {
+            text-align: left;
+            margin: 0 0 16px;
+            max-width: 100%;
+        }
+
+        .site-footer-top .site-footer-social {
+            justify-content: flex-start;
+        }
+
+        .site-footer-main {
+            padding: 8px 0 8px;
+        }
+
+        .site-footer-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+            text-align: left;
+        }
+
+        .site-footer-col {
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .site-footer-col summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 2px;
+        }
+
+        .site-footer-col summary h4 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .site-footer-col summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 12px;
+            color: #9aa1b4;
+            transition: transform .2s;
+            flex: none;
+            margin-left: 12px;
+        }
+
+        .site-footer-col[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .site-footer-col ul {
+            padding: 0 2px 18px;
+        }
+
+        .site-footer-col li {
+            margin-bottom: 14px;
+        }
+
+        .site-footer-contact-social {
+            padding: 0 2px 18px;
+        }
+
+        .site-footer-insights {
+            margin-top: 8px;
+            padding-top: 24px;
         }
     }
 
@@ -514,7 +643,22 @@ $socialLinks = array_filter([
 
         .site-footer-bottom-inner {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .site-footer-legal {
+            justify-content: center;
+        }
+
+        .site-footer-top-btn {
+            margin-top: 4px;
+        }
+
+        .site-footer-tagline-row {
+            flex-direction: column;
+            text-align: center;
         }
     }
 </style>
@@ -557,7 +701,7 @@ $socialLinks = array_filter([
 <script src="<?php echo site_url("assets/js/plugins/smooth-scroll.js"); ?>"></script>
 <script src="<?php echo site_url("assets/js/plugins/split-text.js"); ?>"></script>
 <!-- main Js -->
-<script src="<?php echo site_url("assets/js/main.js"); ?>"></script>
+<script src="<?php echo site_url("assets/js/main.js?v=3"); ?>"></script>
 <script src="<?php echo site_url("assets/js/inline.js"); ?>"></script>
 <!-- scripts end form hear -->
 </body>

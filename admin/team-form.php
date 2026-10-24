@@ -109,7 +109,7 @@ require __DIR__ . '/includes/layout-top.php';
         </div>
 
         <div class="form-group">
-            <label>Sort Order (lower shows first)</label>
+            <label>Sort Order (lower shows first — use 0 for the leader so their photo appears first)</label>
             <input class="form-control" type="number" name="sort_order" value="<?php echo (int) $member['sort_order']; ?>">
         </div>
 

@@ -458,7 +458,7 @@ h6 {
 .h1,
 h1 {
   font-size: var(--h1);
-  line-height: 91px;
+  line-height: 64px;
   font-weight: var(--s-bold)
 }
 
@@ -728,7 +728,7 @@ ol li,
 ul li {
   font-size: var(--font-size-b1);
   line-height: var(--line-height-b1);
-  color: var(--color-body);
+  color: #d6d6d6;
   margin: 10px 0
 }
 
@@ -4591,7 +4591,7 @@ body.home-fourteen {
 }
 
 .rts-section-gapTop {
-  padding-top: 120px
+  padding-top: 50px
 }
 
 @media (min-width:768px) and (max-width:991px) {
@@ -15544,7 +15544,7 @@ body.sal-disabled [data-sal|=flip] {
   padding: 0;
   margin: 0;
   display: flex;
-  align-items: center
+  align-items: left;
 }
 
 .main-header .nav-main ul li {
@@ -17271,7 +17271,7 @@ body.home-eleven #menu-btn:hover {
 
 .rts-breadcrumb-area {
   padding-top: 30px;
-  padding-bottom: 100px
+  padding-bottom: 50px
 }
 
 @media (max-width:767px) {
@@ -39146,7 +39146,7 @@ ul {
 }
 
 .main-header .nav-main ul li a {
-  padding: 28px 0 !important;
+  padding: 14px 0 !important;
   font-size: 14.5px !important;
   font-weight: 600 !important;
   color: #1c2539;
@@ -39170,8 +39170,9 @@ ul {
 
 /* 2-Column Mega Submenu Styling */
 .mainmenu li.has-droupdown .submenu.menu-link1 {
-  width: 560px !important;
-  padding: 24px 28px !important;
+  width: 680px !important;
+  max-width: 90vw !important;
+  padding: 22px 26px !important;
   box-shadow: 0 20px 40px rgba(0, 0, 0, .12) !important;
   border-radius: 0 0 14px 14px !important;
   border-top: 3px solid #e53935 !important;
@@ -39179,6 +39180,7 @@ ul {
   display: flex !important;
   justify-content: space-between !important;
   align-items: flex-start !important;
+  gap: 20px !important;
 }
 
 .mainmenu li.has-droupdown .submenu.menu-link1 .menu-item {
@@ -39188,20 +39190,20 @@ ul {
 }
 
 .mainmenu li.has-droupdown .submenu.menu-link1 .menu-item .tag {
-  font-size: 13.5px !important;
+  font-size: 13px !important;
   font-weight: 800 !important;
   color: #0f172a !important;
   text-transform: uppercase !important;
   letter-spacing: 0.06em !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
   display: block !important;
   padding: 0 0 8px 0 !important;
   border-bottom: 2px solid #e53935 !important;
-  cursor: default !important;
+  cursor: pointer !important;
 }
 
 .mainmenu li.has-droupdown .submenu.menu-link1 .menu-item .tag:hover {
-  color: #0f172a !important;
+  color: #e53935 !important;
 }
 
 .mainmenu li.has-droupdown .submenu.menu-link1 .menu-item ul {
@@ -39219,12 +39221,14 @@ ul {
 }
 
 .mainmenu li.has-droupdown .submenu.menu-link1 .menu-item ul li a {
-  padding: 6px 0 !important;
-  font-size: 13.5px !important;
+  padding: 5px 0 !important;
+  font-size: 13px !important;
   font-weight: 500 !important;
+  line-height: 1.35 !important;
   color: #475569 !important;
   transition: all .2s ease !important;
   display: block !important;
+  white-space: normal !important;
 }
 
 .mainmenu li.has-droupdown .submenu.menu-link1 .menu-item ul li a:hover {
@@ -39234,6 +39238,23 @@ ul {
 
 .mainmenu li.has-droupdown .submenu.menu-link1 .menu-item ul li a:after {
   display: none !important;
+}
+
+.mainmenu li.has-droupdown .submenu.menu-link1 .menu-item ul li.nav-view-all {
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  border-top: 1px dashed #e2e8f0 !important;
+}
+
+.mainmenu li.has-droupdown .submenu.menu-link1 .menu-item ul li.nav-view-all a {
+  color: #e53935 !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+}
+
+.mainmenu li.has-droupdown .submenu.menu-link1 .menu-item ul li.nav-view-all a:hover {
+  color: #b91c1c !important;
+  padding-left: 5px !important;
 }
 
 @media (max-width:479px) {
@@ -39287,9 +39308,10 @@ ul {
   border-color: var(--color-primary)
 }
 
-/* Finbiz authentic hero banner enhancements */
+/* Finbiz authentic hero banner styling — 650px desktop height & proportional mobile */
 .rts-banner-one .banner-one .swiper-slide {
-  min-height: 640px;
+  min-height: 650px;
+  height: 650px;
   display: flex;
   align-items: center;
   position: relative;
@@ -39313,22 +39335,95 @@ ul {
 .banner-one-inner {
   position: relative !important;
   z-index: 2 !important;
-  width: 52% !important;
+  width: 55% !important;
   margin-left: auto !important;
-  padding: 130px 30px 140px 0 !important;
+  padding: 70px 30px 75px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.rts-banner-one .banner-one-inner .title {
+  font-size: 46px !important;
+  line-height: 56px !important;
+  margin-bottom: 16px !important;
+}
+
+.rts-banner-one .banner-one-inner .pre-title {
+  font-size: 14px !important;
+  margin-bottom: 10px !important;
+  letter-spacing: 1px !important;
+}
+
+.rts-banner-one .banner-one-inner .disc.banner-para {
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  max-width: 620px !important;
+  margin-bottom: 0 !important;
+}
+
+.rts-banner-one .banner-one-inner .rts-btn {
+  padding: 14px 28px !important;
+  font-size: 15px !important;
+}
+
+.rts-banner-one .hero-trust-badges-light {
+  margin-top: 22px !important;
+  padding-top: 16px !important;
+  gap: 16px !important;
+  font-size: 13.5px !important;
 }
 
 @media (max-width: 1199px) {
+  .rts-banner-one .banner-one .swiper-slide {
+    min-height: 560px;
+    height: auto;
+  }
   .banner-one-inner {
-    width: 75% !important;
-    padding: 100px 20px !important;
+    width: 78% !important;
+    padding: 60px 24px !important;
+  }
+  .rts-banner-one .banner-one-inner .title {
+    font-size: 38px !important;
+    line-height: 48px !important;
   }
 }
 
 @media (max-width: 767px) {
+  .rts-banner-one .banner-one .swiper-slide {
+    min-height: 490px;
+    height: auto;
+  }
   .banner-one-inner {
     width: 100% !important;
-    padding: 70px 15px !important;
+    padding: 45px 16px 40px !important;
+  }
+  .rts-banner-one .banner-one-inner .title {
+    font-size: 29px !important;
+    line-height: 38px !important;
+    margin-bottom: 12px !important;
+  }
+  .rts-banner-one .banner-one-inner .disc.banner-para {
+    font-size: 14.5px !important;
+  }
+  .rts-banner-one .hero-trust-badges-light {
+    margin-top: 16px !important;
+    padding-top: 12px !important;
+    gap: 10px !important;
+    font-size: 12.5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .rts-banner-one .banner-one .swiper-slide {
+    min-height: 460px;
+  }
+  .banner-one-inner {
+    padding: 38px 14px 32px !important;
+  }
+  .rts-banner-one .banner-one-inner .title {
+    font-size: 26px !important;
+    line-height: 34px !important;
   }
 }
 

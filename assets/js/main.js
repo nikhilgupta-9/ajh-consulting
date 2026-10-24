@@ -13,23 +13,38 @@
         (this._html = $("html"));
     },
     methods: function (e) {
-      imJs.wowActive();
-      imJs.swiperActivation();
-      imJs.vedioActivation();
-      imJs.counterUp();
-      imJs.salActive();
-      imJs.progressAvtivation();
-      imJs.stickyHeader();
-      imJs.backToTopInit();
-      imJs.typeJS();
-      imJs.searchOpton();
-      imJs.menuActive();
-      imJs.popupMobileMenu();
+      // The preloader must run no matter what — it's what removes the
+      // full-screen loading curtain. Call it first and independently of
+      // every other feature below, so a single broken plugin can never
+      // leave visitors staring at a stuck loader.
       imJs.preloader();
-      imJs.smoothScroll();
-      imJs.textActivation();
-      imJs.radialProgress();
-      imJs.splitText();
+
+      var safeRun = function (fn) {
+        try {
+          fn();
+        } catch (err) {
+          if (window.console && console.warn) {
+            console.warn("main.js: a page feature failed to init", err);
+          }
+        }
+      };
+
+      safeRun(imJs.wowActive);
+      safeRun(imJs.swiperActivation);
+      safeRun(imJs.vedioActivation);
+      safeRun(imJs.counterUp);
+      safeRun(imJs.salActive);
+      safeRun(imJs.progressAvtivation);
+      safeRun(imJs.stickyHeader);
+      safeRun(imJs.backToTopInit);
+      safeRun(imJs.typeJS);
+      safeRun(imJs.searchOpton);
+      safeRun(imJs.menuActive);
+      safeRun(imJs.popupMobileMenu);
+      safeRun(imJs.smoothScroll);
+      safeRun(imJs.textActivation);
+      safeRun(imJs.radialProgress);
+      safeRun(imJs.splitText);
     },
 
     wowActive: function () {
@@ -1198,7 +1213,7 @@
       });
     },
     searchOpton: function () {
-      $(document).on("click", "#search", function () {
+      $(document).on("click", "#search, #mobile-search", function () {
         $(".search-input-area").addClass("show");
         $("#anywhere-home").addClass("bgshow");
       });
@@ -1212,9 +1227,16 @@
       });
     },
     preloader: function () {
-      window.addEventListener("load", function () {
+      var reveal = function () {
         document.querySelector("body").classList.add("loaded");
-      });
+      };
+      window.addEventListener("load", reveal);
+      // Safety net: on slow mobile connections a single blocked/slow
+      // external resource (fonts, CDN script, etc.) can delay or prevent
+      // the window "load" event entirely, leaving the full-screen loader
+      // stuck forever and hiding the page underneath it. Force it away
+      // after a short delay regardless.
+      setTimeout(reveal, 2500);
     },
     // menuActive: function () {
     //   $(document).on("click", "#menu-btn", function () {
