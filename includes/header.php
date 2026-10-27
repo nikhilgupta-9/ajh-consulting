@@ -12,6 +12,11 @@ $currentPage     = basename($_SERVER['SCRIPT_NAME']);
 $settings        = site_settings();
 $activeCountry   = current_country();
 $isAuSection     = ($activeCountry === 'au');
+$__requestPath   = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '';
+$isBranchLocked  = (bool) preg_match('#/(nz|au)/#', $__requestPath);
+$userTrack       = $_COOKIE['ga_track'] ?? null;
+$showBizCol      = ($userTrack !== 'firm');
+$showFirmCol     = ($userTrack !== 'business');
 $firmHubUrl      = $isAuSection ? site_url('au/accounting-firm/') : site_url('nz/accounting-firm/');
 $bizHubUrl       = $isAuSection ? site_url('au/accounting/') : site_url('nz/accounting/');
 $navServices     = site_nav_services();
@@ -56,8 +61,12 @@ $navServices     = site_nav_services();
                     <div class="lg:w-1/2 px-[15px] xl:block hidden">
                         <div class="right">
                             <div class="country-toggle">
-                                <a href="<?php echo site_url("?country=nz"); ?>" class="country-toggle-btn<?php echo !$isAuSection ? ' active' : ''; ?>">🇳🇿 New Zealand</a>
-                                <a href="<?php echo site_url("?country=au"); ?>" class="country-toggle-btn<?php echo $isAuSection ? ' active' : ''; ?>">🇦🇺 Australia <span style="font-size:10px; background:#e53935; color:#fff; padding:1px 6px; border-radius:10px; margin-left:4px; text-transform:uppercase;">Soon</span></a>
+                                <?php if ($isBranchLocked): ?>
+                                    <span class="country-toggle-btn active">🇳🇿 New Zealand</span>
+                                <?php else: ?>
+                                    <a href="<?php echo site_url("?country=nz"); ?>" class="country-toggle-btn<?php echo !$isAuSection ? ' active' : ''; ?>">🇳🇿 New Zealand</a>
+                                    <a href="<?php echo site_url("?country=au"); ?>" class="country-toggle-btn<?php echo $isAuSection ? ' active' : ''; ?>">🇦🇺 Australia <span style="font-size:10px; background:#e53935; color:#fff; padding:1px 6px; border-radius:10px; margin-left:4px; text-transform:uppercase;">Soon</span></a>
+                                <?php endif; ?>
                             </div>
                             <ul class="top-nav">
                                 <li><a href='<?php echo site_url("about-us.php"); ?>'>About</a></li>
@@ -102,6 +111,7 @@ $navServices     = site_nav_services();
                                         <div class="submenu menu-link1 mega-menu-box">
                                             <div class="mega-columns-wrap">
                                                 <!-- Column 1: For Businesses -->
+                                                <?php if ($showBizCol): ?>
                                                 <div class="mega-column">
                                                     <div class="mega-col-header">
                                                         <span class="mega-tag"><i class="fas fa-briefcase"></i> For Businesses</span>
@@ -130,8 +140,10 @@ $navServices     = site_nav_services();
                                                         </a>
                                                     </div>
                                                 </div>
+                                                <?php endif; ?>
 
                                                 <!-- Column 2: For CA/CPA Firms -->
+                                                <?php if ($showFirmCol): ?>
                                                 <div class="mega-column">
                                                     <div class="mega-col-header">
                                                         <span class="mega-tag"><i class="fas fa-chart-network"></i> For CA/CPA Firms</span>
@@ -160,13 +172,14 @@ $navServices     = site_nav_services();
                                                         </a>
                                                     </div>
                                                 </div>
+                                                <?php endif; ?>
                                             </div>
 
                                             <!-- Trust bar across the bottom -->
                                             <div class="mega-bottom-trust">
                                                 <div class="mbt-badge">
                                                     <i class="fas fa-shield-check" style="color: #10b981;"></i>
-                                                    <span>SOC 2 Type II &amp; ISO 27001 Certified · Privacy Act &amp; GDPR Compliant</span>
+                                                    <span>Mutual NDA on Every Engagement · Your Clients, Your Brand, Your Control</span>
                                                 </div>
                                                 <a href="<?php echo site_url('get-started.php'); ?>" class="mbt-action">
                                                     Need a Scoping Call? <strong>Get In Touch &rarr;</strong>
@@ -249,8 +262,12 @@ $navServices     = site_nav_services();
             </div>
             <div class="body-mobile block xl:hidden">
                 <div class="country-toggle" style="border-color:#eee;margin:0 0 20px;max-width:max-content">
-                    <a href="<?php echo site_url("nz/accounting/"); ?>" class="country-toggle-btn<?php echo !$isAuSection ? ' active' : ''; ?>" style="color:#1c2539">🇳🇿 New Zealand</a>
-                    <a href="<?php echo site_url("australia.php"); ?>" class="country-toggle-btn<?php echo $isAuSection ? ' active' : ''; ?>" style="color:#1c2539">🇦🇺 Australia <span style="font-size:9px; background:#e53935; color:#fff; padding:1px 5px; border-radius:8px;">Soon</span></a>
+                    <?php if ($isBranchLocked): ?>
+                        <span class="country-toggle-btn active" style="color:#1c2539">🇳🇿 New Zealand</span>
+                    <?php else: ?>
+                        <a href="<?php echo site_url("nz/accounting/"); ?>" class="country-toggle-btn<?php echo !$isAuSection ? ' active' : ''; ?>" style="color:#1c2539">🇳🇿 New Zealand</a>
+                        <a href="<?php echo site_url("australia.php"); ?>" class="country-toggle-btn<?php echo $isAuSection ? ' active' : ''; ?>" style="color:#1c2539">🇦🇺 Australia <span style="font-size:9px; background:#e53935; color:#fff; padding:1px 5px; border-radius:8px;">Soon</span></a>
+                    <?php endif; ?>
                 </div>
                 <nav class="nav-main mainmenu-nav">
                     <ul class="mainmenu">
@@ -265,6 +282,7 @@ $navServices     = site_nav_services();
                         <li class="has-droupdown menu-item">
                             <a class='menu-link' href='javascript:void(0)'>Services</a>
                             <ul class="submenu">
+                                <?php if ($showBizCol): ?>
                                 <li class="mobile-menu-heading">
                                     <span class="badge-mini">For Businesses</span>
                                 </li>
@@ -283,7 +301,9 @@ $navServices     = site_nav_services();
                                         View All Business Services &rarr;
                                     </a>
                                 </li>
+                                <?php endif; ?>
 
+                                <?php if ($showFirmCol): ?>
                                 <li class="mobile-menu-heading">
                                     <span class="badge-mini">For CA/CPA Firms</span>
                                 </li>
@@ -302,6 +322,7 @@ $navServices     = site_nav_services();
                                         View All Firm Solutions &rarr;
                                     </a>
                                 </li>
+                                <?php endif; ?>
                             </ul>
                         </li>
                         <li class="menu-item"><a class='menu-link' href='<?php echo site_url("nz/accounting/industries.php"); ?>'>Industries</a></li>

@@ -38766,6 +38766,10 @@ ul {
   text-align: center
 }
 
+.text-right {
+  text-align: right
+}
+
 .text-start {
   text-align: start
 }

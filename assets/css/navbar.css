@@ -202,6 +202,11 @@
   }
 }
 
+.mainmenu li.has-droupdown .submenu.menu-link1:has(.mega-columns-wrap > .mega-column:only-child) {
+  width: 400px !important;
+  left: -60px !important;
+}
+
 .mega-columns-wrap {
   display: flex !important;
   align-items: stretch !important;
@@ -216,7 +221,7 @@
   flex-direction: column !important;
 }
 
-.mega-column:first-child {
+.mega-column:first-child:not(:only-child) {
   padding-right: 18px !important;
   border-right: 1px solid #f1f5f9 !important;
 }
@@ -377,10 +382,11 @@
 .mega-bottom-trust {
   background: #f8fafc !important;
   border-top: 1px solid #f1f5f9 !important;
-  padding: 11px 24px !important;
+  padding: 12px 24px !important;
   display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
   font-size: 11.5px !important;
   color: #64748b !important;
 }
@@ -389,6 +395,7 @@
   display: flex !important;
   align-items: center !important;
   gap: 7px !important;
+  line-height: 1.4 !important;
 }
 
 .mega-bottom-trust .mbt-badge i {

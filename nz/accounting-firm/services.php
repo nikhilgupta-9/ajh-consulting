@@ -45,7 +45,7 @@ require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
             <div class="flex flex-wrap -mx-[15px] justify-center text-center mb--50">
                 <div class="w-full px-[15px]" style="max-width: 800px;">
                     <span class="color-primary sub" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Specialized Practice Solutions</span>
-                    <h2 class="title" style="font-size: 36px; margin: 10px 0 15px;">White-Label Production Services for Accounting Practices</h2>
+                    <h2 class="title" style="font-size: 36px; margin: 10px 0 15px;">Outsourced Production Support for Your Accounting Practice</h2>
                     <p class="disc" style="color: #64748b; font-size: 16px;">
                         Expand your firm's billable capacity without the overhead of local recruitment, office space, or payroll tax. We deliver audit-ready working papers ready for partner sign-off.
                     </p>
@@ -64,9 +64,11 @@ require __DIR__ . '/../../includes/firm-outsourcing-subnav.php';
                         <div style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06); height: 100%; display: flex; flex-direction: column; border: 1px solid #e2e8f0; transition: transform .3s, box-shadow .3s;">
                             <div style="height: 200px; overflow: hidden; position: relative;">
                                 <img src="<?php echo site_url($service['image'] ?: 'assets/images/service/10.jpg'); ?>" alt="<?php echo e($service['title']); ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                                <?php if (!empty($service['starting_price'])): ?>
                                 <div style="position: absolute; top: 15px; right: 15px; background: #0b1220; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; border-left: 3px solid #e53935;">
-                                    White-Label Delivery
+                                    From $<?php echo e($service['starting_price']); ?>
                                 </div>
+                                <?php endif; ?>
                             </div>
                             <div style="padding: 30px 24px; flex-grow: 1; display: flex; flex-direction: column;">
                                 <h3 class="title h5" style="margin-bottom: 12px; font-size: 20px;">

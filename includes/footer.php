@@ -9,6 +9,7 @@
 $settings = site_settings();
 $waLink = $settings['whatsapp_url'] ?: whatsapp_link($settings['whatsapp_number']);
 $currentPage = $currentPage ?? basename($_SERVER['SCRIPT_NAME']);
+$isBranchLocked = $isBranchLocked ?? (bool) preg_match('#/(nz|au)/#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '');
 
 $recentPosts = [];
 if ($pdo = db()) {
@@ -142,8 +143,12 @@ $socialLinks = array_filter([
                     <?php echo e($settings['copyright_text'] ?: (APP_NAME . '. All rights reserved.')); ?></p>
 
                 <div class="site-footer-country" role="group" aria-label="Select your country">
-                    <a href="<?php echo site_url("?country=nz"); ?>" class="<?php echo current_country() !== 'au' ? 'is-active' : ''; ?>">New Zealand</a>
-                    <a href="<?php echo site_url("?country=au"); ?>" class="<?php echo current_country() === 'au' ? 'is-active' : ''; ?>">Australia</a>
+                    <?php if ($isBranchLocked): ?>
+                        <span class="is-active">New Zealand</span>
+                    <?php else: ?>
+                        <a href="<?php echo site_url("?country=nz"); ?>" class="<?php echo current_country() !== 'au' ? 'is-active' : ''; ?>">New Zealand</a>
+                        <a href="<?php echo site_url("?country=au"); ?>" class="<?php echo current_country() === 'au' ? 'is-active' : ''; ?>">Australia</a>
+                    <?php endif; ?>
                 </div>
 
                 <ul class="site-footer-legal">
